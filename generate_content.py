@@ -28,8 +28,9 @@ Current HTML:
 
 # 4. Roep het Gemini model aan
 
+
 response = client.models.generate_content(
-    model="gemini-2.5-flash-lite",
+    model="gemini-2.0-flash",
     contents=prompt,
 )
 
