@@ -15,9 +15,10 @@ try:
 except FileNotFoundError:
     current_html = ""
 
-prompt = f"""
-Je bent een autonome website-architect en content creator.
-Hier is de huidige `index.html` van de website:
 
-```html
+prompt = f"""
+Genereer een complete HTML pagina inclusief CSS.
+Zorg voor een modern design en een actuele blogpost.
+​Current HTML:
 {current_html}
+"""
