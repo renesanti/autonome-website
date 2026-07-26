@@ -29,8 +29,8 @@ Current HTML:
 # 4. Roep het Gemini model aan
 
 response = client.models.generate_content(
-    model="gemini-2.0-flash",
-    contents=prompt,
+    model="gemini-2.5-flash",  # Direct overgenomen uit jouw log!
+    contents="Schrijf een blogpost over...",
 )
 
 
