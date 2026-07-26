@@ -1,0 +1,35 @@
+name: Check Available Gemini Models
+
+on:
+  workflow_dispatch: # Zorgt ervoor dat je de test handmatig kunt starten
+
+jobs:
+  list-models:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Google GenAI SDK
+        run: pip install google-genai
+
+      - name: Run Model List Script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python -c '
+          from google import genai
+          import os
+
+          client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
+          print("\n=== BESCHIKBARE MODELLEN VOOR JOUW API-KEY ===")
+          for m in client.models.list():
+              if hasattr(m, "supported_actions") and "generateContent" in m.supported_actions:
+                  print(f"- {m.name}")
+          print("================================================\n")
+          '
