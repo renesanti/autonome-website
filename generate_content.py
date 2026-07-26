@@ -29,7 +29,7 @@ Current HTML:
 # 4. Roep het Gemini model aan
 
 response = client.models.generate_content(
-    model="gemini-2.5-flash",  # Direct overgenomen uit jouw log!
+    model="gemini-3.5-flash",  # Direct overgenomen uit jouw log!
     contents="Schrijf een blogpost over...",
 )
 
