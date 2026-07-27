@@ -122,6 +122,11 @@
             margin-bottom: 20px;
         }
 
+        .category-badge.tech {
+            background-color: #f0fdf4;
+            color: #15803d;
+        }
+
         h1.article-title {
             font-size: 2.25rem;
             color: var(--dark);
@@ -136,6 +141,7 @@
             color: var(--text-muted);
             margin-bottom: 30px;
             display: flex;
+            flex-wrap: wrap;
             gap: 15px;
             align-items: center;
             border-bottom: 1px solid var(--border);
@@ -199,6 +205,48 @@
             margin-bottom: 15px;
             padding-bottom: 10px;
             border-bottom: 2px solid var(--border);
+        }
+
+        /* Archive Styles */
+        .archive-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .archive-item {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        .archive-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .archive-item h4 {
+            font-size: 1rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
+        .archive-item h4 a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .archive-item h4 a:hover {
+            color: var(--primary);
+        }
+
+        .archive-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
         }
 
         /* Interactive Archive integration */
@@ -276,49 +324,77 @@
             <!-- Hoofdredactioneel Artikel (Nieuw & Actueel) -->
             <main>
                 <article class="featured-article">
-                    <span class="category-badge">Kunstmatige Intelligentie</span>
-                    <h1 class="article-title">De Opkomst van Agentic AI: Waarom Autonome AI-assistenten Onze Werkomgeving Gaan Transformeren</h1>
+                    <span class="category-badge tech">Deep Tech & AI</span>
+                    <h1 class="article-title">Liquid Neural Networks: Waarom de Toekomst van AI Flexibel, Compact en Continu Is</h1>
                     
                     <div class="article-meta">
-                        <span>Door <strong>Steven de Waal</strong></span>
+                        <span>Door <strong>Dr. Elif Demir</strong></span>
                         <span>•</span>
-                        <span>Laatst bijgewerkt: Vandaag</span>
+                        <span>Gepubliceerd: Vandaag</span>
                         <span>•</span>
-                        <span>Leestijd: 6 min</span>
+                        <span>Leestijd: 7 min</span>
                     </div>
 
                     <div class="article-content">
-                        <p>We hebben het afgelopen jaar massaal geëxperimenteerd met generatieve AI-tools zoals ChatGPT, Claude en Midjourney. We leerden prompts schrijven en gebruikten AI als een uiterst snelle sparringpartner. Maar de tech-industrie staat alweer aan de vooravond van de volgende grote revolutie: <strong>Agentic AI</strong>. Waar de huidige generatie chatbots reactief is, gaan autonome AI-agents proactief voor ons aan het werk.</p>
+                        <p>Wie de AI-revolutie volgt, hoort voornamelijk over 'groter, zwaarder en duurder'. Large Language Models (LLM's) vereisen gigantische datacenters, verbruiken gigawatten aan stroom en hun kennis is bevroren op het moment dat de training stopt. Maar in de schaduw van deze mastodonten ontwikkelt zich een radicaal alternatief aan het MIT: <strong>Liquid Neural Networks (LNN's)</strong>. Deze technologie belooft AI niet alleen slimmer te maken, maar ook oneindig veel flexibeler en energiezuiniger.</p>
 
-                        <h2>Wat is Agentic AI precies?</h2>
-                        <p>De term 'Agentic' verwijst naar het hebben van agency — het vermogen om zelfstandig beslissingen te nemen en actie te ondernemen. Huidige AI-modellen wachten braaf tot jij een prompt typt. Agentic AI daarentegen krijgt een doelstelling mee ("Plan een complete marketingcampagne voor product X en voer deze uit binnen een budget van €500") en gaat vervolgens zelfstandig aan de slag.</p>
+                        <h2>Wat is een Liquid Neural Network?</h2>
+                        <p>Traditionele neurale netwerken zijn statisch. Tijdens de trainingsfase worden de gewichten van de verbindingen vastgelegd, waarna het model tijdens gebruik (de inferentiefase) niet meer fundamenteel verandert. Een Liquid Neural Network daarentegen is ontworpen om zich continu aan te passen aan nieuwe datastromen, zelfs ná de training.</p>
                         
+                        <p>De term 'liquid' (vloeibaar) verwijst naar het vermogen van het netwerk om zijn parameters dynamisch aan te passen op basis van de tijd en de context van de input. Geïnspireerd door het neurologische systeem van de microscopisch kleine rondworm <em>C. elegans</em>, die met slechts 302 neuronen complexe navigatietaken kan uitvoeren, blinken LNN's uit in compactheid en efficiëntie.</p>
+
                         <blockquote>
-                            "De verschuiving van reactieve chatbots naar proactieve, autonome agents is de meest significante technologische sprong sinds de introductie van de smartphone."
+                            "Waar traditionele AI-modellen fungeren als een fotoalbum van het verleden, gedraagt een Liquid Neural Network zich als een filmcamera die live reageert op de regisseur."
                         </blockquote>
 
-                        <p>Een AI-agent kan zelfstandig software-applicaties openen, data analyseren, e-mails versturen, API's aanroepen en zelfs fouten in zijn eigen werk corrigeren zonder dat er constante menselijke interactie nodig is.</p>
-
-                        <h2>Hoe verandert dit onze manier van werken?</h2>
-                        <p>In plaats van dat we urenlang micro-taken delegeren aan een chatbot, verschuift de rol van de menselijke professional naar die van een <strong>'Director'</strong> of <strong>'Kwaliteitsmanager'</strong>. De AI-agent voert het zware werk uit, terwijl de mens de strategie bewaakt en de eindresultaten goedkeurt. Enkele concrete toepassingen die we nu al zien ontstaan:</p>
+                        <h2>De Drie Grote Voordelen van 'Vloeibare' AI</h2>
+                        <p>LNN's lossen drie van de meest hardnekkige problemen van moderne AI-architecturen op:</p>
                         
                         <ul>
-                            <li><strong>Klantenservice:</strong> Agents die niet alleen antwoorden geven, maar ook daadwerkelijk retourzendingen verwerken in het ERP-systeem en refunds initiëren.</li>
-                            <li><strong>Software Development:</strong> AI-agents die zelfstandig bugs opsporen in de code, een patch schrijven, deze testen en live zetten.</li>
-                            <li><strong>Marktonderzoek:</strong> Autonome agents die nachtenlang het internet afspeuren naar concurrentie-informatie, dit consolideren in een rapport en direct een presentatie voorbereiden.</li>
+                            <li><strong>Oneindige Aanpasbaarheid (Adaptability):</strong> Omdat de wiskundige vergelijkingen achter LNN's continu van aard zijn, kunnen ze moeiteloos omgaan met onverwachte situaties. Denk aan een zelfrijdende auto die getraind is in de zon, maar plotseling in een zware sneeuwstorm terechtkomt. Waar een traditionele AI kan haperen, past een LNN zich direct aan de nieuwe omstandigheden aan.</li>
+                            <li><strong>Extreme Compactheid:</strong> Terwijl GPT-4 honderden miljarden parameters nodig heeft, kan een LNN voor complexe navigatietaken toe met minder dan honderd neuronen. Dit betekent dat de software direct op kleine microchips (edge computing) kan draaien, zonder cloudverbinding.</li>
+                            <li><strong>Verklaarbaarheid (Explainability):</strong> Door de compacte structuur is het voor ontwikkelaars veel eenvoudiger om te herleiden <em>waarom</em> een netwerk een bepaalde beslissing heeft genomen. Dit is een gigantische stap voorwaarts voor sectoren waar transparantie cruciaal is, zoals de medische wereld en de luchtvaart.</li>
                         </ul>
 
-                        <h2>De uitdagingen: Veiligheid en Controle</h2>
-                        <p>Met meer autonomie komt uiteraard ook meer risico. Wat als een AI-agent een verkeerde beslissing neemt die geld kost? Of per ongeluk gevoelige data deelt? Het bouwen van zogenaamde 'guardrails' (veiligheidskaders) is momenteel de belangrijkste focus voor AI-ontwikkelaars wereldwijd. De mens moet te allen tijde de zogeheten 'human-in-the-loop' controle behouden.</p>
+                        <h2>Praktische Toepassingen in de Realiteit</h2>
+                        <p>De toepassingsgebieden voor LNN's liggen met name in de fysieke wereld, waar datastromen continu veranderen en direct moeten worden verwerkt:</p>
+
+                        <h3>1. Autonome Voertuigen en Robotica</h3>
+                        <p>In tests van MIT slaagde een drone met een LNN-besturingssysteem erin om feilloos door dichte bossen en onbekend terrein te navigeren, zelfs bij harde zijwind en camera-ruis. Het model paste zijn vlieggedrag in real-time aan zonder vertraging.</p>
+
+                        <h3>2. Medische Monitoring</h3>
+                        <p>LNN's zijn perfect geschikt voor het analyseren van continue vitale functies, zoals hartslag (ECG) en hersenactiviteit (EEG). Ze kunnen subtiele, tijdgebonden afwijkingen detecteren die traditionele AI-modellen over het hoofd zien omdat ze de temporele context missen.</p>
+
+                        <h2>De Weg naar de Toekomst</h2>
+                        <p>Hoewel LNN's momenteel nog niet geschikt zijn voor het genereren van creatieve teksten of het voeren van diepgaande filosofische gesprekken zoals LLM's dat doen, vullen ze de perfecte niche op voor real-time besluitvorming. De toekomst van AI is hoogstwaarschijnlijk een hybride vorm: een gigantisch 'denkend' brein in de cloud, ondersteund door vloeibare, vlijmscherpe zintuigelijke agents op de apparaten zelf.</p>
 
                         <h3>Conclusie</h3>
-                        <p>Agentic AI belooft ons te bevrijden van repetitief computerwerk. Het stelt ons in staat om op een veel hoger strategisch niveau te opereren. Wie nu al leert samenwerken met autonome AI-assistenten, legt de fundering voor een uiterst productieve toekomst.</p>
+                        <p>Liquid Neural Networks bewijzen dat 'groter' niet altijd beter is. Door te leren van de elegantie en minimalisme van de natuur, openen wetenschappers de deur naar een AI-toekomst die niet alleen groen en efficiënt is, maar ook écht intelligent reageert op een onvoorspelbare wereld.</p>
                     </div>
                 </article>
             </main>
 
-            <!-- Sidebar met Historie / Co-creatie Ideeënbus -->
+            <!-- Sidebar met Historie / Archief & Co-creatie -->
             <aside>
+                
+                <!-- Archiefsectie: Behoud van bestaande artikelen -->
+                <div class="sidebar-widget">
+                    <h3>📚 Uit het Archief</h3>
+                    <div class="archive-list">
+                        <div class="archive-item">
+                            <span class="category-badge" style="font-size: 0.65rem; padding: 2px 8px; margin-bottom: 8px;">Kunstmatige Intelligentie</span>
+                            <h4><a href="#">De Opkomst van Agentic AI: Waarom Autonome AI-assistenten Onze Werkomgeving Gaan Transformeren</a></h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">Hoe we verschuiven van reactieve chatbots naar proactieve, zelfstandige AI-agents die complete bedrijfsprocessen overnemen.</p>
+                            <div class="archive-meta">
+                                <span>Door Steven de Waal</span>
+                                <span>•</span>
+                                <span>6 min leestijd</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ideeënbus Widget -->
                 <div class="sidebar-widget">
                     <h3>💡 Laatste Update & Ideeënbus</h3>
                     <div class="legacy-prompt">
@@ -347,6 +423,7 @@
                     </div>
                 </div>
 
+                <!-- Over TechPulse Widget -->
                 <div class="sidebar-widget">
                     <h3>Over TechPulse</h3>
                     <p style="font-size: 0.9rem; color: var(--text-muted);">TechPulse is jouw gids in de snel veranderende wereld van technologie en innovatie. Wij vertalen complexe AI-trends naar begrijpelijke, waardevolle inzichten voor professionals.</p>
