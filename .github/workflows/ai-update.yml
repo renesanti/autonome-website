@@ -1,42 +1,36 @@
-name: AI Autonomous Update
+name: Autonomous UX & Content Update
 
 on:
   schedule:
-    # Draait automatisch elke dag om 00:00 UTC (aanpasbaar)
-    - cron: '0 0 * * *'
-  workflow_dispatch: # Hiermee kun je het ook handmatig starten via GitHub
+    - cron: '0 0 * * *' # Elke nacht om 00:00
+  workflow_dispatch: # Ook handmatig te starten
 
 jobs:
-  update-website:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write # Belangrijk: geeft de Action toestemming om code terug te pushen
-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: '3.10'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install google-genai
+          pip install -r requirements.txt
+          playwright install chromium --with-deps
 
-      - name: Run AI Generator Script
+      - name: Run Visual UX Optimizer
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }} # Pakt je opgeslagen sleutel
-        run: |
-          python generate_content.py
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python visual_ux_improver.py
 
-      - name: Commit and push changes
+      - name: Commit and Push changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action AI Agent"
+          git config --global user.name "GitHub Action Bot"
+          git config --global user.email "action@github.com"
           git add index.html
-          # Alleen committen als er echt iets veranderd is
-          git diff-index --quiet HEAD || git commit -m "AI: Automatische update van content en design"
-          git push
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-design optimization based on visual inspection" && git push)
