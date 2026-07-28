@@ -2,8 +2,8 @@ name: Autonomous UX & Content Update
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Elke nacht om 00:00
-  workflow_dispatch: # Ook handmatig te starten
+    - cron: '0 0 * * *' # Elke nacht om 00:00 UTC
+  workflow_dispatch: # Handmatig te starten via het Actions tabblad
 
 jobs:
   build:
@@ -20,8 +20,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install google-genai pillow playwright requests
           playwright install chromium --with-deps
+
+      - name: Fetch Reddit Trending Topics
+        run: python scripts/fetch_reddit.py
 
       - name: Run Visual UX Optimizer
         env:
@@ -30,7 +33,7 @@ jobs:
 
       - name: Commit and Push changes
         run: |
-          git config --global user.name "GitHub Action Bot"
-          git config --global user.email "action@github.com"
-          git add index.html
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-design optimization based on visual inspection" && git push)
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.io"
+          git add index.html trending.db
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update: Trending topics + UX visual optimization" && git push)
