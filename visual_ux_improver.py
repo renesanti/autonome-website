@@ -39,7 +39,7 @@ Huidige HTML:
 image = Image.open("screenshot.png")
 
 response = client.models.generate_content(
-    model="gemini-2.5-flash",  # Pas dit aan als je een andere versie gebruikt
+    model="gemini-3.5-flash",  # Pas dit aan als je een andere versie gebruikt
     contents=[prompt, image],
 )
 
