@@ -19,20 +19,20 @@
             --accent: #06b6d4;
             --dark: #0f172a;
             --dark-subtle: #1e293b;
-            --light-bg: #fafafa;
+            --light-bg: #f8fafc;
             --card-bg: #ffffff;
             --text-main: #334155;
             --text-muted: #64748b;
             --border: #e2e8f0;
             --border-focus: #cbd5e1;
             --font-stack: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.03), 0 2px 4px -2px rgba(15, 23, 42, 0.03);
-            --shadow-lg: 0 10px 25px -3px rgba(15, 23, 42, 0.05), 0 4px 12px -4px rgba(15, 23, 42, 0.05);
-            --shadow-xl: 0 24px 48px -12px rgba(15, 23, 42, 0.08);
-            --radius-sm: 8px;
-            --radius-md: 14px;
-            --radius-lg: 20px;
+            --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+            --shadow-lg: 0 10px 25px -3px rgba(15, 23, 42, 0.03), 0 4px 12px -4px rgba(15, 23, 42, 0.03);
+            --shadow-xl: 0 20px 40px -10px rgba(15, 23, 42, 0.06);
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
         }
 
         * {
@@ -47,42 +47,42 @@
 
         body {
             font-family: var(--font-stack);
-            background-color: var(--light-bg);
+            background: radial-gradient(at top right, #f1f5f9, #f8fafc);
             color: var(--text-main);
-            line-height: 1.8;
+            line-height: 1.75;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
         /* Container layout */
         .container {
-            max-width: 1200px;
+            max-width: 1240px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
         /* Header Navigation */
         header {
-            background-color: rgba(15, 23, 42, 0.96);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             color: #ffffff;
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.15);
         }
 
         header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 76px;
+            height: 80px;
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 800;
             letter-spacing: -0.04em;
             color: #ffffff;
@@ -90,11 +90,11 @@
             display: flex;
             align-items: center;
             gap: 2px;
-            transition: opacity 0.2s ease;
+            transition: transform 0.2s ease;
         }
 
         .logo:hover {
-            opacity: 0.95;
+            transform: scale(1.02);
         }
 
         .logo span {
@@ -105,8 +105,8 @@
         .logo span::after {
             content: '';
             display: inline-block;
-            width: 5px;
-            height: 5px;
+            width: 6px;
+            height: 6px;
             background-color: var(--accent);
             border-radius: 50%;
             margin-left: 2px;
@@ -117,13 +117,13 @@
         nav {
             display: flex;
             align-items: center;
-            gap: 28px;
+            gap: 32px;
         }
 
         nav a {
             color: #94a3b8;
             text-decoration: none;
-            font-size: 0.925rem;
+            font-size: 0.95rem;
             font-weight: 600;
             transition: all 0.25s ease;
             position: relative;
@@ -138,7 +138,7 @@
         nav a::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -2px;
             left: 0;
             width: 0;
             height: 2px;
@@ -154,9 +154,9 @@
         /* Main Grid Layout */
         .main-layout {
             display: grid;
-            grid-template-columns: 1.95fr 1.05fr;
+            grid-template-columns: 1.9fr 1.1fr;
             gap: 40px;
-            margin-top: 56px;
+            margin-top: 48px;
             margin-bottom: 96px;
         }
 
@@ -164,9 +164,9 @@
         .featured-article {
             background: var(--card-bg);
             border-radius: var(--radius-lg);
-            padding: 56px;
+            padding: 48px;
             box-shadow: var(--shadow-xl);
-            border: 1px solid rgba(15, 23, 42, 0.04);
+            border: 1px solid rgba(15, 23, 42, 0.03);
         }
 
         .category-badge {
@@ -180,24 +180,33 @@
             letter-spacing: 0.08em;
             padding: 6px 14px;
             border-radius: 100px;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
             border: 1px solid rgba(14, 165, 233, 0.1);
             transition: all 0.2s ease;
         }
 
         .category-badge.tech {
             background-color: #f0fdf4;
-            color: #15803d;
+            color: #166534;
             border: 1px solid rgba(22, 163, 74, 0.1);
+        }
+
+        .category-badge.archive-badge {
+            font-size: 0.65rem; 
+            padding: 4px 10px; 
+            margin-bottom: 12px; 
+            background-color: #f1f5f9; 
+            color: #475569;
+            border: 1px solid rgba(71, 85, 105, 0.1);
         }
 
         h1.article-title {
             font-size: 2.85rem;
             color: var(--dark);
-            line-height: 1.22;
+            line-height: 1.25;
             font-weight: 800;
             margin-bottom: 24px;
-            letter-spacing: -0.035em;
+            letter-spacing: -0.03em;
         }
 
         .article-meta {
@@ -223,10 +232,10 @@
         }
 
         .article-content p {
-            margin-bottom: 28px;
-            font-size: 1.1rem;
+            margin-bottom: 24px;
+            font-size: 1.075rem;
             color: var(--text-main);
-            line-height: 1.85;
+            line-height: 1.8;
         }
 
         .article-content p strong {
@@ -236,14 +245,14 @@
 
         .article-content h2, .article-content h3 {
             color: var(--dark);
-            margin-top: 56px;
+            margin-top: 48px;
             margin-bottom: 20px;
             font-weight: 800;
             letter-spacing: -0.025em;
         }
 
         .article-content h2 {
-            font-size: 1.75rem;
+            font-size: 1.85rem;
             border-left: 4px solid var(--primary);
             padding-left: 20px;
             display: flex;
@@ -252,35 +261,33 @@
         }
 
         .article-content h3 {
-            font-size: 1.35rem;
-            margin-top: 40px;
+            font-size: 1.4rem;
+            margin-top: 36px;
             color: var(--dark-subtle);
             line-height: 1.4;
         }
 
         .article-content blockquote {
             border-left: 4px solid var(--accent);
-            background: linear-gradient(90deg, #ecfeff 0%, rgba(255, 255, 255, 0.2) 100%);
-            padding: 28px 36px;
-            margin: 44px 0;
+            background: linear-gradient(90deg, #f0fdfa 0%, rgba(255, 255, 255, 0.5) 100%);
+            padding: 32px 36px;
+            margin: 40px 0;
             font-style: italic;
             border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            border-top: 1px solid rgba(6, 182, 212, 0.05);
-            border-bottom: 1px solid rgba(6, 182, 212, 0.05);
-            border-right: 1px solid rgba(6, 182, 212, 0.05);
+            box-shadow: inset 0 1px 3px rgba(6, 182, 212, 0.05);
         }
 
         .article-content blockquote p {
             margin-bottom: 0;
             font-size: 1.15rem;
             color: #0891b2;
-            font-weight: 500;
+            font-weight: 600;
             line-height: 1.75;
         }
 
         .article-content ul {
             margin-bottom: 36px;
-            padding-left: 8px;
+            padding-left: 4px;
             list-style: none;
         }
 
@@ -288,18 +295,20 @@
             position: relative;
             padding-left: 28px;
             margin-bottom: 16px;
-            font-size: 1.075rem;
+            font-size: 1.05rem;
             color: var(--text-main);
             line-height: 1.75;
         }
 
         .article-content li::before {
-            content: "→";
-            color: var(--primary);
-            font-weight: 800;
+            content: "";
             position: absolute;
-            left: 0;
-            top: 0;
+            left: 6px;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            background-color: var(--primary);
+            border-radius: 50%;
         }
 
         .article-content li strong {
@@ -310,7 +319,7 @@
         aside {
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 32px;
         }
 
         .sidebar-widget {
@@ -318,17 +327,17 @@
             border-radius: var(--radius-lg);
             padding: 36px;
             box-shadow: var(--shadow-lg);
-            border: 1px solid rgba(15, 23, 42, 0.03);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(15, 23, 42, 0.02);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
         }
 
         .sidebar-widget:hover {
-            transform: translateY(-4px);
+            transform: translateY(-2px);
             box-shadow: var(--shadow-xl);
         }
 
         .sidebar-widget h3 {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             color: var(--dark);
             margin-bottom: 24px;
             padding-bottom: 14px;
@@ -344,7 +353,7 @@
         .archive-list {
             display: flex;
             flex-direction: column;
-            gap: 28px;
+            gap: 24px;
         }
 
         .archive-item {
@@ -428,14 +437,13 @@
         /* Form styling */
         .interactive-form {
             background-color: var(--light-bg);
-            padding: 28px;
+            padding: 24px;
             border-radius: var(--radius-md);
             border: 1px solid var(--border);
             margin-top: 28px;
             display: flex;
             flex-direction: column;
             gap: 20px;
-            box-shadow: inset 0 2px 4px rgba(15, 23, 42, 0.01);
         }
 
         .interactive-form p {
@@ -476,7 +484,7 @@
             font-family: var(--font-stack);
             font-size: 0.925rem;
             color: var(--text-main);
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.2s ease;
         }
 
         .form-input:focus, .form-textarea:focus, .form-select:focus {
@@ -506,7 +514,7 @@
             border: none;
             border-radius: var(--radius-sm);
             cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.25s ease;
             text-align: center;
             display: flex;
             align-items: center;
@@ -517,8 +525,8 @@
 
         .btn-submit:hover {
             background-color: var(--primary-hover);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
-            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.25);
+            transform: translateY(-1px);
         }
 
         .btn-submit:active {
@@ -529,7 +537,7 @@
         footer {
             background-color: var(--dark);
             color: #64748b;
-            padding: 56px 0;
+            padding: 64px 0;
             font-size: 0.9rem;
             border-top: 1px solid rgba(255, 255, 255, 0.04);
         }
@@ -543,8 +551,8 @@
         @media (max-width: 1024px) {
             .main-layout {
                 grid-template-columns: 1fr;
-                gap: 48px;
-                margin-top: 40px;
+                gap: 40px;
+                margin-top: 32px;
             }
             
             h1.article-title {
@@ -578,7 +586,7 @@
             }
 
             .main-layout {
-                margin-top: 32px;
+                margin-top: 24px;
                 margin-bottom: 64px;
             }
 
@@ -642,7 +650,7 @@
     <div class="container">
         <div class="main-layout">
             
-            <!-- Hoofdredactioneel Artikel (Nieuw & Actueel) -->
+            <!-- Hoofdredactioneel Artikel -->
             <main>
                 <article class="featured-article">
                     <span class="category-badge tech">Deep Tech & AI</span>
@@ -662,7 +670,7 @@
                         <h2>Wat is een Liquid Neural Network?</h2>
                         <p>Traditionele neurale netwerken zijn statisch. Tijdens de trainingsfase worden de gewichten van de verbindingen vastgelegd, waarna het model tijdens gebruik (de inferentiefase) niet meer fundamenteel verandert. Een Liquid Neural Network daarentegen is ontworpen om zich continu aan te passen aan nieuwe datastromen, zelfs ná de training.</p>
                         
-                        <p>De term 'liquid' (vloeibaar) verwijst naar het vermogen van het netwerk om zijn parameters dynamisch aan te passen op basis van de tijd en de context van de input. Geïnspireerd door het neurologische systeem van de microscopisch kleine rondworm <em>C. elegans</em>, die met slechts 302 neuronen complexe navigatietaken kan uitvoeren, blinken LNN's uit in compactheid en efficiëntie.</p>
+                        <p>De term 'liquid' (vloeibaar) verwijst naar het vermogen van het netwerk om zijn parameters dynamisch aan te passen op basis van de tijd en de context of de input. Geïnspireerd door het neurologische systeem van de microscopisch kleine rondworm <em>C. elegans</em>, die met slechts 302 neuronen complexe navigatietaken kan uitvoeren, blinken LNN's uit in compactheid en efficiëntie.</p>
 
                         <blockquote>
                             <p>"Waar traditionele AI-modellen fungeren als een fotoalbum van het verleden, gedraagt een Liquid Neural Network zich als een filmcamera die live reageert op de regisseur."</p>
@@ -672,7 +680,7 @@
                         <p>LNN's lossen drie van de meest hardnekkige problemen van moderne AI-architecturen op:</p>
                         
                         <ul>
-                            <li><strong>Oneinfige Aanpasbaarheid (Adaptability):</strong> Omdat de wiskundige vergelijkingen achter LNN's continu van aard zijn, kunnen ze moeiteloos omgaan met onverwachte situaties. Denk aan een zelfrijdende auto die getraind is in de zon, maar plotseling in een zware sneeuwstorm terechtkomt. Waar een traditionele AI kan haperen, past een LNN zich direct aan de nieuwe omstandigheden aan.</li>
+                            <li><strong>Oneindige Aanpasbaarheid (Adaptability):</strong> Omdat de wiskundige vergelijkingen achter LNN's continu van aard zijn, kunnen ze moeiteloos omgaan met onverwachte situaties. Denk aan een zelfrijdende auto die getraind is in de zon, maar plotseling in een zware sneeuwstorm terechtkomt. Waar een traditionele AI kan haperen, past een LNN zich direct aan de nieuwe omstandigheden aan.</li>
                             <li><strong>Extreme Compactheid:</strong> Terwijl GPT-4 honderden miljarden parameters nodig heeft, kan een LNN voor complexe navigatietaken toe met minder dan honderd neuronen. Dit betekent dat de software direct op kleine microchips (edge computing) kan draaien, zonder cloudverbinding.</li>
                             <li><strong>Verklaarbaarheid (Explainability):</strong> Door de compacte structuur is het voor ontwikkelaars veel eenvoudiger om te herleiden <em>waarom</em> een netwerk een bepaalde beslissing heeft genomen. Dit is een gigantische stap voorwaarts voor sectoren waar transparantie cruciaal is, zoals de medische wereld en de luchtvaart.</li>
                         </ul>
@@ -698,14 +706,14 @@
             <!-- Sidebar met Historie / Archief & Co-creatie -->
             <aside>
                 
-                <!-- Archiefsectie: Behoud van bestaande artikelen -->
+                <!-- Archiefsectie -->
                 <div class="sidebar-widget">
                     <h3>📚 Uit het Archief</h3>
                     <div class="archive-list">
                         <div class="archive-item">
-                            <span class="category-badge" style="font-size: 0.65rem; padding: 4px 10px; margin-bottom: 12px; background-color: #f1f5f9; color: #475569;">Kunstmatige Intelligentie</span>
+                            <span class="category-badge archive-badge">Kunstmatige Intelligentie</span>
                             <h4><a href="#">De Opkomst van Agentic AI: Waarom Autonome AI-assistenten Onze Werkomgeving Gaan Transformeren</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 0;">Hoe we verschuiven van reactieve chatbots naar proactieve, zelfstandige AI-agents die complete bedrijfsprocessen overnemen.</p>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Hoe we verschuiven van reactieve chatbots naar proactieve, zelfstandige AI-agents die complete bedrijfsprocessen overnemen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Steven de Waal</strong></span>
                                 <span class="dot">•</span>
@@ -717,12 +725,12 @@
 
                 <!-- Ideeënbus Widget -->
                 <div class="sidebar-widget">
-                    <h3>💡 Laatste Update & Ideeënbus</h3>
+                    <h3>💡 Update & Ideeënbus</h3>
                     <div class="legacy-prompt">
                         <p>Ik schrijf heel graag een blogpost voor je! Je bent alleen vergeten het onderwerp in te vullen na de puntjes.</p> 
                         <p><strong>Waar wil je dat de volgende blogpost over gaat?</strong> Laat het me weten in een reactie.</p> 
                         
-                        <p>Als je nog twijfelt over het onderwerp, zijn hier een paar populaire ideeën die we direct voor je kunnen uitwerken:</p>
+                        <p>Als je nog twijfelt, zijn hier een paar populaire ideeën die we direct kunnen uitwerken:</p>
                         
                         <ul>
                             <li><strong>Technologie:</strong> De impact van AI op ons dagelijks leven / Handige tech-hacks.</li>
@@ -735,9 +743,9 @@
                         <form class="interactive-form" onsubmit="event.preventDefault(); alert('Bedankt! We gaan aan de slag met jouw idee voor een nieuwe blogpost.');">
                             <p><strong>Laat me ook even weten:</strong></p>
                             <ol>
-                                <li>Wie de <strong>doelgroep</strong> is (bijv. studenten, ondernemers, beginners).</li>
-                                <li>Welke <strong>toon</strong> je wilt (bijv. informeel en enthousiast, of professioneel).</li>
-                                <li>Of er specifieke <strong>zoekwoorden (SEO)</strong> zijn.</li>
+                                <li>Wie de <strong>doelgroep</strong> is (bijv. studenten, ondernemers).</li>
+                                <li>Welke <strong>toon</strong> je wilt (bijv. informeel of professioneel).</li>
+                                <li>Of er specifieke <strong>zoekwoorden</strong> zijn.</li>
                             </ol>
                             
                             <div class="form-group">
@@ -777,7 +785,7 @@
                 </div>
 
                 <!-- Over TechPulse Widget -->
-                <div class="sidebar-widget" style="background: linear-gradient(145deg, var(--card-bg) 0%, #fafafa 100%);">
+                <div class="sidebar-widget" style="background: linear-gradient(145deg, var(--card-bg) 0%, #f8fafc 100%);">
                     <h3>Over TechPulse</h3>
                     <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 0;">TechPulse is jouw gids in de snel veranderende wereld van technologie en innovatie. Wij vertalen complexe AI-trends naar begrijpelijke, waardevolle inzichten voor professionals.</p>
                 </div>
