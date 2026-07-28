@@ -23,16 +23,19 @@ def init_db():
 
 # 2. Reddit topics ophalen
 def get_reddit_trending():
+    # Gebruik .json op r/all/hot of r/popular met een heel specifieke User-Agent
     url = "https://www.reddit.com/r/popular/hot.json?limit=10"
-    # Tip: Maak de User-Agent uniek om te voorkomen dat Reddit GitHub Actions blokkeert
+
     headers = {
-        "User-Agent": "AutonomousBlogAgent/1.0 (by /u/GitHubActionsRunner)"
+        # Reddit blokkeert generieke user agents. Dit format werkt het beste:
+        "User-Agent": "script:autonomous-website-bot:v1.0 (by /u/renesanti)"
     }
 
     try:
         response = requests.get(url, headers=headers, timeout=10)
-        topics = []
+        print(f"Reddit HTTP Status: {response.status_code}")
 
+        topics = []
         if response.status_code == 200:
             data = response.json()
             posts = data.get("data", {}).get("children", [])
@@ -42,14 +45,22 @@ def get_reddit_trending():
                 title = post.get("data", {}).get("title")
                 if title:
                     topics.append((now, "reddit", title))
+
+            print(f"Ophaalresultaat: {len(topics)} topics gevonden.")
             return topics
         else:
             print(
-                f"Fout bij ophalen Reddit: HTTP-status {response.status_code}"
+                f"Fout: Reddit retourneerde statuscode {response.status_code}"
             )
-            return []
+            # Fallback data voor het geval Reddit tijdelijk blocked
+            now = datetime.datetime.utcnow().isoformat()
+            return [
+                (now, "system_fallback", "AI UX Design Trends 2026"),
+                (now, "system_fallback", "Autonomous Web Development"),
+            ]
+
     except Exception as e:
-        print(f"Fout tijdens request: {e}")
+        print(f"Fout tijdens ophalen: {e}")
         return []
 
 
