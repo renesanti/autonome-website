@@ -1,97 +1,96 @@
 import os
-import asyncio
-from playwright.async_api import async_playwright
-from PIL import Image
+import subprocess
 from google import genai
-from google.genai import types
+from PIL import Image
+from playwright.sync_api import sync_playwright
 
-# 1. API Client initialiseren
-api_key = os.environ.get("GEMINI_API_KEY")
-if not api_key:
-    raise ValueError("GEMINI_API_KEY ontbreekt!")
+# 1. Maak een screenshot van de live pagina met Playwright
+print("Bezig met maken van screenshot...")
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True)
+    page = browser.new_page(viewport={"width": 1280, "height": 800})
+    # Vervang onderstaande URL eventueel door jouw eigen GitHub Pages URL
+    page.goto("https://renesanti.github.io/autonome-website/")
+    page.screenshot(path="screenshot.png")
+    browser.close()
 
-client = genai.Client(api_key=api_key)
+# 2. Laad de huidige HTML in om te bewerken
+with open("index.html", "r", encoding="utf-8") as f:
+    current_html = f.read()
 
-async def capture_screenshots(url="https://renesanti.github.io/autonome-website/"):
-    """ Start een headless browser en maakt screenshots van de hele pagina. """
-    screenshots = []
-    async with async_playwright() as p:
-        browser = await p.chromium.launch()
-        
-        # Maak screenshots voor zowel Mobiel als Desktop
-        viewports = [
-            {"name": "desktop", "width": 1280, "height": 800},
-            {"name": "mobile", "width": 375, "height": 667}
-        ]
-        
-        for vp in viewports:
-            page = await browser.new_page(viewport={"width": vp["width"], "height": vp["height"]})
-            await page.goto(url, wait_until="networkidle")
-            
-            # Volledige pagina screenshot
-            path = f"screenshot_{vp['name']}.png"
-            await page.screenshot(path=path, full_page=True)
-            screenshots.append(path)
-            
-        await browser.close()
-    return screenshots
+# 3. Roep Gemini aan via de nieuwe google-genai SDK
+print("Screenshot en HTML worden naar Gemini gestuurd voor visuele UX-analyse...")
+client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
-def analyze_and_optimize_design(screenshot_paths, html_file_path="index.html"):
-    # Lees de huidige HTML-code in
-    with open(html_file_path, "r", encoding="utf-8") as f:
-        current_html = f.read()
+# We vragen Gemini om een korte samenvatting van de wijziging + de nieuwe HTML
+prompt = f"""
+Je bent een expert UX-designer en front-end ontwikkelaar. 
+Bekijk de bijgevoegde screenshot van de website en de huidige HTML-code.
+Verbeteer het ontwerp visueel (bijv. betere typografie, kleurgebruik, spacing, of modernere CSS).
 
-    # Laad de afbeeldingen voor Gemini
-    images = [Image.open(p) for p in screenshot_paths]
+Geef je antwoord ALS VOLGT in exact dit formaat:
+1. De eerste regel begint met "SAMENVATTING: " gevolgd door een korte, duidelijke zin in het Nederlands waarin je uitlegt wat je hebt verbeterd (max 10 woorden).
+2. Daarna, op een nieuwe regel, de volledige, schone HTML-code (omesloten door ```html ... ```).
 
-    prompt = f"""
-    Je bent een World-Class UI/UX Designer en Front-end Developer.
-    
-    Hier zijn recente screenshots van de live website (zowel desktop als mobiele weergave) én de huidige HTML/CSS code.
-    
-    Huidige HTML:
-    ```html
-    {current_html}
-    ```
-    
-    Jouw taak:
-    1. Analyseer de afbeeldingen visueel op:
-       - Vormgeving, typografie en contrast.
-       - Lelijke witruimtes, verkeerde uitlijning of overlap op mobiel/desktop.
-       - Visuele hiërarchie en leesbaarheid van artikelen.
-    2. Als de pagina er al strak en optimaal uitziet, behoud dan de huidige opmaak.
-    3. Als er visuele verbeteringen mogelijk zijn, verbeter dan de CSS/HTML-structuur direct.
-    
-    Richtlijnen:
-    - Zorg dat alle inhoud en blogposts behouden blijven!
-    - Geef UITSLUITEND de volledige, geldige HTML5-code terug (inclusief inlined CSS in <style>).
-    - Geen markdown backticks (geen ```html), geen uitleg.
-    """
+Huidige HTML:
+{current_html}
+"""
 
-    # Stuur zowel de HTML-tekst als de Screenshots naar Gemini 3.5 Flash
-    contents = [prompt] + images
+image = Image.open("screenshot.png")
 
-    response = client.models.generate_content(
-        model="gemini-3.5-flash",
-        contents=contents
+response = client.models.generate_content(
+    model="gemini-2.5-flash",  # Pas dit aan als je een andere versie gebruikt
+    contents=[prompt, image],
+)
+
+response_text = response.text
+print("Visuele analyse voltooid!")
+
+# 4. Splits de samenvatting en de nieuwe HTML van elkaar
+try:
+    # Zoek naar de HTML code blokken
+    if "```html" in response_text:
+        parts = response_text.split("```html")
+        summary_part = parts[0].strip()
+        html_part = parts[1].split("```")[0].strip()
+    elif "```" in response_text:
+        parts = response_text.split("```")
+        summary_part = parts[0].strip()
+        html_part = parts[1].strip()
+    else:
+        raise ValueError("Geen geldig codeblok gevonden in de respons van Gemini.")
+
+    # Haal de nette samenvatting eruit voor de commit
+    commit_msg = "UX update door AI"
+    for line in summary_part.split("\n"):
+        if "SAMENVATTING:" in line:
+            commit_msg = line.replace("SAMENVATTING:", "").strip()
+
+    # Sla de nieuwe HTML op
+    with open("index.html", "w", encoding="utf-8") as f:
+        f.write(html_part)
+    print(f"Nieuwe HTML opgeslagen. Reden: {commit_msg}")
+
+except Exception as e:
+    print(
+        f"Fout bij het verwerken van de Gemini respons: {e}. Bestand blijft ongewijzigd."
     )
+    exit(1)
 
-    # Schoon de output op
-    new_html = response.text.strip()
-    if new_html.startswith("```html"):
-        new_html = new_html[7:]
-    if new_html.startswith("```"):
-        new_html = new_html[3:]
-    if new_html.endswith("```"):
-        new_html = new_html[:-3]
+# 5. Git configuratie en automatisch pushen naar GitHub
+subprocess.run(["git", "config", "--global", "user.name", "github-actions[bot]"])
+subprocess.run(
+    [
+        "git",
+        "config",
+        "--global",
+        "user.email",
+        "41898282+github-actions[bot]@users.noreply.github.io",
+    ]
+)
 
-    # Overschrijf de index.html met de visueel verbeterde versie
-    with open(html_file_path, "w", encoding="utf-8") as f:
-        f.write(new_html.strip())
-
-    print("Visuele analyse voltooid en index.html eventueel geoptimaliseerd!")
-
-if __name__ == "__main__":
-    # Voer screenshot capture en analyse uit
-    paths = asyncio.run(capture_screenshots())
-    analyze_and_optimize_design(paths)
+subprocess.run(["git", "add", "index.html"])
+# We gebruiken hier dynamisch de gedachten/samenvatting van Gemini als commit-bericht!
+subprocess.run(["git", "commit", "-m", f"AI UX: {commit_msg}"])
+subprocess.run(["git", "push"])
+print("Wijzigingen succesvol gepusht naar GitHub!")
