@@ -29,14 +29,22 @@ jobs:
       - name: Fetch RSS Trending Topics
         run: python scripts/fetch_rss_trending.py
 
-      - name: Run Visual UX Optimizer
+      - name: Run Visual UX Optimizer (Content & HTML update)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python visual_ux_improver.py
+
+      - name: Capture Screenshots (Crawler)
+        run: python ux_screenshot_crawler.py
+
+      - name: Run Visual UX Audit & Developer Fixes
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python visual_ux_auditor.py
 
       - name: Commit and Push changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.io"
-          git add *.html trending.db
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update: Nieuw artikel + homepage archief bijgewerkt" && git push)
+          git add *.html trending.db screenshots/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update: Nieuw artikel, visuele audit & homepage bijgewerkt" && git push)
