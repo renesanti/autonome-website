@@ -125,7 +125,7 @@
         nav {
             display: flex;
             align-items: center;
-            gap: 28px;
+            gap: 24px;
         }
 
         nav a {
@@ -159,13 +159,37 @@
             width: 100%;
         }
 
+        /* E-commerce CTA Button in Nav */
+        nav a.nav-cta {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-weight: 700;
+            box-shadow: 0 4px 14px rgba(6, 182, 212, 0.25);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        nav a.nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.35);
+            color: #ffffff;
+        }
+
+        nav a.nav-cta::after {
+            display: none;
+        }
+
         /* Main Grid Layout */
         .main-layout {
             display: grid;
             grid-template-columns: 1.95fr 1.05fr;
             gap: 40px;
             margin-top: 48px;
-            margin-bottom: 96px;
+            margin-bottom: 64px;
         }
 
         /* Article Styles */
@@ -373,6 +397,7 @@
         .archive-item {
             border-bottom: 1px solid var(--border);
             padding-bottom: 24px;
+            transition: opacity 0.2s ease;
         }
 
         .archive-item:last-child {
@@ -550,6 +575,179 @@
             transform: translateY(0);
         }
 
+        /* Showcase Section: Autonomous AI Company Playbook */
+        .blueprint-section {
+            margin-bottom: 96px;
+        }
+        
+        .blueprint-card {
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            border-radius: var(--radius-lg);
+            padding: 56px;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blueprint-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .blueprint-grid {
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .blueprint-content h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.25;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .blueprint-subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.4;
+        }
+
+        .blueprint-hook {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid var(--accent);
+            padding: 16px 20px;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-size: 1rem;
+            color: #e2e8f0;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .blueprint-content p {
+            font-size: 1.05rem;
+            color: #94a3b8;
+            margin-bottom: 28px;
+            line-height: 1.7;
+        }
+
+        .blueprint-features {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .feature-item svg {
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .feature-item span {
+            font-size: 0.95rem;
+            color: #e2e8f0;
+            line-height: 1.5;
+        }
+
+        .feature-item strong {
+            color: #ffffff;
+        }
+
+        /* Blueprint CTA Box */
+        .blueprint-cta-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-md);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .price-tag {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 24px;
+        }
+
+        .old-price {
+            font-size: 1.1rem;
+            color: #64748b;
+            text-decoration: line-through;
+            font-weight: 600;
+        }
+
+        .current-price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1;
+            margin: 4px 0;
+            letter-spacing: -0.04em;
+        }
+
+        .vat-info {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .btn-checkout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 16px 24px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+            transition: all 0.25s ease;
+        }
+
+        .btn-checkout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(6, 182, 212, 0.5);
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+        }
+
+        .trust-indicators {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
         /* Footer */
         footer {
             background-color: var(--dark);
@@ -575,6 +773,15 @@
             h1.article-title {
                 font-size: 2.35rem;
             }
+
+            .blueprint-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .blueprint-card {
+                padding: 40px;
+            }
         }
 
         @media (max-width: 640px) {
@@ -597,13 +804,19 @@
             nav {
                 width: 100%;
                 justify-content: center;
-                gap: 20px;
+                gap: 16px;
                 flex-wrap: wrap;
             }
 
             nav a {
                 font-size: 0.85rem;
                 padding: 4px 0;
+            }
+
+            nav a.nav-cta {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 24px;
             }
 
             .main-layout {
@@ -651,6 +864,23 @@
                 grid-template-columns: 1fr;
                 gap: 12px;
             }
+
+            .blueprint-card {
+                padding: 32px 20px;
+                border-radius: var(--radius-md);
+            }
+
+            .blueprint-content h2 {
+                font-size: 1.85rem;
+            }
+
+            .blueprint-cta-box {
+                padding: 24px 16px;
+            }
+
+            .current-price {
+                font-size: 2.85rem;
+            }
         }
     </style>
 </head>
@@ -663,7 +893,10 @@
                 <a href="#" class="active">Home</a>
                 <a href="#">Artikelen</a>
                 <a href="#">AI Monitor</a>
-                <a href="#">Over ons</a>
+                <a href="#blueprint" class="nav-cta">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    Get The Blueprint (€9,99)
+                </a>
             </nav>
         </div>
     </header>
@@ -743,6 +976,19 @@
                 <div class="sidebar-widget">
                     <h3>📚 Uit het Archief</h3>
                     <div class="archive-list">
+                        <!-- Nieuwste Artikel (Hugging Face Trend) -->
+                        <div class="archive-item">
+                            <span class="category-badge archive-badge" style="background-color: var(--secondary-light); color: var(--secondary); border: 1px solid rgba(14, 165, 233, 0.15);">Trend Analyse</span>
+                            <h4><a href="hugging-face-2026-07-29.html">Trend: 'Hugging Face' (Gezien in 4 artikelen)</a></h4>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Een diepgaande blik op hoe Hugging Face is uitgegroeid tot de centrale hub voor open-source AI-modellen en samenwerkingen.</p>
+                            <div class="archive-meta">
+                                <span>Door <strong>Redactie TechPulse</strong></span>
+                                <span class="dot">•</span>
+                                <span>2026-07-29</span>
+                            </div>
+                        </div>
+
+                        <!-- Bestaand gearchiveerd artikel -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge">Kunstmatige Intelligentie</span>
                             <h4><a href="#">De Opkomst van Agentic AI: Waarom Autonome AI-assistenten Onze Werkomgeving Gaan Transformeren</a></h4>
@@ -825,6 +1071,66 @@
             </aside>
 
         </div>
+
+        <!-- Conversie-gerichte Product Showcase Sectie -->
+        <section id="blueprint" class="blueprint-section">
+            <div class="blueprint-card">
+                <div class="blueprint-grid">
+                    <div class="blueprint-content">
+                        <span class="category-badge" style="background-color: #fef3c7; color: #d97706; border: 1px solid rgba(217, 119, 6, 0.15); margin-bottom: 18px;">
+                            🔥 Live Demo & Exclusieve Gids
+                        </span>
+                        <h2>The Autonomous AI Company Playbook</h2>
+                        <p class="blueprint-subtitle">Bouw een 100% autonoom renderende business. Precies zoals deze website.</p>
+                        
+                        <div class="blueprint-hook">
+                            <strong>Wist je dat de website waar je nu op kijkt 100% autonoom door AI wordt gerund?</strong> 
+                            Van trend-aggregatie en AI-contentgeneratie tot de conversiegerichte UI/UX code-updates en de marketing-funnel: er komt geen menselijke handeling aan te pas. Dit is de ultieme live demo van de toekomst van e-commerce.
+                        </div>
+                        
+                        <p>
+                            In dit diepgaande en praktische Playbook leggen we exact uit hoe je deze geavanceerde, winstgevende AI-infrastructuur zelf van A tot Z bouwt, automatiseert en schaalt naar een passieve inkomstenbron.
+                        </p>
+                        
+                        <div class="blueprint-features">
+                            <div class="feature-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                <span><strong>IT-Infrastructuur:</strong> De perfecte tech-stack voor standalone, 24/7 draaiende AI-agents.</span>
+                            </div>
+                            <div class="feature-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                <span><strong>Trend-Aggregatie:</strong> Hoe je AI systemen automatisch real-time virale trends laat opsporen en selecteren.</span>
+                            </div>
+                            <div class="feature-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                <span><span><strong>AI-UX & Dynamische Code:</strong> Laat GPT/Claude autonoom interfaces schrijven en optimaliseren voor maximale conversie.</span></span>
+                            </div>
+                            <div class="feature-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                <span><strong>Automatische Sales:</strong> Directe implementatie van Stripe-betaalflows gekoppeld aan geautomatiseerde productlevering.</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="blueprint-cta-box">
+                        <div class="price-tag">
+                            <span class="old-price">Normaal €49,99</span>
+                            <span class="current-price">€9,99</span>
+                            <span class="vat-info">Eenmalig tarief (Inclusief BTW)</span>
+                        </div>
+                        <a href="https://checkout.stripe.com" class="btn-checkout">
+                            <span>Buy Blueprint PDF – €9,99</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                        </a>
+                        <div class="trust-indicators">
+                            <span>🔒 Veilige checkout via Stripe</span>
+                            <span>⚡ Directe PDF-download via e-mail</span>
+                            <span>📈 Geen programmeerervaring vereist</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <footer>
