@@ -38,5 +38,5 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.io"
-          git add index.html trending.db
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update: Trending topics + UX visual optimization" && git push)
+          git add *.html trending.db
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update: Nieuw artikel + homepage archief bijgewerkt" && git push)
