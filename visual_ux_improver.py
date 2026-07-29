@@ -134,7 +134,7 @@ def update_index_page(new_filename, title, date_str):
     """
 
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-3.5-flash",
         contents=prompt_index,
     )
 
