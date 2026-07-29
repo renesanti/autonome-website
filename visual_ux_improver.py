@@ -1,3 +1,4 @@
+import datetime
 import os
 import re
 import sqlite3
@@ -11,12 +12,11 @@ DB_NAME = "trending.db"
 def slugify(text):
     """Zet een titel om naar een schone URL slug.
 
-    Bijv: "Trend: 'Google AI' (Gezien in 5 artikelen)" ->
-    "google-ai"
+    Bijv: "Trend: 'Google AI' (Gezien in 5 artikelen)" -> "google-ai"
     """
-    # Verwijder 'Trend:' of aantallen als die erin staan
-    text = re.sub(r"^Trend:\s*", "", text, flags=i)
-    text = re.sub(r"\(Gezien in.*?\)", "", text, flags=i)
+    # Verwijder 'Trend:' of aantallen als die erin staan (re.IGNORECASE i.p.v. i)
+    text = re.sub(r"^Trend:\s*", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"\(Gezien in.*?\)", "", text, flags=re.IGNORECASE)
 
     # Normalize unicode
     text = (
@@ -51,9 +51,6 @@ def generate_article_and_update_home():
     primary_topic = trends[0][1]
     slug = slugify(primary_topic)
 
-    # Voeg een korte datum-hash toe voor uniekheid als hetzelfde onderwerp later terugkomt
-    import datetime
-
     date_str = datetime.datetime.utcnow().strftime("%Y-%m-%d")
     filename = f"{slug}-{date_str}.html"
 
@@ -82,7 +79,9 @@ def generate_article_and_update_home():
         contents=prompt_article,
     )
 
-    article_html = response.text.replace("```html", "").replace("```", "").strip()
+    article_html = (
+        response.text.replace("```html", "").replace("```", "").strip()
+    )
 
     # Sla de nieuwe artikelpagina op
     with open(filename, "w", encoding="utf-8") as f:
@@ -93,11 +92,7 @@ def generate_article_and_update_home():
 
 
 def update_index_page(new_filename, title, date_str):
-    # Lees bestaande index.html of maak een basistemplate als die niet bestaat
     index_file = "index.html"
-
-    # We houden een overzicht van links bij in een simpele structuur
-    # Hier kun je Gemini vragen om index.html bij te werken door de nieuwe link bovenaan de lijst toe te voegen.
 
     client = genai.Client()
 
@@ -106,19 +101,36 @@ def update_index_page(new_filename, title, date_str):
         with open(index_file, "r", encoding="utf-8") as f:
             current_index_content = f.read()
 
+    # Eén schone, gecombineerde prompt voor Gemini
     prompt_index = f"""
-    Hier is de huidige 'index.html' van de website:
+    Je bent een conversie-gerichte UX/UI designer en webontwikkelaar.
+    Hier is de huidige 'index.html':
     ```html
     {current_index_content}
     ```
 
-    Voeg een nieuwe kaart/link toe bovenaan het overzicht/archief op de homepage naar het nieuwste artikel:
-    - Link: {new_filename}
-    - Titel: {title}
-    - Datum: {date_str}
+    OPDRACHT EN EISEN:
+    1. NIEUW ARTIKEL / ARCHIEF LINK:
+       - Voeg een nieuwe kaart/link toe bovenaan het artikelenoverzicht/archief op de homepage naar het nieuwste artikel:
+         * Link: {new_filename}
+         * Titel: {title}
+         * Datum: {date_str}
+       - Zorg dat oude artikelen/links in de lijst BEWAARD blijven.
 
-    Zorg dat oude artikelen/links in de lijst BEWAARD blijven. De homepage dient als een dynamisch archief en landingspagina.
-    Geef alleen de bijgewerkte HTML voor index.html terug.
+    2. NAVIGATIE (E-COMMERCE):
+       - Zorg voor een opvallende Call-to-Action knop in de navigatiebalk: "Get The Blueprint (€9,99)".
+       - Deze knop moet opvallen (bijv. moderne accentkleur/gradient) en linken/scrollen naar #blueprint.
+
+    3. SHOWCASE SECTION (#blueprint):
+       - Als deze nog niet bestaat, voeg op de homepage een dedicated, conversie-gerichte sectie toe over het product: "The Autonomous AI Company Playbook".
+       - HOOK: Leg uit dat déze exacte website voor 100% autonoom draait door AI (de live demo), en dat deze PDF van A tot Z uitlegt hoe de lezer exact hetzelfde kan bouwen (IT-infrastructuur, trend-aggregatie, AI-UX, marketing en geautomatiseerde sales).
+       - PRIJS: €9,99.
+       - KOOPKNOP / CTA: Een duidelijke, aantrekkelijke koopknop: "Buy Blueprint PDF – €9,99".
+
+    4. LAY-OUT:
+       - Houd de lay-out strak, modern, responsive en mobielvriendelijk.
+
+    Geef alleen de volledige, bijgewerkte geldige HTML terug.
     """
 
     response = client.models.generate_content(
@@ -126,12 +138,14 @@ def update_index_page(new_filename, title, date_str):
         contents=prompt_index,
     )
 
-    updated_index = response.text.replace("```html", "").replace("```", "").strip()
+    updated_index = (
+        response.text.replace("```html", "").replace("```", "").strip()
+    )
 
     with open(index_file, "w", encoding="utf-8") as f:
         f.write(updated_index)
 
-    print("index.html succesvol bijgewerkt met de nieuwe link!")
+    print("index.html succesvol bijgewerkt met het verkoopdeel en nieuwe artikel link!")
 
 
 if __name__ == "__main__":
