@@ -20,11 +20,14 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install google-genai pillow playwright requests
+          pip install google-genai pillow playwright requests feedparser
           playwright install chromium --with-deps
 
       - name: Fetch Reddit Trending Topics
         run: python scripts/fetch_reddit.py
+
+      - name: Fetch RSS Trending Topics
+        run: python scripts/fetch_rss_trending.py
 
       - name: Run Visual UX Optimizer
         env:
