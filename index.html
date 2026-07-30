@@ -63,6 +63,16 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
+        /* Keyboard Accessibility - Focus States */
+        a:focus-visible, 
+        button:focus-visible, 
+        select:focus-visible, 
+        input:focus-visible, 
+        textarea:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
         /* Container layout */
         .container {
             max-width: 1280px;
@@ -163,18 +173,18 @@
         nav a.nav-cta {
             background: linear-gradient(135deg, var(--accent), var(--secondary));
             color: #ffffff;
-            padding: 10px 20px;
+            padding: 12px 24px; /* Optimized Touch Target */
             border-radius: 100px;
             font-weight: 700;
             box-shadow: 0 4px 14px rgba(6, 182, 212, 0.25);
             transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         nav a.nav-cta:hover {
-            transform: translateY(-1px);
+            transform: translateY(-1px) scale(1.02);
             box-shadow: 0 6px 20px rgba(6, 182, 212, 0.35);
             color: #ffffff;
         }
@@ -564,6 +574,7 @@
             justify-content: center;
             gap: 8px;
             box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+            min-height: 48px; /* Touch-target optimized */
         }
 
         .btn-submit:hover {
@@ -731,6 +742,7 @@
             text-decoration: none;
             box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
             transition: all 0.25s ease;
+            min-height: 48px; /* Touch-target optimized */
         }
 
         .btn-checkout:hover {
@@ -881,6 +893,38 @@
             .current-price {
                 font-size: 2.85rem;
             }
+
+            /* CRITICAL UX FIX: Strict left alignment for all bullet points and icon lists on mobile */
+            .article-content ul, 
+            .article-content li, 
+            .legacy-prompt ul, 
+            .legacy-prompt li,
+            .interactive-form ol,
+            .interactive-form ol li,
+            .blueprint-features,
+            .feature-item,
+            .trust-indicators {
+                text-align: left !important;
+                justify-content: flex-start !important;
+                align-items: flex-start !important;
+            }
+
+            .feature-item svg {
+                margin-top: 4px; /* Align perfectly with left-aligned multiline text on mobile */
+            }
+
+            .legacy-prompt li::before {
+                left: 0;
+                top: 0;
+            }
+            .legacy-prompt li {
+                padding-left: 20px;
+            }
+
+            .btn-checkout, .btn-submit {
+                width: 100%;
+                box-sizing: border-box;
+            }
         }
     </style>
 </head>
@@ -955,7 +999,7 @@
                         <p>De toepassingsgebieden voor LNN's liggen met name in de fysieke wereld, waar datastromen continu veranderen en direct moeten worden verwerkt:</p>
 
                         <h3>1. Autonome Voertuigen en Robotica</h3>
-                        <p>In tests van MIT slaagde een drone met een LNN-besturingssysteem erin om feilloos door dichte bossen en onbekend terrain te navigeren, zelfs bij harde zijwind en camera-ruis. Het model paste zijn vlieggedrag in real-time aan zonder vertraging.</p>
+                        <p>In tests van MIT slaagde een drone met een LNN-besturingssysteem erin om feilloos door dichte bossen en onbekend terrein te navigeren, zelfs bij harde zijwind en camera-ruis. Het model paste zijn vlieggedrag in real-time aan zonder vertraging.</p>
 
                         <h3>2. Medische Monitoring</h3>
                         <p>LNN's zijn perfect geschikt voor het analyseren van continue vitale functies, zoals hartslag (ECG) en hersenactiviteit (EEG). Ze kunnen subtiele, tijdgebonden afwijkingen detecteren die traditionele AI-modellen over het hoofd zien omdat ze de temporele context missen.</p>
@@ -964,7 +1008,7 @@
                         <p>Hoewel LNN's momenteel nog niet geschikt zijn voor het genereren van creatieve teksten of het voeren van diepgaande filosofische gesprekken zoals LLM's dat doen, vullen ze de perfecte niche op voor real-time besluitvorming. De toekomst van AI is hoogstwaarschijnlijk een hybride vorm: een gigantisch 'denkend' brein in de cloud, ondersteund door vloeibare, vlijmscherpe zintuigelijke agents op de apparaten zelf.</p>
 
                         <h3>Conclusie</h3>
-                        <p>Liquid Neural Networks bewijzen dat 'groter' niet altijd beter is. Door te leren van de elegantie en minimalisme van de natuur, openen wetenschappers de deur naar een AI-toekomst die niet alleen groen en efficiënt is, maar ook écht intelligent reageert op een onvoorspelbare wereld.</p>
+                        <p>Liquid Neural Networks bewijzen dat 'groter' niet altijd beter is. Door te leren van de elegantie en het minimalisme van de natuur, openen wetenschappers de deur naar een AI-toekomst die niet alleen groen en efficiënt is, maar ook écht intelligent reageert op een onvoorspelbare wereld.</p>
                     </div>
                 </article>
             </main>
@@ -976,10 +1020,22 @@
                 <div class="sidebar-widget">
                     <h3>📚 Uit het Archief</h3>
                     <div class="archive-list">
-                        <!-- Nieuwste Artikel (Hugging Face Trend) -->
+                        <!-- Nieuwste Artikel (Low Trend) -->
+                        <div class="archive-item">
+                            <span class="category-badge archive-badge" style="background-color: #fee2e2; color: #991b1b; border: 1px solid rgba(153, 27, 27, 0.15);">Trend Analyse</span>
+                            <h4><a href="#">Trend: 'Low' (Gezien in 4 artikelen)</a></h4>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Een kritische blik op de opkomst van 'low-code' AI, energiezuinige 'low-power' neurale architecturen en hoe zij de drempel voor innovatie verlagen.</p>
+                            <div class="archive-meta">
+                                <span>Door <strong>Redactie TechPulse</strong></span>
+                                <span class="dot">•</span>
+                                <span>2026-07-30</span>
+                            </div>
+                        </div>
+
+                        <!-- Hugging Face Trend -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: var(--secondary-light); color: var(--secondary); border: 1px solid rgba(14, 165, 233, 0.15);">Trend Analyse</span>
-                            <h4><a href="hugging-face-2026-07-29.html">Trend: 'Hugging Face' (Gezien in 4 artikelen)</a></h4>
+                            <h4><a href="#">Trend: 'Hugging Face' (Gezien in 4 artikelen)</a></h4>
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Een diepgaande blik op hoe Hugging Face is uitgegroeid tot de centrale hub voor open-source AI-modellen en samenwerkingen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
@@ -1103,7 +1159,7 @@
                             </div>
                             <div class="feature-item">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                                <span><span><strong>AI-UX & Dynamische Code:</strong> Laat GPT/Claude autonoom interfaces schrijven en optimaliseren voor maximale conversie.</span></span>
+                                <span><strong>AI-UX & Dynamische Code:</strong> Laat GPT/Claude autonoom interfaces schrijven en optimaliseren voor maximale conversie.</span>
                             </div>
                             <div class="feature-item">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
