@@ -10,21 +10,22 @@
     <style>
         /* Modern CSS Reset & Variable Setup */
         :root {
+            /* WCAG AA Compliant Color Palette (Contrast Ratios >= 4.5:1) */
             --primary: #4f46e5;
-            --primary-hover: #4338ca;
-            --primary-light: #eef2ff;
-            --secondary: #0ea5e9;
-            --secondary-hover: #0284c7;
+            --primary-hover: #3730a3;
+            --primary-light: #f5f3ff;
+            --secondary: #0369a1;         /* Optimised contrast sky-700 */
+            --secondary-hover: #075985;   /* Optimised contrast sky-800 */
             --secondary-light: #f0f9ff;
-            --accent: #06b6d4;
+            --accent: #0e7490;            /* Optimised contrast cyan-700 */
             --dark: #0f172a;
             --dark-subtle: #1e293b;
             --light-bg: #f8fafc;
             --card-bg: #ffffff;
-            --text-main: #334155;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --border-hover: #cbd5e1;
+            --text-main: #1e293b;          /* Darker slate for readability (contrast ~9:1) */
+            --text-muted: #475569;         /* Slate-600 (contrast >4.5:1 on light backgrounds) */
+            --border: #cbd5e1;             /* Accessible borders */
+            --border-hover: #94a3b8;
             --font-stack: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             
             /* Premium, layered shadows */
@@ -82,13 +83,13 @@
 
         /* Header Navigation */
         header {
-            background-color: rgba(255, 255, 255, 0.85);
+            background-color: rgba(255, 255, 255, 0.90);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.08);
             transition: all 0.3s ease;
         }
 
@@ -145,8 +146,11 @@
             font-weight: 600;
             transition: all 0.2s ease;
             position: relative;
-            padding: 8px 4px;
+            padding: 8px 12px;
             letter-spacing: -0.01em;
+            min-height: 44px; /* Accessible touch-target height */
+            display: inline-flex;
+            align-items: center;
         }
 
         nav a:hover, nav a.active {
@@ -156,8 +160,8 @@
         nav a::after {
             content: '';
             position: absolute;
-            bottom: -2px;
-            left: 0;
+            bottom: 2px;
+            left: 12px;
             width: 0;
             height: 2px;
             background: var(--primary);
@@ -166,26 +170,27 @@
         }
 
         nav a:hover::after, nav a.active::after {
-            width: 100%;
+            width: calc(100% - 24px);
         }
 
         /* E-commerce CTA Button in Nav */
         nav a.nav-cta {
             background: linear-gradient(135deg, var(--accent), var(--secondary));
             color: #ffffff;
-            padding: 12px 24px; /* Optimized Touch Target */
+            padding: 12px 24px;
             border-radius: 100px;
             font-weight: 700;
-            box-shadow: 0 4px 14px rgba(6, 182, 212, 0.25);
+            box-shadow: 0 4px 14px rgba(14, 116, 144, 0.25);
             transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            min-height: 48px; /* Touch Target Compliance */
         }
 
         nav a.nav-cta:hover {
             transform: translateY(-1px) scale(1.02);
-            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.35);
+            box-shadow: 0 6px 20px rgba(14, 116, 144, 0.35);
             color: #ffffff;
         }
 
@@ -328,7 +333,7 @@
         .article-content blockquote p {
             margin-bottom: 0;
             font-size: 1.15rem;
-            color: #0891b2;
+            color: var(--accent);
             font-weight: 600;
             line-height: 1.75;
         }
@@ -628,14 +633,14 @@
             letter-spacing: -0.04em;
             line-height: 1.25;
             margin-bottom: 12px;
-            background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+            background: linear-gradient(135deg, #ffffff 30%, #cbd5e1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .blueprint-subtitle {
+            color: #38bdf8; /* Adjusted high contrast sky-400 equivalent for dark background */
             font-size: 1.2rem;
-            color: var(--secondary);
             font-weight: 700;
             margin-bottom: 24px;
             line-height: 1.4;
@@ -654,7 +659,7 @@
 
         .blueprint-content p {
             font-size: 1.05rem;
-            color: #94a3b8;
+            color: #cbd5e1; /* Compliant contrast for slate BG */
             margin-bottom: 28px;
             line-height: 1.7;
         }
@@ -672,7 +677,7 @@
         }
 
         .feature-item svg {
-            color: var(--accent);
+            color: #22d3ee; /* Adjusted high contrast light cyan */
             flex-shrink: 0;
             margin-top: 3px;
         }
@@ -708,7 +713,7 @@
 
         .old-price {
             font-size: 1.1rem;
-            color: #64748b;
+            color: #94a3b8; /* Higher contrast gray for dark bg */
             text-decoration: line-through;
             font-weight: 600;
         }
@@ -724,7 +729,7 @@
 
         .vat-info {
             font-size: 0.8rem;
-            color: #64748b;
+            color: #94a3b8;
         }
 
         .btn-checkout {
@@ -740,14 +745,14 @@
             padding: 16px 24px;
             border-radius: var(--radius-sm);
             text-decoration: none;
-            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+            box-shadow: 0 4px 20px rgba(14, 116, 144, 0.4);
             transition: all 0.25s ease;
             min-height: 48px; /* Touch-target optimized */
         }
 
         .btn-checkout:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(6, 182, 212, 0.5);
+            box-shadow: 0 8px 30px rgba(14, 116, 144, 0.6);
             background: linear-gradient(135deg, var(--secondary), var(--accent));
         }
 
@@ -757,7 +762,125 @@
             flex-direction: column;
             gap: 8px;
             font-size: 0.8rem;
-            color: #64748b;
+            color: #cbd5e1; /* Enhanced contrast text */
+        }
+
+        /* Robust, conversion-oriented custom 404 overlay to prevent bounce rate */
+        #error-404-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        #error-404-overlay.active {
+            display: flex;
+        }
+
+        .error-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            max-width: 520px;
+            width: 100%;
+            padding: 48px;
+            box-shadow: var(--shadow-xl);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: modalFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes modalFadeIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .error-badge {
+            display: inline-block;
+            background-color: #fee2e2;
+            color: #b91c1c;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 24px;
+            border: 1px solid rgba(185, 28, 28, 0.15);
+        }
+
+        .error-title {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.3;
+            margin-bottom: 16px;
+            letter-spacing: -0.03em;
+        }
+
+        .error-desc {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .error-ctas {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .btn-error-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            color: #ffffff;
+            font-weight: 700;
+            padding: 14px 24px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.2);
+            min-height: 48px;
+        }
+
+        .btn-error-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-error-secondary {
+            border: 2px solid var(--border);
+            color: var(--text-main);
+            font-weight: 700;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 48px;
+        }
+
+        .btn-error-secondary:hover {
+            background-color: var(--light-bg);
+            border-color: var(--border-hover);
         }
 
         /* Footer */
@@ -816,13 +939,13 @@
             nav {
                 width: 100%;
                 justify-content: center;
-                gap: 16px;
+                gap: 12px;
                 flex-wrap: wrap;
             }
 
             nav a {
                 font-size: 0.85rem;
-                padding: 4px 0;
+                padding: 6px 8px;
             }
 
             nav a.nav-cta {
@@ -930,13 +1053,33 @@
 </head>
 <body>
 
+    <!-- Fallback Branded 404 Modal State triggered by bad hashes/dead routes -->
+    <div id="error-404-overlay" role="dialog" aria-modal="true" aria-labelledby="error-title">
+        <div class="error-card">
+            <span class="error-badge">Pagina niet gevonden</span>
+            <a href="#" class="logo error-logo" onclick="close404();">Tech<span>Pulse</span></a>
+            <h1 class="error-title" id="error-title">Oeps! Deze pagina is de weg kwijt.</h1>
+            <p class="error-desc">De pagina die je zoekt bestaat niet meer of is verhuisd. Geen zorgen, we sturen je direct terug naar onze actieve content.</p>
+            
+            <div class="error-ctas">
+                <a href="#" class="btn-error-primary" onclick="close404();">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    Terug naar Home
+                </a>
+                <a href="#blueprint" class="btn-error-secondary" onclick="close404();">
+                    Bekijk Onze AI Gids
+                </a>
+            </div>
+        </div>
+    </div>
+
     <header>
         <div class="container">
             <a href="#" class="logo">Tech<span>Pulse</span></a>
             <nav>
                 <a href="#" class="active">Home</a>
-                <a href="#">Artikelen</a>
-                <a href="#">AI Monitor</a>
+                <a href="#404">Artikelen</a>
+                <a href="#404">AI Monitor</a>
                 <a href="#blueprint" class="nav-cta">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                     Get The Blueprint (€9,99)
@@ -1020,10 +1163,22 @@
                 <div class="sidebar-widget">
                     <h3>📚 Uit het Archief</h3>
                     <div class="archive-list">
-                        <!-- Nieuwste Artikel (Low Trend) -->
+                        <!-- Nieuwste Artikel (Out Trend) -->
                         <div class="archive-item">
-                            <span class="category-badge archive-badge" style="background-color: #fee2e2; color: #991b1b; border: 1px solid rgba(153, 27, 27, 0.15);">Trend Analyse</span>
-                            <h4><a href="#">Trend: 'Low' (Gezien in 4 artikelen)</a></h4>
+                            <span class="category-badge archive-badge" style="background-color: #f1f5f9; color: #0f172a; border: 1px solid rgba(15, 23, 42, 0.15);">Trend Analyse</span>
+                            <h4><a href="#404">Trend: 'Out' (Gezien in 5 artikelen)</a></h4>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Een diepgaande analyse over hoe 'out-of-the-box' AI-modellen en autonome workflows de traditionele development-processen herdefiniëren.</p>
+                            <div class="archive-meta">
+                                <span>Door <strong>Redactie TechPulse</strong></span>
+                                <span class="dot">•</span>
+                                <span>2026-07-31</span>
+                            </div>
+                        </div>
+
+                        <!-- Vorige Artikel (Low Trend) -->
+                        <div class="archive-item">
+                            <span class="category-badge archive-badge" style="background-color: #fef2f2; color: #991b1b; border: 1px solid rgba(153, 27, 27, 0.15);">Trend Analyse</span>
+                            <h4><a href="#404">Trend: 'Low' (Gezien in 4 artikelen)</a></h4>
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Een kritische blik op de opkomst van 'low-code' AI, energiezuinige 'low-power' neurale architecturen en hoe zij de drempel voor innovatie verlagen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
@@ -1035,7 +1190,7 @@
                         <!-- Hugging Face Trend -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: var(--secondary-light); color: var(--secondary); border: 1px solid rgba(14, 165, 233, 0.15);">Trend Analyse</span>
-                            <h4><a href="#">Trend: 'Hugging Face' (Gezien in 4 artikelen)</a></h4>
+                            <h4><a href="#404">Trend: 'Hugging Face' (Gezien in 4 artikelen)</a></h4>
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Een diepgaande blik op hoe Hugging Face is uitgegroeid tot de centrale hub voor open-source AI-modellen en samenwerkingen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
@@ -1047,7 +1202,7 @@
                         <!-- Bestaand gearchiveerd artikel -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge">Kunstmatige Intelligentie</span>
-                            <h4><a href="#">De Opkomst van Agentic AI: Waarom Autonome AI-assistenten Onze Werkomgeving Gaan Transformeren</a></h4>
+                            <h4><a href="#404">De Opkomst van Agentic AI: Waarom Autonome AI-assistenten Onze Werkomgeving Gaan Transformeren</a></h4>
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Hoe we verschuiven van reactieve chatbots naar proactieve, zelfstandige AI-agents die complete bedrijfsprocessen overnemen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Steven de Waal</strong></span>
@@ -1133,7 +1288,7 @@
             <div class="blueprint-card">
                 <div class="blueprint-grid">
                     <div class="blueprint-content">
-                        <span class="category-badge" style="background-color: #fef3c7; color: #d97706; border: 1px solid rgba(217, 119, 6, 0.15); margin-bottom: 18px;">
+                        <span class="category-badge" style="background-color: #fef3c7; color: #b45309; border: 1px solid rgba(180, 83, 9, 0.15); margin-bottom: 18px;">
                             🔥 Live Demo & Exclusieve Gids
                         </span>
                         <h2>The Autonomous AI Company Playbook</h2>
@@ -1195,5 +1350,25 @@
         </div>
     </footer>
 
+    <script>
+        /* Robust client-side error fallback modal to trap 404s dynamically */
+        function checkRoute() {
+            const overlay = document.getElementById('error-404-overlay');
+            if (window.location.hash === '#404') {
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function close404() {
+            window.location.hash = '';
+        }
+
+        window.addEventListener('hashchange', checkRoute);
+        window.addEventListener('load', checkRoute);
+    </script>
 </body>
 </html>
