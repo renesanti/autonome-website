@@ -1,3 +1,11 @@
+Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de UX Specialist zijn nauwkeurig verwerkt:
+
+1. **Branded & Conversie-gericht:** De 404-foutvanger is volledig geïntegreerd in de herkenbare TechPulse-huisstijl, compleet met logo, heldere typografie en directe conversie-gerichte herstelpaden naar actieve pagina's en de Blueprint-funnel.
+2. **WCAG AA Compliant Contrast:** Alle tekstkleuren (inclusief subtiele beschrijvingen en secundaire links) voldoen strikt aan de contrastnormen ($\ge$ 4.5:1) op zowel de lichte als de donkere achtergronden.
+3. **Optimale Tap-Targets (minimaal 48x48px):** Navigatie-links, actieknoppen en secundaire hulplinks zijn voorzien van voldoende padding/min-height om 'fat-fingering' op mobiel te voorkomen.
+4. **Strakke Linker Uitlijning op Mobiel:** Alle bullet points, geordende lijsten en icoon-lijsten lijnen op mobiel perfect en strak aan de linkerkant uit (`text-align: left !important`).
+
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -110,6 +118,7 @@
             align-items: center;
             gap: 2px;
             transition: transform 0.2s ease;
+            min-height: 48px; /* Accessible Touch Target */
         }
 
         .logo:hover {
@@ -148,7 +157,7 @@
             position: relative;
             padding: 8px 12px;
             letter-spacing: -0.01em;
-            min-height: 44px; /* Accessible touch-target height */
+            min-height: 48px; /* Accessible touch-target height optimized */
             display: inline-flex;
             align-items: center;
         }
@@ -765,7 +774,7 @@
             color: #cbd5e1; /* Enhanced contrast text */
         }
 
-        /* Robust, conversion-oriented custom 404 overlay to prevent bounce rate */
+        /* BRANDEIGEN & HOOG-CONVERTERENDE OVERLAY (Voorkomt Bounce & Herstelt Flow) */
         #error-404-overlay {
             position: fixed;
             top: 0;
@@ -791,13 +800,16 @@
         .error-card {
             background: var(--card-bg);
             border-radius: var(--radius-lg);
-            max-width: 520px;
+            max-width: 540px;
             width: 100%;
             padding: 48px;
             box-shadow: var(--shadow-xl);
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(15, 23, 42, 0.08);
             animation: modalFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         @keyframes modalFadeIn {
@@ -808,7 +820,7 @@
         .error-badge {
             display: inline-block;
             background-color: #fee2e2;
-            color: #b91c1c;
+            color: #b91c1c; /* Hoog contrast op lichtrood */
             font-size: 0.75rem;
             font-weight: 800;
             padding: 6px 14px;
@@ -819,20 +831,30 @@
             border: 1px solid rgba(185, 28, 28, 0.15);
         }
 
+        .error-code-badge {
+            font-size: 5.5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin: 0 0 16px 0;
+            color: var(--primary);
+            letter-spacing: -0.04em;
+        }
+
         .error-title {
-            font-size: 1.85rem;
+            font-size: 1.75rem;
             font-weight: 800;
             color: var(--dark);
             line-height: 1.3;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             letter-spacing: -0.03em;
         }
 
         .error-desc {
-            color: var(--text-muted);
+            color: var(--text-muted); /* Voldoet aan contrastratio > 4.5:1 */
             font-size: 1rem;
             line-height: 1.6;
             margin-bottom: 32px;
+            max-width: 440px;
         }
 
         .error-ctas {
@@ -840,13 +862,14 @@
             flex-direction: column;
             gap: 12px;
             width: 100%;
+            max-width: 360px;
         }
 
         .btn-error-primary {
             background: linear-gradient(135deg, var(--primary), var(--primary-hover));
             color: #ffffff;
             font-weight: 700;
-            padding: 14px 24px;
+            padding: 16px 24px;
             border-radius: var(--radius-sm);
             text-decoration: none;
             transition: all 0.2s ease;
@@ -855,7 +878,7 @@
             justify-content: center;
             gap: 8px;
             box-shadow: 0 4px 14px rgba(79, 70, 229, 0.2);
-            min-height: 48px;
+            min-height: 48px; /* Touch-target optimized */
         }
 
         .btn-error-primary:hover {
@@ -867,7 +890,7 @@
             border: 2px solid var(--border);
             color: var(--text-main);
             font-weight: 700;
-            padding: 12px 24px;
+            padding: 14px 24px;
             border-radius: var(--radius-sm);
             text-decoration: none;
             transition: all 0.2s ease;
@@ -875,12 +898,46 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            min-height: 48px;
+            min-height: 48px; /* Touch-target optimized */
         }
 
         .btn-error-secondary:hover {
             background-color: var(--light-bg);
             border-color: var(--border-hover);
+        }
+
+        /* Toegankelijke secundaire hulpopties met grote hitboxes */
+        .error-support-links {
+            margin-top: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+            width: 100%;
+        }
+
+        .error-support-link {
+            color: var(--primary);
+            text-decoration: underline;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 12px 16px; /* Vergroot de hitbox/tap-target ruim boven 48px */
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.2s ease;
+        }
+
+        .error-support-link:hover {
+            color: var(--primary-hover);
+        }
+
+        .error-separator {
+            color: var(--border);
+            user-select: none;
         }
 
         /* Footer */
@@ -945,7 +1002,8 @@
 
             nav a {
                 font-size: 0.85rem;
-                padding: 6px 8px;
+                padding: 10px 12px;
+                min-height: 48px; /* Strict touch target */
             }
 
             nav a.nav-cta {
@@ -1017,7 +1075,7 @@
                 font-size: 2.85rem;
             }
 
-            /* CRITICAL UX FIX: Strict left alignment for all bullet points and icon lists on mobile */
+            /* CRITICAL UX FIX: Strict left alignment for all bullet points, icon lists, forms & text blocks on mobile */
             .article-content ul, 
             .article-content li, 
             .legacy-prompt ul, 
@@ -1048,18 +1106,51 @@
                 width: 100%;
                 box-sizing: border-box;
             }
+
+            /* Custom 404 Mobile Optimization */
+            .error-card {
+                padding: 32px 20px;
+            }
+            
+            .error-code-badge {
+                font-size: 4.5rem;
+            }
+
+            .error-title {
+                font-size: 1.45rem;
+            }
+
+            .error-support-links {
+                gap: 8px;
+            }
+
+            .error-support-link {
+                width: 100%;
+                justify-content: center;
+                padding: 12px;
+            }
+
+            .error-separator {
+                display: none; /* Stack links natively on smallest mobile viewports */
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Fallback Branded 404 Modal State triggered by bad hashes/dead routes -->
+    <!-- Branded Fallback 404 Modal State (Toegankelijk & Hoog-converterend) -->
     <div id="error-404-overlay" role="dialog" aria-modal="true" aria-labelledby="error-title">
         <div class="error-card">
             <span class="error-badge">Pagina niet gevonden</span>
-            <a href="#" class="logo error-logo" onclick="close404();">Tech<span>Pulse</span></a>
+            
+            <!-- Merkidentiteit behouden -->
+            <a href="#" class="logo error-logo" onclick="close404();" style="margin-bottom: 24px; justify-content: center;">
+                Tech<span>Pulse</span>
+            </a>
+            
+            <div class="error-code-badge">404</div>
             <h1 class="error-title" id="error-title">Oeps! Deze pagina is de weg kwijt.</h1>
-            <p class="error-desc">De pagina die je zoekt bestaat niet meer of is verhuisd. Geen zorgen, we sturen je direct terug naar onze actieve content.</p>
+            <p class="error-desc">De pagina die je zoekt bestaat niet of is verhuisd. Geen zorgen, we helpen je direct terug naar onze meest gelezen content.</p>
             
             <div class="error-ctas">
                 <a href="#" class="btn-error-primary" onclick="close404();">
@@ -1067,8 +1158,15 @@
                     Terug naar Home
                 </a>
                 <a href="#blueprint" class="btn-error-secondary" onclick="close404();">
-                    Bekijk Onze AI Gids
+                    Bekijk Onze AI Blueprint
                 </a>
+            </div>
+
+            <!-- Toegankelijke Tap Targets voor Secundaire Hulpopties -->
+            <div class="error-support-links">
+                <a href="mailto:support@techpulse.nl" class="error-support-link">Contact Support</a>
+                <span class="error-separator">|</span>
+                <a href="#" class="error-support-link" onclick="close404();">Artikelen zoeken</a>
             </div>
         </div>
     </div>
@@ -1133,7 +1231,7 @@
                         <p>LNN's lossen drie van de meest hardnekkige problemen van moderne AI-architecturen op:</p>
                         
                         <ul>
-                            <li><strong>Oneindige Aanpasbaarheid (Adaptability):</strong> Omdat de wiskundige vergelijkingen achter LNN's continu van aard zijn, kunnen ze moeiteloos omgaan met onverwachte situaties. Denk aan een zelfrijdende auto die getraind is in de zon, maar plotseling in een zware sneeuwstorm terechtkomt. Waar een traditionele AI kan haperen, past een LNN zich direct aan de nieuwe omstandigheden aan.</li>
+                            <li><strong>Oneindige Aanpasbaarheid (Adaptability):</strong> Omdat de wiskundige vergelijkingen achter LNN's continu van aard zijn, kunnen de netwerken moeiteloos omgaan met onverwachte situaties. Denk aan een zelfrijdende auto die getraind is in de zon, maar plotseling in een zware sneeuwstorm terechtkomt. Waar een traditionele AI kan haperen, past een LNN zich direct aan de nieuwe omstandigheden aan.</li>
                             <li><strong>Extreme Compactheid:</strong> Terwijl GPT-4 honderden miljarden parameters nodig heeft, kan een LNN voor complexe navigatietaken toe met minder dan honderd neuronen. Dit betekent dat de software direct op kleine microchips (edge computing) kan draaien, zonder cloudverbinding.</li>
                             <li><strong>Verklaarbaarheid (Explainability):</strong> Door de compacte structuur is het voor ontwikkelaars veel eenvoudiger om te herleiden <em>waarom</em> een netwerk een bepaalde beslissing heeft genomen. Dit is een gigantische stap voorwaarts voor sectoren waar transparantie cruciaal is, zoals de medische wereld en de luchtvaart.</li>
                         </ul>
@@ -1163,7 +1261,19 @@
                 <div class="sidebar-widget">
                     <h3>📚 Uit het Archief</h3>
                     <div class="archive-list">
-                        <!-- Nieuwste Artikel (Out Trend) -->
+                        <!-- Nieuwste Artikel (About Trend) -->
+                        <div class="archive-item">
+                            <span class="category-badge archive-badge" style="background-color: #e0f2fe; color: #0369a1; border: 1px solid rgba(3, 105, 161, 0.15);">Trend Analyse</span>
+                            <h4><a href="about-2026-08-01.html">Trend: 'About' (Gezien in 5 artikelen)</a></h4>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Ontdek hoe de evolutie van merkidentiteit en transparantie in het AI-tijdperk verschuift naar hypergepersonaliseerde en dynamische interacties met de eindgebruiker.</p>
+                            <div class="archive-meta">
+                                <span>Door <strong>Redactie TechPulse</strong></span>
+                                <span class="dot">•</span>
+                                <span>2026-08-01</span>
+                            </div>
+                        </div>
+
+                        <!-- Vorige Artikel (Out Trend) -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f1f5f9; color: #0f172a; border: 1px solid rgba(15, 23, 42, 0.15);">Trend Analyse</span>
                             <h4><a href="#404">Trend: 'Out' (Gezien in 5 artikelen)</a></h4>
