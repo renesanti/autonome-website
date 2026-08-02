@@ -1,11 +1,3 @@
-Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de UX Specialist zijn nauwkeurig verwerkt:
-
-1. **Branded & Conversie-gericht:** De 404-foutvanger is volledig geïntegreerd in de herkenbare TechPulse-huisstijl, compleet met logo, heldere typografie en directe conversie-gerichte herstelpaden naar actieve pagina's en de Blueprint-funnel.
-2. **WCAG AA Compliant Contrast:** Alle tekstkleuren (inclusief subtiele beschrijvingen en secundaire links) voldoen strikt aan de contrastnormen ($\ge$ 4.5:1) op zowel de lichte als de donkere achtergronden.
-3. **Optimale Tap-Targets (minimaal 48x48px):** Navigatie-links, actieknoppen en secundaire hulplinks zijn voorzien van voldoende padding/min-height om 'fat-fingering' op mobiel te voorkomen.
-4. **Strakke Linker Uitlijning op Mobiel:** Alle bullet points, geordende lijsten en icoon-lijsten lijnen op mobiel perfect en strak aan de linkerkant uit (`text-align: left !important`).
-
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -22,17 +14,17 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
             --primary: #4f46e5;
             --primary-hover: #3730a3;
             --primary-light: #f5f3ff;
-            --secondary: #0369a1;         /* Optimised contrast sky-700 */
-            --secondary-hover: #075985;   /* Optimised contrast sky-800 */
+            --secondary: #0369a1;         
+            --secondary-hover: #075985;   
             --secondary-light: #f0f9ff;
-            --accent: #0e7490;            /* Optimised contrast cyan-700 */
+            --accent: #0e7490;            
             --dark: #0f172a;
             --dark-subtle: #1e293b;
             --light-bg: #f8fafc;
             --card-bg: #ffffff;
-            --text-main: #1e293b;          /* Darker slate for readability (contrast ~9:1) */
-            --text-muted: #475569;         /* Slate-600 (contrast >4.5:1 on light backgrounds) */
-            --border: #cbd5e1;             /* Accessible borders */
+            --text-main: #1e293b;          /* High contrast slate (~9:1 ratio) */
+            --text-muted: #475569;         /* High contrast slate-600 (>4.5:1 ratio) */
+            --border: #cbd5e1;             
             --border-hover: #94a3b8;
             --font-stack: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             
@@ -118,7 +110,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
             align-items: center;
             gap: 2px;
             transition: transform 0.2s ease;
-            min-height: 48px; /* Accessible Touch Target */
+            min-height: 48px; /* Touch Target Compliance */
         }
 
         .logo:hover {
@@ -157,7 +149,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
             position: relative;
             padding: 8px 12px;
             letter-spacing: -0.01em;
-            min-height: 48px; /* Accessible touch-target height optimized */
+            min-height: 48px; /* Touch Target Compliance */
             display: inline-flex;
             align-items: center;
         }
@@ -182,7 +174,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
             width: calc(100% - 24px);
         }
 
-        /* E-commerce CTA Button in Nav */
+        /* Nav CTA Button */
         nav a.nav-cta {
             background: linear-gradient(135deg, var(--accent), var(--secondary));
             color: #ffffff;
@@ -194,7 +186,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            min-height: 48px; /* Touch Target Compliance */
+            min-height: 48px; 
         }
 
         nav a.nav-cta:hover {
@@ -588,7 +580,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
             justify-content: center;
             gap: 8px;
             box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
-            min-height: 48px; /* Touch-target optimized */
+            min-height: 48px; 
         }
 
         .btn-submit:hover {
@@ -600,7 +592,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
             transform: translateY(0);
         }
 
-        /* Showcase Section: Autonomous AI Company Playbook */
+        /* Showcase Section */
         .blueprint-section {
             margin-bottom: 96px;
         }
@@ -648,7 +640,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
         }
 
         .blueprint-subtitle {
-            color: #38bdf8; /* Adjusted high contrast sky-400 equivalent for dark background */
+            color: #38bdf8; 
             font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 24px;
@@ -668,7 +660,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
 
         .blueprint-content p {
             font-size: 1.05rem;
-            color: #cbd5e1; /* Compliant contrast for slate BG */
+            color: #cbd5e1; 
             margin-bottom: 28px;
             line-height: 1.7;
         }
@@ -686,7 +678,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
         }
 
         .feature-item svg {
-            color: #22d3ee; /* Adjusted high contrast light cyan */
+            color: #22d3ee; 
             flex-shrink: 0;
             margin-top: 3px;
         }
@@ -722,7 +714,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
 
         .old-price {
             font-size: 1.1rem;
-            color: #94a3b8; /* Higher contrast gray for dark bg */
+            color: #94a3b8; 
             text-decoration: line-through;
             font-weight: 600;
         }
@@ -756,7 +748,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
             text-decoration: none;
             box-shadow: 0 4px 20px rgba(14, 116, 144, 0.4);
             transition: all 0.25s ease;
-            min-height: 48px; /* Touch-target optimized */
+            min-height: 48px; 
         }
 
         .btn-checkout:hover {
@@ -771,7 +763,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
             flex-direction: column;
             gap: 8px;
             font-size: 0.8rem;
-            color: #cbd5e1; /* Enhanced contrast text */
+            color: #cbd5e1; 
         }
 
         /* BRANDEIGEN & HOOG-CONVERTERENDE OVERLAY (Voorkomt Bounce & Herstelt Flow) */
@@ -820,7 +812,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
         .error-badge {
             display: inline-block;
             background-color: #fee2e2;
-            color: #b91c1c; /* Hoog contrast op lichtrood */
+            color: #b91c1c; /* High contrast WCAG AA on light red */
             font-size: 0.75rem;
             font-weight: 800;
             padding: 6px 14px;
@@ -836,7 +828,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
             font-weight: 800;
             line-height: 1;
             margin: 0 0 16px 0;
-            color: var(--primary);
+            color: #e02424; /* Accessible signal color conforming to UI specification */
             letter-spacing: -0.04em;
         }
 
@@ -850,7 +842,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
         }
 
         .error-desc {
-            color: var(--text-muted); /* Voldoet aan contrastratio > 4.5:1 */
+            color: var(--text-muted); /* WCAG AA Contrast ratio > 4.5:1 */
             font-size: 1rem;
             line-height: 1.6;
             margin-bottom: 32px;
@@ -866,7 +858,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
         }
 
         .btn-error-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            background-color: var(--primary);
             color: #ffffff;
             font-weight: 700;
             padding: 16px 24px;
@@ -878,12 +870,17 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
             justify-content: center;
             gap: 8px;
             box-shadow: 0 4px 14px rgba(79, 70, 229, 0.2);
-            min-height: 48px; /* Touch-target optimized */
+            min-height: 48px; 
         }
 
         .btn-error-primary:hover {
+            background-color: var(--primary-hover);
             transform: translateY(-1px);
             box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-error-primary:active {
+            transform: scale(0.98);
         }
 
         .btn-error-secondary {
@@ -898,7 +895,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
             align-items: center;
             justify-content: center;
             gap: 8px;
-            min-height: 48px; /* Touch-target optimized */
+            min-height: 48px; 
         }
 
         .btn-error-secondary:hover {
@@ -906,7 +903,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
             border-color: var(--border-hover);
         }
 
-        /* Toegankelijke secundaire hulpopties met grote hitboxes */
+        /* Accessible Support Targets */
         .error-support-links {
             margin-top: 36px;
             display: flex;
@@ -924,7 +921,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
             text-decoration: underline;
             font-size: 0.9rem;
             font-weight: 600;
-            padding: 12px 16px; /* Vergroot de hitbox/tap-target ruim boven 48px */
+            padding: 12px 16px; /* Optimized 48px target hitbox */
             min-height: 48px;
             display: inline-flex;
             align-items: center;
@@ -1003,7 +1000,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
             nav a {
                 font-size: 0.85rem;
                 padding: 10px 12px;
-                min-height: 48px; /* Strict touch target */
+                min-height: 48px; 
             }
 
             nav a.nav-cta {
@@ -1090,8 +1087,14 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
                 align-items: flex-start !important;
             }
 
+            .feature-item {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: flex-start !important;
+            }
+
             .feature-item svg {
-                margin-top: 4px; /* Align perfectly with left-aligned multiline text on mobile */
+                margin-top: 4px; /* Perfectly aligned with mobile multiline text */
             }
 
             .legacy-prompt li::before {
@@ -1107,7 +1110,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
                 box-sizing: border-box;
             }
 
-            /* Custom 404 Mobile Optimization */
+            /* Custom 404 Mobile Optimization & Button Stacking */
             .error-card {
                 padding: 32px 20px;
             }
@@ -1118,6 +1121,11 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
 
             .error-title {
                 font-size: 1.45rem;
+            }
+
+            .error-ctas {
+                flex-direction: column !important;
+                width: 100%;
             }
 
             .error-support-links {
@@ -1131,42 +1139,42 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
             }
 
             .error-separator {
-                display: none; /* Stack links natively on smallest mobile viewports */
+                display: none; 
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Branded Fallback 404 Modal State (Toegankelijk & Hoog-converterend) -->
+    <!-- Branded Fallback 404 Modal State (Highly Accessible, Branded, No-Exit Avoidance) -->
     <div id="error-404-overlay" role="dialog" aria-modal="true" aria-labelledby="error-title">
         <div class="error-card">
             <span class="error-badge">Pagina niet gevonden</span>
             
-            <!-- Merkidentiteit behouden -->
-            <a href="#" class="logo error-logo" onclick="close404();" style="margin-bottom: 24px; justify-content: center;">
+            <!-- Kept Brand Integrity -->
+            <a href="#" class="logo error-logo" onclick="close404(); return false;" style="margin-bottom: 24px; justify-content: center;">
                 Tech<span>Pulse</span>
             </a>
             
             <div class="error-code-badge">404</div>
-            <h1 class="error-title" id="error-title">Oeps! Deze pagina is de weg kwijt.</h1>
-            <p class="error-desc">De pagina die je zoekt bestaat niet of is verhuisd. Geen zorgen, we helpen je direct terug naar onze meest gelezen content.</p>
+            <h1 class="error-title" id="error-title">Oeps! Deze pagina bestaat niet meer.</h1>
+            <p class="error-desc">Het lijkt erop dat de gezochte pagina is verhuisd of nooit heeft bestaan. Geen zorgen, we helpen je graag weer op weg.</p>
             
             <div class="error-ctas">
-                <a href="#" class="btn-error-primary" onclick="close404();">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                    Terug naar Home
+                <a href="#" class="btn-error-primary" onclick="close404(); return false;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    Terug naar Homepage
                 </a>
                 <a href="#blueprint" class="btn-error-secondary" onclick="close404();">
                     Bekijk Onze AI Blueprint
                 </a>
             </div>
 
-            <!-- Toegankelijke Tap Targets voor Secundaire Hulpopties -->
+            <!-- Accessible Touch Targets for Secondary Assistance Paths -->
             <div class="error-support-links">
-                <a href="mailto:support@techpulse.nl" class="error-support-link">Contact Support</a>
-                <span class="error-separator">|</span>
-                <a href="#" class="error-support-link" onclick="close404();">Artikelen zoeken</a>
+                <a href="mailto:support@techpulse.nl" class="error-support-link">Contact opnemen</a>
+                <span class="error-separator" aria-hidden="true">|</span>
+                <a href="#" class="error-support-link" onclick="close404(); return false;">Artikelen zoeken</a>
             </div>
         </div>
     </div>
@@ -1179,7 +1187,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
                 <a href="#404">Artikelen</a>
                 <a href="#404">AI Monitor</a>
                 <a href="#blueprint" class="nav-cta">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                     Get The Blueprint (€9,99)
                 </a>
             </nav>
@@ -1189,28 +1197,28 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
     <div class="container">
         <div class="main-layout">
             
-            <!-- Hoofdredactioneel Artikel -->
+            <!-- Main Content Area -->
             <main>
                 <article class="featured-article">
                     <span class="category-badge tech">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/><circle cx="12" cy="12" r="4"/></svg>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/><circle cx="12" cy="12" r="4"/></svg>
                         Deep Tech & AI
                     </span>
                     <h1 class="article-title">Liquid Neural Networks: Waarom de Toekomst van AI Flexibel, Compact en Continu Is</h1>
                     
                     <div class="article-meta">
                         <span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                             Door <strong>Dr. Elif Demir</strong>
                         </span>
-                        <span class="dot">•</span>
+                        <span class="dot" aria-hidden="true">•</span>
                         <span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                             Gepubliceerd: Vandaag
                         </span>
-                        <span class="dot">•</span>
+                        <span class="dot" aria-hidden="true">•</span>
                         <span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                             Leestijd: 7 min
                         </span>
                     </div>
@@ -1254,21 +1262,33 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
                 </article>
             </main>
 
-            <!-- Sidebar met Historie / Archief & Co-creatie -->
+            <!-- Sidebar & Widgets Area -->
             <aside>
                 
                 <!-- Archiefsectie -->
                 <div class="sidebar-widget">
                     <h3>📚 Uit het Archief</h3>
                     <div class="archive-list">
-                        <!-- Nieuwste Artikel (About Trend) -->
+                        <!-- Nieuwste Artikel (Can Trend) -->
+                        <div class="archive-item">
+                            <span class="category-badge archive-badge" style="background-color: #f0fdf4; color: #166534; border: 1px solid rgba(22, 101, 52, 0.15);">Trend Analyse</span>
+                            <h4><a href="can-2026-08-02.html">Trend: 'Can' (Gezien in 5 artikelen)</a></h4>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Een diepgaand inzicht in hoe generatieve AI-systemen steeds betere functionele capaciteiten ('can-do' mentaliteit) ontwikkelen om zelfstandig complexe codeertaken uit te voeren.</p>
+                            <div class="archive-meta">
+                                <span>Door <strong>Redactie TechPulse</strong></span>
+                                <span class="dot" aria-hidden="true">•</span>
+                                <span>2026-08-02</span>
+                            </div>
+                        </div>
+
+                        <!-- Vorige Artikel (About Trend) -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #e0f2fe; color: #0369a1; border: 1px solid rgba(3, 105, 161, 0.15);">Trend Analyse</span>
                             <h4><a href="about-2026-08-01.html">Trend: 'About' (Gezien in 5 artikelen)</a></h4>
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Ontdek hoe de evolutie van merkidentiteit en transparantie in het AI-tijdperk verschuift naar hypergepersonaliseerde en dynamische interacties met de eindgebruiker.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
-                                <span class="dot">•</span>
+                                <span class="dot" aria-hidden="true">•</span>
                                 <span>2026-08-01</span>
                             </div>
                         </div>
@@ -1280,7 +1300,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Een diepgaande analyse over hoe 'out-of-the-box' AI-modellen en autonome workflows de traditionele development-processen herdefiniëren.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
-                                <span class="dot">•</span>
+                                <span class="dot" aria-hidden="true">•</span>
                                 <span>2026-07-31</span>
                             </div>
                         </div>
@@ -1292,7 +1312,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Een kritische blik op de opkomst van 'low-code' AI, energiezuinige 'low-power' neurale architecturen en hoe zij de drempel voor innovatie verlagen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
-                                <span class="dot">•</span>
+                                <span class="dot" aria-hidden="true">•</span>
                                 <span>2026-07-30</span>
                             </div>
                         </div>
@@ -1304,19 +1324,19 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Een diepgaande blik op hoe Hugging Face is uitgegroeid tot de centrale hub voor open-source AI-modellen en samenwerkingen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
-                                <span class="dot">•</span>
+                                <span class="dot" aria-hidden="true">•</span>
                                 <span>2026-07-29</span>
                             </div>
                         </div>
 
                         <!-- Bestaand gearchiveerd artikel -->
                         <div class="archive-item">
-                            <span class="category-badge archive-badge">Kunstmatige Intelligentie</span>
+                            <span class="category-badge archive-badge" style="background-color: var(--primary-light); color: var(--primary); border: 1px solid rgba(79, 70, 229, 0.15);">Kunstmatige Intelligentie</span>
                             <h4><a href="#404">De Opkomst van Agentic AI: Waarom Autonome AI-assistenten Onze Werkomgeving Gaan Transformeren</a></h4>
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Hoe we verschuiven van reactieve chatbots naar proactieve, zelfstandige AI-agents die complete bedrijfsprocessen overnemen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Steven de Waal</strong></span>
-                                <span class="dot">•</span>
+                                <span class="dot" aria-hidden="true">•</span>
                                 <span>6 min leestijd</span>
                             </div>
                         </div>
@@ -1415,19 +1435,19 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
                         
                         <div class="blueprint-features">
                             <div class="feature-item">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                                 <span><strong>IT-Infrastructuur:</strong> De perfecte tech-stack voor standalone, 24/7 draaiende AI-agents.</span>
                             </div>
                             <div class="feature-item">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                                 <span><strong>Trend-Aggregatie:</strong> Hoe je AI systemen automatisch real-time virale trends laat opsporen en selecteren.</span>
                             </div>
                             <div class="feature-item">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                                 <span><strong>AI-UX & Dynamische Code:</strong> Laat GPT/Claude autonoom interfaces schrijven en optimaliseren voor maximale conversie.</span>
                             </div>
                             <div class="feature-item">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                                 <span><strong>Automatische Sales:</strong> Directe implementatie van Stripe-betaalflows gekoppeld aan geautomatiseerde productlevering.</span>
                             </div>
                         </div>
@@ -1441,7 +1461,7 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
                         </div>
                         <a href="https://checkout.stripe.com" class="btn-checkout">
                             <span>Buy Blueprint PDF – €9,99</span>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                         </a>
                         <div class="trust-indicators">
                             <span>🔒 Veilige checkout via Stripe</span>
@@ -1467,6 +1487,13 @@ Hieronder vind je de volledige, bijgewerkte HTML-code. Alle opmerkingen van de U
             if (window.location.hash === '#404') {
                 overlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
+                
+                // Set keyboard focus on the modal title for accessibility
+                const modalTitle = document.getElementById('error-title');
+                if (modalTitle) {
+                    modalTitle.setAttribute('tabindex', '-1');
+                    modalTitle.focus();
+                }
             } else {
                 overlay.classList.remove('active');
                 document.body.style.overflow = '';
