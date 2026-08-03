@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Analyse: 'Their' & Linguïstische Tech-verschuivingen - 3 Augustus 2026</title>
+    <style>
+        :root {
+            --bg-primary: #0b0f19;
+            --bg-secondary: #161e2e;
+            --bg-tertiary: #242f41;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-purple: #8b5cf6;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #374151;
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo-dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent-blue);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Dashboard Layout */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 968px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #1e1b4b 0%, #1e293b 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: rgba(59, 130, 246, 0.2);
+            border: 1px solid var(--accent-blue);
+            color: #93c5fd;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Left Column: Article & Analysis */
+        .article-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 24px;
+            background-color: var(--accent-purple);
+            border-radius: 2px;
+        }
+
+        .content p {
+            margin-bottom: 1.5rem;
+            color: #cbd5e1;
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+
+        .content h3 {
+            font-size: 1.25rem;
+            color: #ffffff;
+            margin: 2rem 0 1rem 0;
+            font-weight: 600;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--accent-blue);
+            background-color: rgba(59, 130, 246, 0.05);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #93c5fd;
+        }
+
+        /* Right Column: Trend Sidebar & Metrics */
+        .sidebar-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .trend-widget {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .widget-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .trend-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .trend-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            border-radius: 8px;
+            background-color: var(--bg-tertiary);
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .trend-item:hover {
+            border-color: var(--accent-blue);
+            transform: translateX(4px);
+        }
+
+        .trend-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .trend-name::before {
+            content: '#';
+            color: var(--accent-blue);
+            font-weight: 800;
+        }
+
+        .trend-count {
+            background-color: var(--bg-primary);
+            color: var(--accent-green);
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-weight: 700;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        /* Stat Grid (inside sidebar) */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .stat-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 4px;
+        }
+
+        /* Visual Chart Simulation */
+        .chart-container {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .chart-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .chart-label {
+            width: 80px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: right;
+        }
+
+        .chart-bar-wrapper {
+            flex-grow: 1;
+            background-color: var(--bg-tertiary);
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .chart-bar-fill {
+            height: 100%;
+            background-color: var(--accent-purple);
+            border-radius: 6px;
+        }
+
+        .chart-value {
+            width: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-green);
+        }
+
+        /* Footer */
+        footer {
+            max-width: 1200px;
+            margin: 4rem auto 0 auto;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo-area">
+                <span class="logo-dot"></span>
+                <span>TrendPulse Dashboard</span>
+            </a>
+            <a href="index.html" class="back-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Terug naar Overzicht
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main>
+        
+        <!-- Hero Section (Full width spanning grid) -->
+        <section class="hero-banner">
+            <span class="tag">Trend Focus</span>
+            <h1 class="hero-title">Het Pronomen als Trend: Waarom 'Their' de Agenda Bepaalt</h1>
+            <div class="hero-meta">
+                <div class="meta-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <span>Analysedatum: 3 augustus 2026</span>
+                </div>
+                <div class="meta-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <span>Relevantie: 5 Kernartikelen</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Left Column: Core Analysis -->
+        <section class="article-card">
+            <h2 class="section-title">Inhoudelijke Analyse</h2>
+            <div class="content">
+                <p>
+                    Op 3 augustus 2026 zien we een opvallende verschuiving in het linguïstische landschap van de tech- en media-industrie. De trend <strong>'Their'</strong> (gezien in 5 artikelen) staat hierbij centraal. Waar voornaamwoorden in het verleden voornamelijk fungeerden als grammaticaal bindmiddel, signaleren ze vandaag de dag een diepere transformatie in de manier waarop we over systemen, collectieven en inclusiviteit schrijven.
+                </p>
+
+                <blockquote>
+                    "De opkomst van 'Their', zij aan zij met 'Them' en 'Its', weerspiegelt de toenemende noodzaak om zowel AI-agenten als gedecentraliseerde menselijke netwerken genderneutraal en collectief te beschrijven."
+                </blockquote>
+
+                <h3>De Syntactische Triade: 'Their', 'Them' en 'Its'</h3>
+                <p>
+                    Het is geen toeval dat we vandaag de voornaamwoorden <strong>'Their'</strong> (5 artikelen), <strong>'Them'</strong> (5 artikelen) en <strong>'Its'</strong> (5 artikelen) gelijktijdig zien trenden. Media-analisten wijzen op een golf van publicaties rondom autonome AI-systemen (vaak aangeduid met 'Its') en de interactie tussen menselijke operators en deze systemen ('Them' / 'Their'). Het traditionele, strikt binaire mens-machine discours vervaagt. We praten niet langer enkel over 'de gebruiker' en 'de computer', maar over ecosystemen waarin entiteiten handelen met een eigen vorm van agentschap.
+                </p>
+
+                <h3>Consumentenfocus en Evaluatie</h3>
+                <p>
+                    Naast deze linguïstische stroming zien we een sterke pragmatische trend. Met <strong>'Review'</strong> als absolute koploper van de dag (10 artikelen), ondersteund door <strong>'Tested'</strong> (6 artikelen) en <strong>'Tools'</strong> (7 artikelen), is het duidelijk dat de markt zich bevindt in een fase van kritische evaluatie. 
+                </p>
+                <p>
+                    Nieuwe AI-functionaliteiten en softwarepakketten die eerder dit jaar met veel bombarie werden aangekondigd, worden nu door critici en professionals rigoureus aan de tand gevoeld. Men neemt geen genoegen meer met beloftes; de focus ligt op tastbare resultaten en bruikbare 'Tools'.
+                </p>
+
+                <h3>Conclusie en Outlook</h3>
+                <p>
+                    De trends van 3 augustus 2026 laten een gezonde balans zien tussen conceptuele verschuivingen en harde praktijktesten. De media schrijven kritischer, gebruiken inclusievere en abstractere taal om complexe synergieën te beschrijven, en leggen de nadruk op onafhankelijke tests. Voor ontwikkelaars en marketeers is de boodschap helder: zorg dat je tools getest zijn, dat je reviews solide zijn, en spreek de taal van de moderne, collectieve gebruiker.
+                </p>
+            </div>
+        </section>
+
+        <!-- Right Column: Sidebar -->
+        <section class="sidebar-section">
+            
+            <!-- Quick Stats -->
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-value">10</div>
+                    <div class="stat-label">Top Trend (Review)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">59</div>
+                    <div class="stat-label">Totale Trend-mentions</div>
+                </div>
+            </div>
+
+            <!-- Visualization Widget -->
+            <div class="chart-container">
+                <h3 class="widget-title">Trend Verdeling (Top 5)</h3>
+                <div class="bar-chart">
+                    <div class="chart-bar-row">
+                        <span class="chart-label">Review</span>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-bar-fill" style="width: 100%; background-color: var(--accent-green);"></div>
+                        </div>
+                        <span class="chart-value">10</span>
+                    </div>
+                    <div class="chart-bar-row">
+                        <span class="chart-label">Tools</span>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-bar-fill" style="width: 70%;"></div>
+                        </div>
+                        <span class="chart-value">7</span>
+                    </div>
+                    <div class="chart-bar-row">
+                        <span class="chart-label">Show</span>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-bar-fill" style="width: 70%;"></div>
+                        </div>
+                        <span class="chart-value">7</span>
+                    </div>
+                    <div class="chart-bar-row">
+                        <span class="chart-label">Tested</span>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-bar-fill" style="width: 60%;"></div>
+                        </div>
+                        <span class="chart-value">6</span>
+                    </div>
+                    <div class="chart-bar-row">
+                        <span class="chart-label">Their</span>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-bar-fill" style="width: 50%; background-color: var(--accent-blue);"></div>
+                        </div>
+                        <span class="chart-value">5</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Trends Today -->
+            <div class="trend-widget">
+                <h3 class="widget-title">
+                    <span>Relevante Trends Vandaag</span>
+                    <span style="font-size: 0.8rem; color: var(--accent-green); font-weight: normal;">2026-08-03</span>
+                </h3>
+                <ul class="trend-list">
+                    <li>
+                        <a href="#" class="trend-item" style="border-left: 3px solid var(--accent-blue);">
+                            <span class="trend-name">Their (Focus)</span>
+                            <span class="trend-count">5 art.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="trend-item">
+                            <span class="trend-name">Them</span>
+                            <span class="trend-count">5 art.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="trend-item">
+                            <span class="trend-name">Its</span>
+                            <span class="trend-count">5 art.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="trend-item">
+                            <span class="trend-name">Just</span>
+                            <span class="trend-count">5 art.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="trend-item">
+                            <span class="trend-name">Tested</span>
+                            <span class="trend-count">6 art.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="trend-item">
+                            <span class="trend-name">About</span>
+                            <span class="trend-count">6 art.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="trend-item">
+                            <span class="trend-name">Make</span>
+                            <span class="trend-count">6 art.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="trend-item">
+                            <span class="trend-name">Tools</span>
+                            <span class="trend-count">7 art.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="trend-item">
+                            <span class="trend-name">Show</span>
+                            <span class="trend-count">7 art.</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="trend-item" style="background-color: rgba(16, 185, 129, 0.05);">
+                            <span class="trend-name" style="color: var(--accent-green);">Review</span>
+                            <span class="trend-count" style="background-color: var(--accent-green); color: #fff;">10 art.</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 TrendPulse Dashboard. Gegenereerd door een Autonome Webontwikkelaar.</p>
+        <p style="font-size: 0.8rem; margin-top: 5px; color: #6b7280;">Gegevens realtime bijgewerkt op 2026-08-03.</p>
+    </footer>
+
+</body>
+</html>
