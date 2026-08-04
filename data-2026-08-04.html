@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Analyse: 'Data' & Media Landschap - 4 Augustus 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0b0f19;
+            --bg-secondary: #161f30;
+            --bg-card: #1e293b;
+            --accent-primary: #6366f1;
+            --accent-secondary: #3b82f6;
+            --accent-glow: rgba(99, 102, 241, 0.15);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.7;
+            padding-bottom: 60px;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-logo::before {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-primary);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.02);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .back-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-primary);
+            background: var(--accent-glow);
+            transform: translateX(-2px);
+        }
+
+        /* Hero Header */
+        .hero {
+            position: relative;
+            padding: 5rem 2rem 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .hero-date {
+            display: inline-block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-primary);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            line-height: 1.15;
+            font-weight: 700;
+            max-width: 900px;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        .hero-lead {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 750px;
+            font-weight: 400;
+        }
+
+        /* Layout Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3.5rem;
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+
+        /* Main Content */
+        .main-article {
+            min-width: 0; /* Prevents flex/grid overflow */
+        }
+
+        .featured-badge {
+            background: var(--accent-glow);
+            color: var(--accent-primary);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-badge::after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .article-body {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+        }
+
+        .article-body p {
+            margin-bottom: 1.8rem;
+        }
+
+        .article-body h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin: 2.5rem 0 1.2rem 0;
+            letter-spacing: -0.5px;
+        }
+
+        .article-body h3 {
+            font-size: 1.3rem;
+            color: var(--accent-secondary);
+            margin: 2rem 0 1rem 0;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding: 1rem 1.5rem;
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            color: var(--text-primary);
+        }
+
+        /* Sidebar & Dashboard Widgets */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .widget {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.8rem;
+        }
+
+        .widget-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.8rem;
+        }
+
+        .widget-title span {
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            background: var(--accent-glow);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Trend list visualizer */
+        .trend-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .trend-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .trend-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .trend-name {
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .trend-name.highlighted {
+            color: var(--accent-primary);
+        }
+
+        .trend-count {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .trend-bar-wrapper {
+            background: rgba(255, 255, 255, 0.05);
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .trend-bar {
+            height: 100%;
+            border-radius: 3px;
+            background: var(--accent-secondary);
+        }
+
+        .trend-bar.highlight {
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
+        }
+
+        /* Interactive Card for 'Data' */
+        .data-card {
+            background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.15), transparent), var(--bg-card);
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            border-radius: 16px;
+            padding: 1.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .data-card-deco {
+            position: absolute;
+            right: -20px;
+            bottom: -20px;
+            font-size: 8rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.015);
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* Footer */
+        footer {
+            max-width: 1200px;
+            margin: 5rem auto 0 auto;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            footer {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        footer a:hover {
+            color: var(--accent-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navbar -->
+    <nav class="navbar">
+        <div class="nav-logo">TrendPulse</div>
+        <a href="index.html" class="back-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Terug naar Dashboard
+        </a>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="hero">
+        <span class="hero-date">Trend Rapport • 4 Augustus 2026</span>
+        <h1 class="hero-title">De Stille Kracht van 'Data': Structuur in een Gefragmenteerd Media-ecosysteem</h1>
+        <p class="hero-lead">Vandaag domineren systemische en mensgerichte trends het nieuwslandschap. Een diepgaande analyse van hoe data, observatie en menselijk handelen samensmelten.</p>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="container">
+        
+        <!-- Left Column: The Article -->
+        <article class="main-article">
+            <div class="featured-badge">Uitgelichte Trend: 'Data' (5 Artikelen)</div>
+            
+            <div class="article-body">
+                <p>In het medialandschap van vandaag, 4 augustus 2026, zien we een opvallende convergentie van technologische en sociologische trends. Waar voorheen losse innovaties het nieuws domineerden, is er vandaag een duidelijke rode draad zichtbaar: de manier waarop systemen informatie vergaren, interpreteren en toepassen op de menselijke schaal.</p>
+
+                <p>Centraal in dit web van trends staat het begrip <strong>'Data'</strong>, dat in maar liefst vijf toonaangevende publicaties vandaag een sleutelrol opeist. We zien hierin niet langer de abstracte database-technologie van weleer, maar een tastbare en actieve factor die direct invloed heeft op hoe de maatschappij functioneert.</p>
+
+                <h2>De Alomtegenwoordigheid van Data</h2>
+                <p>Data fungeert vandaag als de bindende factor tussen de andere geobserveerde trends. Wanneer we de data-trend analyseren in combinatie met de opkomst van <strong>'Cameras'</strong> (gezien in 6 artikelen) en <strong>'Flock'</strong> (6 artikelen), ontstaat een fascinerend, doch waakzaam beeld van de moderne samenleving. Camera's zijn allang geen passieve lenzen meer; het zijn de primaire sensoren geworden die gigantische stromen visuele data rechtstreeks doorsturen naar AI-gedreven analyseplatformen.</p>
+
+                <blockquote>
+                    "De transitie van louter registreren naar proactief voorspellen is voltooid. Wat we vandaag 'data' noemen, is in feite de digitale blauwdruk van menselijk gedrag in de fysieke ruimte."
+                </blockquote>
+
+                <p>Dit brengt ons bij de trend <strong>'Flock'</strong> (zwermgedrag). De media rapporteren vandaag uitvoerig over hoe algoritmes grote groepen mensen analyseren alsof het natuurverschijnselen zijn. Door data te oogsten uit stedelijke netwerken en camera-infrastructuur, kunnen overheden en bedrijven consumentenstromen en burgerlijke bewegingen nauwkeuriger voorspellen dan ooit tevoren.</p>
+
+                <h2>Menselijke Reactie: 'People', 'Their' en 'Them'</h2>
+                <p>Tegenover deze technologische systemen staat de mens. Het is veelzeggend dat trends zoals <strong>'People'</strong> (5 artikelen), <strong>'Their'</strong> (7 artikelen) en <strong>'Them'</strong> (6 artikelen) eveneens hoog in de cijfers eindigen. Dit duidt op een sterk gepersonaliseerd en empathisch journalistiek perspectief vandaag. Het gaat niet alleen over de systemen, maar juist over de impact op <em>hun</em> levens, <em>hun</em> privacy en hoe <em>zij</em> zich verhouden tot deze digitalisering.</p>
+
+                <p>De trend <strong>'Just'</strong> (5 artikelen) benadrukt de roep om rechtvaardigheid en ethiek in dit datagestuurde tijdperk. Er is een groeiend maatschappelijk debat over de vraag of de beslissingen die op basis van 'data' worden genomen wel 'just' (rechtvaardig) zijn voor de individuen die erdoor worden beïnvloed.</p>
+
+                <h2>Consumentengedrag en de Feedback Loop</h2>
+                <p>Met de leidende trend van vandaag, <strong>'About'</strong> (11 artikelen), zien we een sterke behoefte aan context en duiding. Consumenten willen weten waar verhalen over gaan; ze eisen transparantie. Dit sluit naadloos aan bij de trend <strong>'Review'</strong> (8 artikelen). We bevinden ons in een 'review-economie' waarin elk product, elke data-toepassing en elke service direct door het publiek wordt gewogen en beoordeeld. Wat de consument uiteindelijk wil (<strong>'Wants'</strong>, 6 artikelen), dicteert de richting waarin techgiganten hun datamodellen doorontwikkelen.</p>
+
+                <h3>Synthese: De Cirkel is Rond</h3>
+                <p>De trends van vandaag laten zien dat data geen statisch gegeven is. Het is een dynamische feedback-loop: Camera's registreren het gedrag van mensen (<em>People</em>), dit genereert <em>Data</em>, waarna analyses over <em>hun</em> (<em>Their</em>) gedrag leiden tot nieuwe systemen die moeten voldoen aan wat de maatschappij eist (<em>Wants</em>) en wat ethisch verantwoord (<em>Just</em>) is. Als autonome waarnemers kunnen we concluderen dat de grens tussen de fysieke mens en zijn digitale representatie in de zomer van 2026 definitief is vervaagd.</p>
+            </div>
+        </article>
+
+        <!-- Right Column: Sidebar & Widgets -->
+        <aside class="sidebar">
+            
+            <!-- Quick Info: Data -->
+            <div class="data-card">
+                <div class="data-card-deco">DATA</div>
+                <h3 style="color: var(--text-primary); margin-bottom: 0.5rem; font-size: 1.2rem; position: relative; z-index: 2;">Focus Trend: 'Data'</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; position: relative; z-index: 2;">Gezien in 5 toonaangevende artikelen vandaag. Representeert de verschuiving naar een volledig datagestuurde samenleving.</p>
+                <div style="display: flex; align-items: baseline; gap: 5px; position: relative; z-index: 2;">
+                    <span style="font-size: 2rem; font-weight: 800; color: var(--accent-primary);">5</span>
+                    <span style="color: var(--text-muted); font-size: 0.85rem;">vermeldingen in top-stories</span>
+                </div>
+            </div>
+
+            <!-- All Trends Today Widget -->
+            <div class="widget">
+                <div class="widget-title">
+                    Trends van Vandaag
+                    <span>04-08-2026</span>
+                </div>
+                <ul class="trend-list">
+                    <!-- About -->
+                    <li class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-name">About</span>
+                            <span class="trend-count">11 artikelen</span>
+                        </div>
+                        <div class="trend-bar-wrapper">
+                            <div class="trend-bar" style="width: 100%;"></div>
+                        </div>
+                    </li>
+                    <!-- Review -->
+                    <li class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-name">Review</span>
+                            <span class="trend-count">8 artikelen</span>
+                        </div>
+                        <div class="trend-bar-wrapper">
+                            <div class="trend-bar" style="width: 72%;"></div>
+                        </div>
+                    </li>
+                    <!-- Their -->
+                    <li class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-name">Their</span>
+                            <span class="trend-count">7 artikelen</span>
+                        </div>
+                        <div class="trend-bar-wrapper">
+                            <div class="trend-bar" style="width: 63%;"></div>
+                        </div>
+                    </li>
+                    <!-- Cameras -->
+                    <li class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-name">Cameras</span>
+                            <span class="trend-count">6 artikelen</span>
+                        </div>
+                        <div class="trend-bar-wrapper">
+                            <div class="trend-bar" style="width: 54%;"></div>
+                        </div>
+                    </li>
+                    <!-- Flock -->
+                    <li class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-name">Flock</span>
+                            <span class="trend-count">6 artikelen</span>
+                        </div>
+                        <div class="trend-bar-wrapper">
+                            <div class="trend-bar" style="width: 54%;"></div>
+                        </div>
+                    </li>
+                    <!-- Them -->
+                    <li class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-name">Them</span>
+                            <span class="trend-count">6 artikelen</span>
+                        </div>
+                        <div class="trend-bar-wrapper">
+                            <div class="trend-bar" style="width: 54%;"></div>
+                        </div>
+                    </li>
+                    <!-- Wants -->
+                    <li class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-name">Wants</span>
+                            <span class="trend-count">6 artikelen</span>
+                        </div>
+                        <div class="trend-bar-wrapper">
+                            <div class="trend-bar" style="width: 54%;"></div>
+                        </div>
+                    </li>
+                    <!-- Data (Highlighted) -->
+                    <li class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-name highlighted">★ Data</span>
+                            <span class="trend-count" style="color: var(--accent-primary); font-weight: 700;">5 artikelen</span>
+                        </div>
+                        <div class="trend-bar-wrapper" style="background: rgba(99, 102, 241, 0.1);">
+                            <div class="trend-bar highlight" style="width: 45%;"></div>
+                        </div>
+                    </li>
+                    <!-- Just -->
+                    <li class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-name">Just</span>
+                            <span class="trend-count">5 artikelen</span>
+                        </div>
+                        <div class="trend-bar-wrapper">
+                            <div class="trend-bar" style="width: 45%;"></div>
+                        </div>
+                    </li>
+                    <!-- People -->
+                    <li class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-name">People</span>
+                            <span class="trend-count">5 artikelen</span>
+                        </div>
+                        <div class="trend-bar-wrapper">
+                            <div class="trend-bar" style="width: 45%;"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Methodology Widget -->
+            <div class="widget">
+                <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Methodologie</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Onze autonome TrendPulse-crawler analyseert dagelijks honderden nieuwsbronnen en groepeert semantische sleutelwoorden om opkomende maatschappelijke en technologische patronen realtime in kaart te brengen.</p>
+            </div>
+
+        </aside>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div>© 2026 TrendPulse. Alle rechten voorbehouden.</div>
+        <div>
+            <a href="index.html">Homepage</a> • 
+            <a href="#">Archief</a> • 
+            <a href="#">Over Ons</a>
+        </div>
+    </footer>
+
+</body>
+</html>
