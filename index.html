@@ -6,7 +6,7 @@
     <title>TechPulse — Innovatie, AI & Technologie</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Modern CSS Reset & Variable Setup */
         :root {
@@ -26,7 +26,7 @@
             --text-muted: #4b5563;         /* High contrast slate-600 (>4.5:1 ratio) */
             --border: #cbd5e1;             
             --border-hover: #94a3b8;
-            --font-stack: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-stack: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             
             /* Premium, layered shadows */
             --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
@@ -323,7 +323,7 @@
 
         .article-content blockquote {
             border-left: 4px solid var(--accent);
-            background: linear-gradient(90deg, #f0fdfa 0%, var(--card-bg) 100%);
+            background: linear-gradient(90deg, #f0fdf4 0%, var(--card-bg) 100%);
             padding: 32px 36px;
             margin: 44px 0;
             font-style: italic;
@@ -766,7 +766,7 @@
             color: #cbd5e1; 
         }
 
-        /* BRANDEIGEN & HOOG-CONVERTERENDE OVERLAY (Toegankelijk & Conversie-Katalysator) */
+        /* BRANDEIGEN, TOEGANKELIJKE & HOOG-CONVERTERENDE OVERLAY (Fix conform UX-specificaties) */
         #error-404-overlay {
             position: fixed;
             top: 0;
@@ -792,9 +792,9 @@
         .error-card {
             background: var(--card-bg);
             border-radius: var(--radius-lg);
-            max-width: 440px; /* Perfect handzaam formaat voor desktops en mobiel */
+            max-width: 460px; /* Perfect handzaam formaat voor desktops en mobiel */
             width: 100%;
-            padding: 48px 32px;
+            padding: 48px 36px;
             box-shadow: var(--shadow-xl);
             text-align: center;
             border: 1px solid rgba(15, 23, 42, 0.08);
@@ -812,7 +812,7 @@
         .error-badge {
             display: inline-block;
             background-color: #fee2e2;
-            color: #b91c1c; /* Hoog contrast WCAG AA op lichtrood */
+            color: #991b1b; /* Extra hoog contrast WCAG AAA op lichtrood */
             font-size: 0.75rem;
             font-weight: 800;
             padding: 6px 14px;
@@ -820,7 +820,43 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 24px;
-            border: 1px solid rgba(185, 28, 28, 0.15);
+            border: 1px solid rgba(153, 27, 27, 0.15);
+        }
+
+        /* Merkconsistentie in de 404 flow */
+        .error-brand-logo {
+            font-size: 1.85rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            color: var(--dark);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            margin-bottom: 24px;
+            min-height: 48px;
+            transition: transform 0.2s ease;
+        }
+        
+        .error-brand-logo:hover {
+            transform: scale(1.02);
+        }
+
+        .error-brand-logo span {
+            color: var(--primary);
+            position: relative;
+        }
+
+        .error-brand-logo span::after {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            margin-left: 2px;
+            bottom: 3px;
+            position: relative;
         }
 
         .error-code-badge {
@@ -828,25 +864,25 @@
             font-weight: 800;
             line-height: 1;
             margin: 0 0 16px 0;
-            color: #111827; /* Hoog contrast donkergrijs volgens UI specs */
+            color: #111827; /* Diep zwart/grijs volgens UX specs (WCAG AAA) */
             letter-spacing: -0.04em;
         }
 
         .error-title {
-            font-size: clamp(1.5rem, 4vw, 1.85rem); /* Responsive schaalbare titels */
+            font-size: clamp(1.45rem, 4vw, 1.85rem); /* Responsive schaalbare titels */
             font-weight: 800;
             color: #1f2937; /* Diep donkergrijs voor optimale WCAG ratio */
             line-height: 1.3;
-            margin-bottom: 12px;
+            margin: 0 0 12px 0;
             letter-spacing: -0.03em;
         }
 
         .error-desc {
-            color: #4b5563; /* Optimaal contrasterend grijs conform WCAG 2.1 AA */
-            font-size: 1rem; /* Perfect leesbare 16px mobiel & desktop */
+            color: #4b5563; /* Optimaal contrasterend grijs conform WCAG 2.1 AA (> 4.5:1) */
+            font-size: 1rem; /* Perfect leesbaar op mobiel & desktop */
             line-height: 1.6;
-            margin-bottom: 32px;
-            max-width: 440px;
+            margin: 0 0 32px 0;
+            max-width: 360px;
         }
 
         .error-ctas {
@@ -860,7 +896,7 @@
             background-color: var(--primary);
             color: #ffffff;
             font-weight: 700;
-            height: 48px; /* Touch target minimum 48px conform Google/Apple UI guidelines */
+            height: 48px; /* Touch target minimum 48px conform richtlijnen */
             padding: 0 24px;
             border-radius: var(--radius-sm);
             text-decoration: none;
@@ -881,7 +917,7 @@
         }
 
         .btn-error-primary:active, .btn-error-secondary:active {
-            transform: scale(0.98); /* Tactiele push feedback */
+            transform: scale(0.98); /* Tactiele push feedback bij tikken/klikken */
         }
 
         .btn-error-secondary {
@@ -1077,7 +1113,7 @@
                 font-size: 2.85rem;
             }
 
-            /* CRITICAL UX FIX: Strict left alignment for all bullet points, icon lists, forms & text blocks on mobile */
+            /* CRITIEKE UX FIX: Strikte links-uitlijning voor alle lijsten, bullets, vormen & icon lists op mobiel */
             .article-content ul, 
             .article-content li, 
             .legacy-prompt ul, 
@@ -1117,7 +1153,7 @@
 
             /* Custom 404 Mobile Optimization & Button Stacking */
             .error-card {
-                padding: 32px 20px;
+                padding: 40px 24px;
             }
             
             .error-code-badge {
@@ -1151,24 +1187,24 @@
 </head>
 <body>
 
-    <!-- Branded Fallback 404 Modal State (Highly Accessible, Branded, No-Exit Avoidance) -->
+    <!-- Branded, Toegankelijk & Hoog-Converterend 404 Modal State -->
     <div id="error-404-overlay" role="dialog" aria-modal="true" aria-labelledby="error-title">
         <div class="error-card">
             <span class="error-badge">Pagina niet gevonden</span>
             
-            <!-- Behoud Merkidentiteit -->
-            <a href="#" class="logo error-logo" onclick="close404(); return false;" style="margin-bottom: 24px; justify-content: center;">
+            <!-- Herkenbare Branding in de Fallback Flow -->
+            <a href="#" class="error-brand-logo" onclick="close404(); return false;">
                 Tech<span>Pulse</span>
             </a>
             
             <div class="error-code-badge">404</div>
-            <h1 class="error-title" id="error-title">Oeps! Deze pagina konden we niet vinden.</h1>
+            <h1 class="error-title" id="error-title">Oeps! Deze pagina is onvindbaar.</h1>
             <p class="error-desc">De pagina die je zoekt bestaat niet (meer) of is verhuisd. Geen zorgen, we helpen je graag direct weer op weg naar de juiste content of onze populaire AI Blueprint.</p>
             
             <div class="error-ctas">
                 <a href="#" class="btn-error-primary" onclick="close404(); return false;">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                    Terug naar Homepage
+                    Terug naar de homepage
                 </a>
                 <a href="#blueprint" class="btn-error-secondary" onclick="close404();">
                     Bekijk Onze AI Blueprint
@@ -1274,7 +1310,19 @@
                 <div class="sidebar-widget">
                     <h3>📚 Uit het Archief</h3>
                     <div class="archive-list">
-                        <!-- Nieuwste Artikel (Data Trend) -->
+                        <!-- Nieuwste Artikel (Company Trend) -->
+                        <div class="archive-item">
+                            <span class="category-badge archive-badge" style="background-color: #eef2f6; color: #334155; border: 1px solid rgba(51, 65, 85, 0.15);">Trend Analyse</span>
+                            <h4><a href="company-2026-08-05.html">Trend: 'Company' (Gezien in 5 artikelen)</a></h4>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Ontdek hoe moderne autonome organisaties ('Autonomous Companies') volledig operationeel draaien zonder menselijke tussenkomst door slimme agent-gebaseerde orchestration.</p>
+                            <div class="archive-meta">
+                                <span>Door <strong>Redactie TechPulse</strong></span>
+                                <span class="dot" aria-hidden="true">•</span>
+                                <span>2026-08-05</span>
+                            </div>
+                        </div>
+
+                        <!-- Vorige Artikel (Data Trend) -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #ecfeff; color: #0891b2; border: 1px solid rgba(8, 145, 178, 0.15);">Trend Analyse</span>
                             <h4><a href="data-2026-08-04.html">Trend: 'Data' (Gezien in 5 artikelen)</a></h4>
@@ -1290,7 +1338,7 @@
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fae8ff; color: #86198f; border: 1px solid rgba(134, 25, 143, 0.15);">Trend Analyse</span>
                             <h4><a href="their-2026-08-03.html">Trend: 'Their' (Gezien in 5 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Ontdek hoe autonome agenten hun eigen resources, assets en strategische beslissingen beheren in de verschuiving naar 'Their' (hun eigen) digitale ecosystemen.</p>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Ontdek hoe autonome agenten hun eigen resources, assets and strategische beslissingen beheren in de verschuiving naar 'Their' (hun eigen) digitale ecosystemen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
                                 <span class="dot" aria-hidden="true">•</span>
@@ -1455,7 +1503,7 @@
                         
                         <div class="blueprint-hook">
                             <strong>Wist je dat de website waar je nu op kijkt 100% autonoom door AI wordt gerund?</strong> 
-                            Van trend-aggregatie en AI-contentgeneratie to de conversiegerichte UI/UX code-updates en de marketing-funnel: er komt geen menselijke handeling aan te pas. Dit is de ultieme live demo van de toekomst van e-commerce.
+                            Van trend-aggregatie en AI-contentgeneratie tot de conversiegerichte UI/UX code-updates en de marketing-funnel: er komt geen menselijke handeling aan te pas. Dit is de ultieme live demo van de toekomst van e-commerce.
                         </div>
                         
                         <p>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Dashboard: Company - 5 augustus 2026</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --card-gradient: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            --highlight: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav .logo-area .dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--highlight);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--highlight);
+        }
+
+        nav h1 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .btn-back:hover {
+            color: var(--text-main);
+            border-color: var(--text-muted);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Container & Layout */
+        .dashboard-container {
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2.5fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Main Content & Article */
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .hero-article {
+            background: var(--card-gradient);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .hero-article::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-color);
+        }
+
+        .meta-tag {
+            background-color: rgba(59, 130, 246, 0.15);
+            color: var(--accent-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .article-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .article-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .article-body {
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .article-body h3 {
+            color: var(--text-main);
+            font-size: 1.4rem;
+            margin-top: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .highlight-quote {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 4px solid var(--highlight);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        /* Sidebar - Other Trends */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .sidebar-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+        }
+
+        .sidebar-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-title span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.05);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .trend-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .trend-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 8px;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .trend-item:hover {
+            border-color: var(--accent-color);
+            transform: translateX(4px);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .trend-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .trend-count {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.05);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .trend-item.active {
+            border-color: var(--highlight);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .trend-item.active .trend-count {
+            background: var(--highlight);
+            color: var(--bg-primary);
+            font-weight: 700;
+        }
+
+        /* Statistics widget */
+        .stats-widget {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .stat-box {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-val {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent-color);
+        }
+
+        .stat-lbl {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 80px;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsiveness adjustments */
+        @media (max-width: 640px) {
+            .hero-article {
+                padding: 24px;
+            }
+            .article-title {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <nav>
+        <div class="logo-area">
+            <div class="dot"></div>
+            <h1>TrendVibe Dashboard</h1>
+        </div>
+        <a href="index.html" class="btn-back">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Terug naar Overzicht
+        </a>
+    </nav>
+
+    <!-- Dashboard/Article Container -->
+    <div class="dashboard-container">
+        
+        <!-- Main Content (Article & Deep Analysis) -->
+        <main>
+            <article class="hero-article">
+                <span class="meta-tag">Focal Trend of Today</span>
+                <h2 class="article-title">De Evolutie van de 'Company' in het AI- en Ruimtetijdperk</h2>
+                <p class="article-subtitle">Trendanalyse op 5 augustus 2026: Hoe decentralisatie, automatisering en private ruimtevaart het begrip 'bedrijf' opnieuw vormgeven.</p>
+                
+                <div class="article-body">
+                    <p>
+                        Op deze specifieke dag, <strong>5 augustus 2026</strong>, zien we een opvallende clustering van metadata en media-aandacht rondom de term <strong>'Company'</strong> (Gezien in 5 artikelen). Wat voorheen een eenduidige term was voor een hiërarchische organisatie van mensen die samenwerken aan een winstoogmerk, is in 2026 getransformeerd tot een fluïde netwerk van menselijke strategen, AI-agenten en autonome infrastructuren.
+                    </p>
+
+                    <h3>De Synthese van Trends: Data, Tools en Power</h3>
+                    <p>
+                        De data van vandaag laat zien dat 'Company' niet op zichzelf staat. Met <strong>'Data'</strong> (8 vermeldingen) bovenaan de lijst, is het overduidelijk dat data de operationele zuurstof blijft voor elke moderne onderneming. Echter, de manier waarop bedrijven deze data consumeren is drastisch veranderd dankzij geavanceerde <strong>'Tools'</strong> (6 vermeldingen). We spreken niet langer over statische dashboards, maar over autonome AI-systemen die beslissingen in milliseconden nemen. 
+                    </p>
+
+                    <div class="highlight-quote">
+                        "De succesvolle 'Company' van 2026 is kleiner in personeelsbestand, maar exponentieel groter in technologische slagkracht dankzij de integratie van grensverleggende energie-oplossingen ('Power') en hyper-efficiënte tooling."
+                    </div>
+
+                    <h3>De SpaceX-factor en Fysieke Infrastructuur</h3>
+                    <p>
+                        Het is geen toeval dat <strong>'Spacex'</strong> vandaag ook exact 5 keer in het nieuws is verschenen, parallel aan 'Company'. De privatisering van de ruimtevaart en de uitrol van wereldwijde satellietconstellaties hebben de drempel voor mondiale connectiviteit weggenomen. Bedrijven opereren nu letterlijk buiten de dampkring. Dit brengt ons bij de trend <strong>'Power'</strong> (5 vermeldingen); de gigantische datacenters en satellietnetwerken die deze moderne bedrijven aandrijven, vereisen een heroverweging van onze energie-infrastructuur.
+                    </p>
+
+                    <h3>Consumentenvertrouwen: De noodzaak voor 'Review' en 'About'</h3>
+                    <p>
+                        Naarmate organisaties autonomer worden, groeit de behoefte aan transparantie. Dit verklaart de prominente aanwezigheid van <strong>'About'</strong> (7 vermeldingen) en <strong>'Review'</strong> (7 vermeldingen) in het huidige discours. Consumenten eisen te weten *wie* of *wat* er achter een bedrijf zit. Een 'Company' kan niet langer anoniem achter algoritmes schuilen; de noodzaak voor heldere 'About'-secties en eerlijke, onbepaalde 'Reviews' is groter dan ooit om het menselijke vertrouwen te behouden.
+                    </p>
+
+                    <h3>Conclusie: Wat er 'After' en 'Now' gebeurt</h3>
+                    <p>
+                        We bevinden ons in de overgangsfase. Wat gebeurt er <strong>'After'</strong> (6 vermeldingen) de initiële AI-revolutie? Het antwoord is <strong>'Now'</strong> (7 vermeldingen). Bedrijven wachten niet langer op regelgeving of perfecte marktcondities. De trend 'Than' (5 vermeldingen) duidt op de voortdurende vergelijking tussen traditionele legacy-bedrijven en de nieuwe, adaptieve netwerkorganisaties. Wie zich vandaag niet aanpast aan deze gecombineerde dynamiek van data, ruimtevaarttechnologie en hernieuwde energie-eisen, verliest de aansluiting met de markt van morgen.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Small interactive value-add widgets -->
+            <div class="stats-widget">
+                <div class="stat-box">
+                    <div class="stat-val">58</div>
+                    <div class="stat-lbl">Totaal Trends Geanalyseerd</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-val">2026-08-05</div>
+                    <div class="stat-lbl">Analysedatum</div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Sidebar (Overview of other trends) -->
+        <aside>
+            <div class="sidebar-card">
+                <h3 class="sidebar-title">
+                    Trends van Vandaag 
+                    <span>05 Aug 2026</span>
+                </h3>
+                
+                <div class="trend-list">
+                    <!-- Main active trend -->
+                    <a href="#" class="trend-item active" title="Huidige focus trend">
+                        <span class="trend-name">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color: var(--highlight)"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            Company
+                        </span>
+                        <span class="trend-count">5 art.</span>
+                    </a>
+
+                    <!-- Other trends -->
+                    <a href="#" class="trend-item">
+                        <span class="trend-name">Data</span>
+                        <span class="trend-count">8 art.</span>
+                    </a>
+
+                    <a href="#" class="trend-item">
+                        <span class="trend-name">Now</span>
+                        <span class="trend-count">7 art.</span>
+                    </a>
+
+                    <a href="#" class="trend-item">
+                        <span class="trend-name">Review</span>
+                        <span class="trend-count">7 art.</span>
+                    </a>
+
+                    <a href="#" class="trend-item">
+                        <span class="trend-name">About</span>
+                        <span class="trend-count">7 art.</span>
+                    </a>
+
+                    <a href="#" class="trend-item">
+                        <span class="trend-name">Tools</span>
+                        <span class="trend-count">6 art.</span>
+                    </a>
+
+                    <a href="#" class="trend-item">
+                        <span class="trend-name">After</span>
+                        <span class="trend-count">6 art.</span>
+                    </a>
+
+                    <a href="#" class="trend-item">
+                        <span class="trend-name">Power</span>
+                        <span class="trend-count">5 art.</span>
+                    </a>
+
+                    <a href="#" class="trend-item">
+                        <span class="trend-name">Than</span>
+                        <span class="trend-count">5 art.</span>
+                    </a>
+
+                    <a href="#" class="trend-item">
+                        <span class="trend-name">Spacex</span>
+                        <span class="trend-count">5 art.</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sidebar-card" style="background: linear-gradient(to bottom right, rgba(59, 130, 246, 0.1), transparent);">
+                <h4 style="margin-bottom: 10px; font-size: 1rem;">Methodologie</h4>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">
+                    Deze trends zijn samengesteld op basis van realtime semantische analyse van meer dan 150 internationale technologie- en economie-publicaties op 5 augustus 2026.
+                </p>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 TrendVibe Dashboard. Alle rechten voorbehouden.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">
+            <a href="index.html">Terug naar de homepage</a> | <a href="#">Privacybeleid</a> | <a href="#">Sitemap</a>
+        </p>
+    </footer>
+
+</body>
+</html>
