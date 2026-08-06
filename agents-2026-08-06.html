@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Dashboard: AI Agents & Tech Analyse - 6 Augustus 2026</title>
+    <!-- Google Fonts: Inter voor een strakke, moderne look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #0b0f19;
+            --bg-card: #151c2c;
+            --bg-card-hover: #1e2638;
+            --accent-primary: #6366f1; /* Indigo */
+            --accent-secondary: #06b6d4; /* Cyan */
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --border-color: #222e45;
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* Container & Grid layout */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation header */
+        header {
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 16px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: white;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            background: linear-gradient(to right, #ffffff, #9ca3af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .btn-back:hover {
+            color: var(--text-primary);
+            background-color: var(--bg-card);
+            border-color: var(--accent-primary);
+            transform: translateX(-2px);
+        }
+
+        /* Hero / Title Section */
+        .hero {
+            padding: 48px 0 32px 0;
+        }
+
+        .meta-tag {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            color: #a5b4fc;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            line-height: 1.15;
+            margin-bottom: 12px;
+            background: linear-gradient(to right, #ffffff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 800px;
+        }
+
+        /* Dashboard Grid Layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        @media (min-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        /* Cards styling */
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title svg {
+            color: var(--accent-secondary);
+        }
+
+        /* Trend list in Sidebar */
+        .trend-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .trend-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .trend-item:hover {
+            background-color: var(--bg-card-hover);
+            transform: translateX(4px);
+        }
+
+        .trend-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .trend-name.highlight {
+            color: #818cf8;
+        }
+
+        .trend-count {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent-secondary);
+        }
+
+        .trend-item:hover .trend-count {
+            background: var(--accent-secondary);
+            color: var(--bg-main);
+        }
+
+        /* Content / Analysis Area */
+        .analysis-section {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 16px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 16px;
+        }
+
+        .article-content p {
+            margin-bottom: 16px;
+            color: #d1d5db;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .article-content h3 {
+            color: var(--text-primary);
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin: 28px 0 12px 0;
+        }
+
+        .article-content blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 20px;
+            margin: 24px 0;
+            font-style: italic;
+            color: #a5b4fc;
+        }
+
+        /* Visual Bar Chart in Dashboard */
+        .chart-container {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .chart-bar-wrapper {
+            margin-bottom: 12px;
+        }
+
+        .chart-label-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+        }
+
+        .chart-bar-outer {
+            background-color: rgba(255, 255, 255, 0.05);
+            height: 8px;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .chart-bar-inner {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 64px;
+            border-top: 1px solid var(--border-color);
+            padding: 32px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Highlight Grid Card */
+        .highlight-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(6, 182, 212, 0.05) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo-group">
+                <div class="logo-icon">A</div>
+                <span class="logo-text">TrendPulse Dashboard</span>
+            </div>
+            <a href="index.html" class="btn-back">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Terug naar Overzicht
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <span class="meta-tag">Analyse van 6 augustus 2026</span>
+            <h1>Trend: De Opkomst van 'Agents'</h1>
+            <p>Een diepgaande blik op de meest besproken technologische verschuiving van vandaag: autonome AI-agents, data-ecosystemen en de democratisering van intelligentie.</p>
+        </section>
+
+        <div class="dashboard-grid">
+            
+            <!-- Left: Main Analysis Article -->
+            <section class="analysis-section">
+                <div class="card">
+                    <div class="article-meta">
+                        <span> Gepubliceerd op: 6 augustus 2026</span>
+                        <span>•</span>
+                        <span> Leestijd: 5 minuten</span>
+                        <span>•</span>
+                        <span> Onderwerp: AI & Data Science</span>
+                    </div>
+
+                    <div class="article-content">
+                        <h2>De Doorbraak van Autonome Systemen</h2>
+                        <p>Vandaag, op 6 augustus 2026, domineert de term <strong>'Agents'</strong> de technologische nieuwsstromen. Met een sterke aanwezigheid in ten minste 5 cruciale artikelen zien we dat de verschuiving van passieve AI-modellen naar actieve, autonome actoren nu echt een feit is. Waar we voorheen spraken over generatieve chatbots, gaat de discussie nu fundamenteel over agentische systemen die zelfstandig doelen stellen, plannen maken en acties uitvoeren binnen complexe digitale ecosystemen.</p>
+
+                        <blockquote>
+                            "AI-modellen praten niet meer alleen tegen ons; ze werken vóór ons. De opkomst van 'Agents' markeert de overgang van assistent naar volwaardige digitale collega."
+                        </blockquote>
+
+                        <h3>De Synergie tussen 'Agents' en 'Data'</h3>
+                        <p>Een agent is slechts zo krachtig als de context waarin hij opereert. Het is dan ook geen verrassing dat de trend <strong>'Data'</strong> (eveneens gezien in 5 artikelen) direct gekoppeld is aan deze beweging. Agents hebben real-time, gestructureerde en veilige toegang tot databases nodig om beslissingen te kunnen nemen. Bedrijven richten zich momenteel massaal op het gereedmaken van hun data-architectuur (de zogenaamde 'agent-ready data frameworks') om deze intelligente entiteiten veilig binnen hun systemen te laten opereren.</p>
+
+                        <h3>De Rol van Techreuzen: Google & de Vraag naar 'Free'</h3>
+                        <p>In het huidige technologielandschap is de strijd om de dominantie van het agent-ecosysteem in volle gang. <strong>'Google'</strong> (gezien in 6 artikelen) profileert zich sterk door geavanceerde agent-mogelijkheden rechtstreeks te integreren in hun kernproducten. Tegelijkertijd signaleert de sterke trend rondom het woord <strong>'Free'</strong> (7 artikelen) een duidelijke consumenten- en ontwikkelaarsbehoefte: de roep om opensource of gratis instapmodellen.</p>
+                        <p>Ontwikkelaars willen niet vastzitten aan dure, propriëtaire API's van één enkele leverancier om hun agent-netwerken te bouwen. De trend wijst op een golf van nieuwe, kosteloze tools en frameworks waarmee ontwikkelaars lokaal agents kunnen draaien op eigen hardware.</p>
+
+                        <h3>Grammarlyse: Wat vertellen de functiewoorden ons?</h3>
+                        <p>Wanneer we naar de overige trends van vandaag kijken, zien we woorden als <strong>'Will'</strong>, <strong>'Can'</strong>, <strong>'Which'</strong> en <strong>'Into'</strong> (elk 6 keer gezien). Hoewel dit op het eerste gezicht algemene termen lijken, weerspiegelen ze de aard van de huidige berichtgeving:</p>
+                        <ul>
+                            <li><strong>Will & Can:</strong> Wijzen op de belofte en de directe capabilities van de nieuwe systemen ("What AI agents <em>can</em> do today and <em>will</em> do tomorrow").</li>
+                            <li><strong>Which:</strong> Toont aan dat de markt zich in een vergelijkingsfase bevindt ("<em>Which</em> framework fits your business?"). Dit sluit naadloos aan op de trend <strong>'Review'</strong> (6 artikelen).</li>
+                        </ul>
+                        
+                        <p>De tech-gemeenschap is momenteel kritisch aan het evalueren welke systemen de belofte waarmaken en welke puur marketinghype zijn.</p>
+                    </div>
+                </div>
+
+                <!-- Highlight section / Summary metrics -->
+                <div class="card highlight-card">
+                    <h3 class="card-title" style="margin-bottom: 12px; color: #a5b4fc;">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        Conclusie & Vooruitblik
+                    </h3>
+                    <p style="font-size: 0.95rem; color: #cbd5e1; margin-bottom: 0;">
+                        De trends van 6 augustus 2026 schetsen een duidelijk beeld: de hype rondom simpele chatbots is voorbij. We zijn beland in het tijdperk van praktische implementatie. Bedrijven die vandaag investeren in het structureren van hun <strong>Data</strong> ten behoeve van autonome <strong>Agents</strong>, leggen de fundering voor de komende decennia. Houd Google in de gaten, maar verlies de opkomst van krachtige, 'Free' open-source alternatieven niet uit het oog.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Right: Dashboard Stats & Trends -->
+            <section class="dashboard-sidebar">
+                <div class="card">
+                    <h2 class="card-title">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2"></path>
+                        </svg>
+                        Trends van Vandaag
+                    </h2>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 20px;">
+                        Overzicht van de meest voorkomende termen in de tech-media op 2026-08-06.
+                    </p>
+
+                    <div class="trend-list">
+                        <!-- Free -->
+                        <div class="trend-item">
+                            <span class="trend-name">Free</span>
+                            <span class="trend-count">7 artikelen</span>
+                        </div>
+                        <!-- Which -->
+                        <div class="trend-item">
+                            <span class="trend-name">Which</span>
+                            <span class="trend-count">6 artikelen</span>
+                        </div>
+                        <!-- Review -->
+                        <div class="trend-item">
+                            <span class="trend-name">Review</span>
+                            <span class="trend-count">6 artikelen</span>
+                        </div>
+                        <!-- Will -->
+                        <div class="trend-item">
+                            <span class="trend-name">Will</span>
+                            <span class="trend-count">6 artikelen</span>
+                        </div>
+                        <!-- Its -->
+                        <div class="trend-item">
+                            <span class="trend-name">Its</span>
+                            <span class="trend-count">6 artikelen</span>
+                        </div>
+                        <!-- Into -->
+                        <div class="trend-item">
+                            <span class="trend-name">Into</span>
+                            <span class="trend-count">6 artikelen</span>
+                        </div>
+                        <!-- Can -->
+                        <div class="trend-item">
+                            <span class="trend-name">Can</span>
+                            <span class="trend-count">6 artikelen</span>
+                        </div>
+                        <!-- Google -->
+                        <div class="trend-item">
+                            <span class="trend-name">Google</span>
+                            <span class="trend-count">6 artikelen</span>
+                        </div>
+                        <!-- Agents (Main) -->
+                        <div class="trend-item" style="border-color: rgba(99, 102, 241, 0.4); background: rgba(99, 102, 241, 0.05);">
+                            <span class="trend-name highlight">
+                                <span style="display:inline-block; width: 8px; height: 8px; background: var(--accent-primary); border-radius: 50%;"></span>
+                                Agents
+                            </span>
+                            <span class="trend-count" style="background: var(--accent-primary); color: white;">5 artikelen</span>
+                        </div>
+                        <!-- Data -->
+                        <div class="trend-item">
+                            <span class="trend-name">Data</span>
+                            <span class="trend-count">5 artikelen</span>
+                        </div>
+                    </div>
+
+                    <!-- Visual Chart representation -->
+                    <div class="chart-container">
+                        <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 16px;">Visualisatie van Volume</h3>
+                        
+                        <!-- Free (7) -->
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-label-row">
+                                <span>Free</span>
+                                <span>7</span>
+                            </div>
+                            <div class="chart-bar-outer">
+                                <div class="chart-bar-inner" style="width: 100%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Which, Review, Will, Its, Into, Can, Google (6) -->
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-label-row">
+                                <span>Google / Review / Will / Can...</span>
+                                <span>6</span>
+                            </div>
+                            <div class="chart-bar-outer">
+                                <div class="chart-bar-inner" style="width: 85%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Agents, Data (5) -->
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-label-row" style="color: #a5b4fc; font-weight: 600;">
+                                <span>Agents / Data (Focus)</span>
+                                <span>5</span>
+                            </div>
+                            <div class="chart-bar-outer" style="background-color: rgba(99, 102, 241, 0.1);">
+                                <div class="chart-bar-inner" style="width: 71%; background: var(--accent-primary);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 TrendPulse Dashboard. Autonoom gegenereerde trendanalyse.</p>
+            <p style="margin-top: 8px;"><a href="index.html">Terug naar de homepage</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

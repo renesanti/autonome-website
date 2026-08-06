@@ -766,7 +766,7 @@
             color: #cbd5e1; 
         }
 
-        /* BRANDEIGEN, TOEGANKELIJKE & HOOG-CONVERTERENDE OVERLAY (Fix conform UX-specificaties) */
+        /* BRANDEIGEN, TOEGANKELIJKE & HOOG-CONVERTERENDE OVERLAY (UX-Fix) */
         #error-404-overlay {
             position: fixed;
             top: 0;
@@ -792,7 +792,7 @@
         .error-card {
             background: var(--card-bg);
             border-radius: var(--radius-lg);
-            max-width: 460px; /* Perfect handzaam formaat voor desktops en mobiel */
+            max-width: 480px; 
             width: 100%;
             padding: 48px 36px;
             box-shadow: var(--shadow-xl);
@@ -812,7 +812,7 @@
         .error-badge {
             display: inline-block;
             background-color: #fee2e2;
-            color: #991b1b; /* Extra hoog contrast WCAG AAA op lichtrood */
+            color: #991b1b; /* Extra hoog contrast WCAG AAA */
             font-size: 0.75rem;
             font-weight: 800;
             padding: 6px 14px;
@@ -823,9 +823,12 @@
             border: 1px solid rgba(153, 27, 27, 0.15);
         }
 
-        /* Merkconsistentie in de 404 flow */
+        .brand-header {
+            margin-bottom: 24px;
+        }
+
         .error-brand-logo {
-            font-size: 1.85rem;
+            font-size: 1.6rem;
             font-weight: 800;
             letter-spacing: -0.04em;
             color: var(--dark);
@@ -833,7 +836,6 @@
             display: inline-flex;
             align-items: center;
             gap: 2px;
-            margin-bottom: 24px;
             min-height: 48px;
             transition: transform 0.2s ease;
         }
@@ -859,86 +861,90 @@
             position: relative;
         }
 
-        .error-code-badge {
-            font-size: clamp(4.5rem, 12vw, 6.5rem); /* Responsive fluid typography scaling */
+        .error-code {
+            display: block;
+            font-size: clamp(4.5rem, 12vw, 6rem); /* Responsive fluid typography scaling */
             font-weight: 800;
             line-height: 1;
-            margin: 0 0 16px 0;
-            color: #111827; /* Diep zwart/grijs volgens UX specs (WCAG AAA) */
-            letter-spacing: -0.04em;
+            color: var(--primary);
+            margin-bottom: 12px;
+            letter-spacing: -0.05em;
         }
 
         .error-title {
-            font-size: clamp(1.45rem, 4vw, 1.85rem); /* Responsive schaalbare titels */
-            font-weight: 800;
-            color: #1f2937; /* Diep donkergrijs voor optimale WCAG ratio */
+            font-size: clamp(1.35rem, 4vw, 1.75rem); /* Responsive schaalbare titels */
+            font-weight: 700;
+            color: var(--dark); /* Diep grijs/zwart voor optimale WCAG ratio */
             line-height: 1.3;
             margin: 0 0 12px 0;
             letter-spacing: -0.03em;
         }
 
-        .error-desc {
-            color: #4b5563; /* Optimaal contrasterend grijs conform WCAG 2.1 AA (> 4.5:1) */
-            font-size: 1rem; /* Perfect leesbaar op mobiel & desktop */
+        .error-text {
+            color: var(--text-muted); /* Optimaal contrasterend grijs conform WCAG 2.1 AA */
+            font-size: 0.95rem; /* Perfect leesbaar op mobiel & desktop */
             line-height: 1.6;
-            margin: 0 0 32px 0;
-            max-width: 360px;
+            margin: 0 auto 28px auto;
+            max-width: 380px;
         }
 
-        .error-ctas {
+        /* Knoppen mobiel-eerst stackable */
+        .error-actions {
             display: flex;
-            flex-direction: column; /* Tactische mobielvriendelijke vertical thumb stack */
+            flex-direction: column; 
             gap: 12px;
             width: 100%;
         }
 
-        .btn-error-primary {
-            background-color: var(--primary);
-            color: #ffffff;
-            font-weight: 700;
-            height: 48px; /* Touch target minimum 48px conform richtlijnen */
-            padding: 0 24px;
-            border-radius: var(--radius-sm);
-            text-decoration: none;
-            transition: all 0.2s ease, transform 0.1s ease;
+        /* Tactiele touch feedback en minimaal 48px touch targets conform richtlijnen */
+        .btn-primary {
             display: inline-flex;
-            align-items: center;
             justify-content: center;
-            gap: 8px;
-            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.2);
-            font-size: 1rem;
+            align-items: center;
+            background-color: var(--primary);
+            color: #FFFFFF;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            min-height: 48px; 
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+            box-shadow: var(--shadow-sm);
+            border: none;
+            cursor: pointer;
             width: 100%;
         }
 
-        .btn-error-primary:hover {
+        .btn-primary:hover {
             background-color: var(--primary-hover);
             transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+            box-shadow: var(--shadow-md);
         }
 
-        .btn-error-primary:active, .btn-error-secondary:active {
-            transform: scale(0.98); /* Tactiele push feedback bij tikken/klikken */
+        .btn-primary:active, .btn-secondary:active {
+            transform: scale(0.98); 
         }
 
-        .btn-error-secondary {
+        .btn-secondary {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
             background-color: transparent;
             color: var(--primary);
-            border: 2px solid var(--primary);
-            font-weight: 700;
-            height: 48px; /* Touch target minimum 48px */
-            padding: 0 24px;
-            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.95rem;
             text-decoration: none;
-            transition: all 0.2s ease, transform 0.1s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-size: 1rem;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--primary);
+            min-height: 48px;
+            transition: all 0.2s ease;
+            cursor: pointer;
             width: 100%;
         }
 
-        .btn-error-secondary:hover {
+        .btn-secondary:hover {
             background-color: rgba(79, 70, 229, 0.05);
             border-color: var(--primary-hover);
             color: var(--primary-hover);
@@ -993,6 +999,16 @@
         }
 
         /* Responsiveness and Layout Fixes */
+        @media (min-width: 480px) {
+            .error-actions {
+                flex-direction: row; /* Knoppen naast elkaar op grotere schermen */
+                justify-content: center;
+            }
+            .btn-primary, .btn-secondary {
+                flex: 1;
+            }
+        }
+
         @media (max-width: 1024px) {
             .main-layout {
                 grid-template-columns: 1fr;
@@ -1151,22 +1167,13 @@
                 box-sizing: border-box;
             }
 
-            /* Custom 404 Mobile Optimization & Button Stacking */
+            /* Custom 404 Mobile Optimization */
             .error-card {
                 padding: 40px 24px;
             }
-            
-            .error-code-badge {
-                font-size: 4.5rem;
-            }
 
-            .error-title {
-                font-size: 1.45rem;
-            }
-
-            .error-ctas {
-                flex-direction: column !important;
-                width: 100%;
+            .error-text {
+                margin: 0 auto 24px auto;
             }
 
             .error-support-links {
@@ -1187,27 +1194,28 @@
 </head>
 <body>
 
-    <!-- Branded, Toegankelijk & Hoog-Converterend 404 Modal State -->
+    <!-- Conversie-geoptimaliseerde & Toegankelijke 404 Modal State -->
     <div id="error-404-overlay" role="dialog" aria-modal="true" aria-labelledby="error-title">
         <div class="error-card">
             <span class="error-badge">Pagina niet gevonden</span>
             
-            <!-- Herkenbare Branding in de Fallback Flow -->
-            <a href="#" class="error-brand-logo" onclick="close404(); return false;">
-                Tech<span>Pulse</span>
-            </a>
-            
-            <div class="error-code-badge">404</div>
-            <h1 class="error-title" id="error-title">Oeps! Deze pagina is onvindbaar.</h1>
-            <p class="error-desc">De pagina die je zoekt bestaat niet (meer) of is verhuisd. Geen zorgen, we helpen je graag direct weer op weg naar de juiste content of onze populaire AI Blueprint.</p>
-            
-            <div class="error-ctas">
-                <a href="#" class="btn-error-primary" onclick="close404(); return false;">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                    Terug naar de homepage
+            <header class="brand-header">
+                <a href="#" class="error-brand-logo" onclick="close404(); return false;">
+                    Tech<span>Pulse</span>
                 </a>
-                <a href="#blueprint" class="btn-error-secondary" onclick="close404();">
-                    Bekijk Onze AI Blueprint
+            </header>
+            
+            <span class="error-code">404</span>
+            <h1 class="error-title" id="error-title">Oeps! Deze pagina is de weg kwijt.</h1>
+            <p class="error-text">De pagina die je zoekt bestaat niet (meer) of is verhuisd. Geen zorgen, we helpen je graag terug op weg naar onze artikelen of onze exclusieve AI Blueprint.</p>
+            
+            <div class="error-actions">
+                <a href="#" class="btn-primary" onclick="close404(); return false;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 8px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    Terug naar Home
+                </a>
+                <a href="#blueprint" class="btn-secondary" onclick="close404();">
+                    Bekijk AI Blueprint
                 </a>
             </div>
 
@@ -1282,7 +1290,7 @@
                         <ul>
                             <li><strong>Oneindige Aanpasbaarheid (Adaptability):</strong> Omdat de wiskundige vergelijkingen achter LNN's continu van aard zijn, kunnen de netwerken moeiteloos omgaan met onverwachte situaties. Denk aan een zelfrijdende auto die getraind is in de zon, maar plotseling in een zware sneeuwstorm terechtkomt. Waar een traditionele AI kan haperen, past een LNN zich direct aan de nieuwe omstandigheden aan.</li>
                             <li><strong>Extreme Compactheid:</strong> Terwijl GPT-4 honderden miljarden parameters nodig heeft, kan een LNN voor complexe navigatietaken toe met minder dan honderd neuronen. Dit betekent dat de software direct op kleine microchips (edge computing) kan draaien, zonder cloudverbinding.</li>
-                            <li><strong>Verklaarbaarheid (Explainability):</strong> Door de compacte structuur is het voor ontwikkelaars veel eenvoudiger om te herleiden <em>waarom</em> een netwerk een bepaalde bescision heeft genomen. Dit is een gigantische stap voorwaarts voor sectoren waar transparantie cruciaal is, zoals de medische wereld en de luchtvaart.</li>
+                            <li><strong>Verklaarbaarheid (Explainability):</strong> Door de compacte structuur is het voor ontwikkelaars veel eenvoudiger om te herleiden <em>waarom</em> een netwerk een bepaalde beslissing heeft genomen. Dit is een gigantische stap voorwaarts voor sectoren waar transparantie cruciaal is, zoals de medische wereld en de luchtvaart.</li>
                         </ul>
 
                         <h2>Praktische Toepassingen in de Realiteit</h2>
@@ -1310,7 +1318,19 @@
                 <div class="sidebar-widget">
                     <h3>📚 Uit het Archief</h3>
                     <div class="archive-list">
-                        <!-- Nieuwste Artikel (Company Trend) -->
+                        <!-- NIEUWSTE ARTIKEL (Agents Trend) -->
+                        <div class="archive-item">
+                            <span class="category-badge archive-badge" style="background-color: #f5f3ff; color: #6366f1; border: 1px solid rgba(99, 102, 241, 0.15);">Trend Analyse</span>
+                            <h4><a href="agents-2026-08-06.html">Trend: 'Agents' (Gezien in 5 artikelen)</a></h4>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Ontdek hoe autonome agentic workflows en multi-agent netwerken zelfstandig doelen bereiken, code schrijven en complexe bedrijfsprocessen herdefiniëren zonder menselijke tussenkomst.</p>
+                            <div class="archive-meta">
+                                <span>Door <strong>Redactie TechPulse</strong></span>
+                                <span class="dot" aria-hidden="true">•</span>
+                                <span>2026-08-06</span>
+                            </div>
+                        </div>
+
+                        <!-- Vorige Artikel (Company Trend) -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #eef2f6; color: #334155; border: 1px solid rgba(51, 65, 85, 0.15);">Trend Analyse</span>
                             <h4><a href="company-2026-08-05.html">Trend: 'Company' (Gezien in 5 artikelen)</a></h4>
@@ -1338,7 +1358,7 @@
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fae8ff; color: #86198f; border: 1px solid rgba(134, 25, 143, 0.15);">Trend Analyse</span>
                             <h4><a href="their-2026-08-03.html">Trend: 'Their' (Gezien in 5 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Ontdek hoe autonome agenten hun eigen resources, assets and strategische beslissingen beheren in de verschuiving naar 'Their' (hun eigen) digitale ecosystemen.</p>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Ontdek hoe autonome agenten hun eigen resources, assets en strategische beslissingen beheren in de verschuiving naar 'Their' (hun eigen) digitale ecosystemen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
                                 <span class="dot" aria-hidden="true">•</span>
