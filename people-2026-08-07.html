@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Analyse: 'People' - Tech & Society Dashboard</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-light: #eeebff;
+            --secondary: #0f172a;
+            --success: #10b981;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #334155;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+            --transition: all 0.2s ease-in-out;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        .brand-date {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            background-color: var(--background);
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        /* Container & Grid Layout */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        /* Main Content Panel */
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-trend {
+            border-left: 6px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-trend::after {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(79,70,229,0.08) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+        }
+
+        .badge-main {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            color: var(--text-dark);
+            font-size: 2.25rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .meta-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Content Typography */
+        .content {
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .content h2 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin: 2.5rem 0 1rem 0;
+            font-weight: 700;
+        }
+
+        .content h2:first-of-type {
+            margin-top: 1rem;
+        }
+
+        .content blockquote {
+            background-color: var(--background);
+            border-left: 4px solid var(--text-muted);
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-style: italic;
+            color: var(--text-dark);
+        }
+
+        .content ul, .content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Sidebar & Trend Widget */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .widget-title {
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            margin-bottom: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .trend-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .trend-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.85rem 1rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: var(--text-main);
+            transition: var(--transition);
+            background-color: var(--surface);
+        }
+
+        .trend-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .trend-item.active {
+            background-color: var(--primary-light);
+            border-color: var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .trend-name {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .trend-count {
+            font-size: 0.8rem;
+            background-color: var(--background);
+            color: var(--text-muted);
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
+            font-weight: 600;
+            border: 1px solid var(--border);
+        }
+
+        .trend-item.active .trend-count {
+            background-color: var(--primary);
+            color: var(--surface);
+            border-color: var(--primary);
+        }
+
+        /* Visualization / Chart */
+        .chart-container {
+            margin-top: 1.5rem;
+        }
+
+        .chart-bar-wrapper {
+            margin-bottom: 1rem;
+        }
+
+        .chart-label-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+        }
+
+        .chart-bar-bg {
+            background-color: var(--background);
+            height: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .chart-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            background-color: var(--text-muted);
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .chart-bar-fill.active {
+            background-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: #94a3b8;
+            padding: 3rem 1.5rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+            border-top: 1px solid #1e293b;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row;
+            }
+        }
+
+        .footer-text p {
+            margin-bottom: 0.25rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--surface);
+        }
+
+        /* Interactive Card Accent */
+        .insights-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        @media (min-width: 576px) {
+            .insights-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .insight-card {
+            background-color: var(--background);
+            border: 1px solid var(--border);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+        }
+
+        .insight-card:hover {
+            border-color: var(--primary);
+        }
+
+        .insight-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .insight-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .insight-desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="back-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Terug naar Archief
+            </a>
+            <div class="brand-date">
+                Rapportage: 7 augustus 2026
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <div class="container">
+        
+        <!-- Left Column: Article Analysis -->
+        <main>
+            <article class="card hero-trend">
+                <span class="badge-main">Hoofdtrend Analyse</span>
+                <h1>Trend: 'People'</h1>
+                
+                <div class="meta-info">
+                    <div class="meta-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        <span>Gezien in 5 artikelen van vandaag</span>
+                    </div>
+                    <div class="meta-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span>Leestijd: ~4 min</span>
+                    </div>
+                    <div class="meta-item">
+                        <span style="color: var(--success); font-weight: 600;">● Live Data</span>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <p>In het dynamische technologielandschap van vandaag, 7 augustus 2026, zien we een opvallende verschuiving in het discours. Waar voorheen de focus puur lag op ruwe verwerkingskracht en technologische doorbraken, claimt de menselijke factor vandaag een absolute hoofdrol. De trend <strong>'People'</strong> (geïdentificeerd in 5 toonaangevende publicaties) vormt de rode draad in een bredere analyse van de huidige systemen.</p>
+
+                    <blockquote>
+                        "De beste technologie faalt als we vergeten voor wie we het bouwen. In 2026 draait innovatie niet meer om wat systemen kúnnen, maar om wat mensen ermee bereiken."
+                    </blockquote>
+
+                    <h2>De Menselijke Factor in een Datagestuurde Toekomst</h2>
+                    <p>De dominantie van 'People' staat niet op zichzelf. Kijken we naar de overige trends van vandaag, dan zien we een nauwe synergie met trends als <strong>'Data'</strong> (7 vermeldingen) en <strong>'Will'</strong> (9 vermeldingen). Dit suggereert een sterke focus op de vraag hoe organisaties data gaan inzetten ('Will' en 'Using') ten behoeve van de mens, in plaats van andersom.</p>
+                    
+                    <p>De discussie verschuift van abstracte algoritmen naar tastbare menselijke ervaringen. Consumenten en medewerkers eisen meer transparantie over hoe hun data wordt verwerkt. Dit verklaart tevens de hoge positie van de trend <strong>'Review'</strong> (7 artikelen): systemen en tools worden momenteel strenger dan ooit beoordeeld op hun ethische en praktische impact op de eindgebruiker.</p>
+
+                    <div class="insights-grid">
+                        <div class="insight-card">
+                            <span class="insight-icon">👥</span>
+                            <div class="insight-title">Human-Centric Design</div>
+                            <div class="insight-desc">Producten worden ontworpen rondom menselijke limieten en cognitieve ergonomie.</div>
+                        </div>
+                        <div class="insight-card">
+                            <span class="insight-icon">🛡️</span>
+                            <div class="insight-title">Ethische Data</div>
+                            <div class="insight-desc">De koppeling tussen 'People' en 'Data' dwingt strengere privacyprotocollen af.</div>
+                        </div>
+                    </div>
+
+                    <h2>Toegankelijkheid en Democratisering: 'Tools' & 'Free'</h2>
+                    <p>Een ander opvallend aspect van de data van vandaag is de gelijktijdige aanwezigheid van de trends <strong>'Tools'</strong>, <strong>'Using'</strong> en <strong>'Free'</strong> (elk 5 vermeldingen). Dit wijst op een versnelling in de democratisering van technologie. Krachtige software en AI-oplossingen worden steeds vaker gratis of via opensource-initiatieven aangeboden aan het grote publiek.</p>
+                    
+                    <p>Mensen ('People') hebben hierdoor direct toegang tot geavanceerde hulpmiddelen ('Tools') om hun dagelijkse werkzaamheden te optimaliseren. De drempel om 'bij te blijven' is hiermee historisch laag geworden, wat direct invloed heeft op de manier waarop de arbeidsmarkt en creatieve sectoren zich in 2026 ontwikkelen.</p>
+
+                    <h2>Conclusie & Vooruitblik</h2>
+                    <p>De trends van 7 augustus 2026 laten zien dat we ons in een evaluatiefase bevinden. Met <strong>'Will'</strong> als absolute koploper (9 artikelen) kijken we collectief vooruit naar de toekomst van werk, privacy en interactie. Maar de onderliggende boodschap is helder: elke technologische transitie slaagt of valt bij de acceptatie, het welzijn en de ondersteuning van de <strong>mens</strong>.</p>
+                </div>
+            </article>
+        </main>
+
+        <!-- Right Column: Sidebar Dashboard with Trend overview -->
+        <aside class="sidebar">
+            
+            <!-- Trend List Widget -->
+            <div class="card">
+                <div class="widget-title">
+                    <span>Trends van Vandaag</span>
+                    <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">07-08-2026</span>
+                </div>
+                
+                <div class="trend-list">
+                    <a href="#" class="trend-item active">
+                        <div class="trend-name">
+                            <strong>1. People</strong>
+                        </div>
+                        <span class="trend-count">5 art.</span>
+                    </a>
+                    <a href="#" class="trend-item">
+                        <div class="trend-name">
+                            <span>2. Will</span>
+                        </div>
+                        <span class="trend-count">9 art.</span>
+                    </a>
+                    <a href="#" class="trend-item">
+                        <div class="trend-name">
+                            <span>3. Data</span>
+                        </div>
+                        <span class="trend-count">7 art.</span>
+                    </a>
+                    <a href="#" class="trend-item">
+                        <div class="trend-name">
+                            <span>4. Review</span>
+                        </div>
+                        <span class="trend-count">7 art.</span>
+                    </a>
+                    <a href="#" class="trend-item">
+                        <div class="trend-name">
+                            <span>5. About</span>
+                        </div>
+                        <span class="trend-count">5 art.</span>
+                    </a>
+                    <a href="#" class="trend-item">
+                        <div class="trend-name">
+                            <span>6. Most</span>
+                        </div>
+                        <span class="trend-count">5 art.</span>
+                    </a>
+                    <a href="#" class="trend-item">
+                        <div class="trend-name">
+                            <span>7. Tools</span>
+                        </div>
+                        <span class="trend-count">5 art.</span>
+                    </a>
+                    <a href="#" class="trend-item">
+                        <div class="trend-name">
+                            <span>8. Using</span>
+                        </div>
+                        <span class="trend-count">5 art.</span>
+                    </a>
+                    <a href="#" class="trend-item">
+                        <div class="trend-name">
+                            <span>9. Can</span>
+                        </div>
+                        <span class="trend-count">5 art.</span>
+                    </a>
+                    <a href="#" class="trend-item">
+                        <div class="trend-name">
+                            <span>10. Free</span>
+                        </div>
+                        <span class="trend-count">5 art.</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Visualization Widget -->
+            <div class="card">
+                <div class="widget-title">
+                    <span>Trend Verhoudingen</span>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+                    Relatieve frequentie van de top trends in de publicaties van vandaag.
+                </p>
+                
+                <div class="chart-container">
+                    <!-- Will -->
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-label-row">
+                            <span>Will</span>
+                            <span>9</span>
+                        </div>
+                        <div class="chart-bar-bg">
+                            <div class="chart-bar-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Data -->
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-label-row">
+                            <span>Data</span>
+                            <span>7</span>
+                        </div>
+                        <div class="chart-bar-bg">
+                            <div class="chart-bar-fill" style="width: 77%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Review -->
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-label-row">
+                            <span>Review</span>
+                            <span>7</span>
+                        </div>
+                        <div class="chart-bar-bg">
+                            <div class="chart-bar-fill" style="width: 77%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- People (Active/Highlighted) -->
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-label-row" style="color: var(--primary); font-weight: 700;">
+                            <span>People (Hoofdtrend)</span>
+                            <span>5</span>
+                        </div>
+                        <div class="chart-bar-bg">
+                            <div class="chart-bar-fill active" style="width: 55%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Overige (About, Most, etc.) -->
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-label-row">
+                            <span>Overige trends (elk)</span>
+                            <span>5</span>
+                        </div>
+                        <div class="chart-bar-bg">
+                            <div class="chart-bar-fill" style="width: 55%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-text">
+                <p><strong>Trend & Society Dashboard 2026</strong></p>
+                <p>Gegenereerd door een autonome webontwikkelaar op basis van actuele data-analysetechnieken.</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Homepage</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Over de Data</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
