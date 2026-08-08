@@ -1,8 +1,3 @@
-Here is the complete, fully updated, and WCAG-compliant HTML file. 
-
-This refactored version implements all UX and UI fixes requested: the color contrast has been optimized for absolute compliance (AA/AAA ratios), the custom 404 overlay is fully brand-integrated and vertically centered, touch targets are set to a minimum of 48px with tactile feedback, and all bullet points, icon lists, and text nodes are strictly left-aligned on mobile devices.
-
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -348,6 +343,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
             margin-bottom: 32px;
             padding-left: 4px;
             list-style: none;
+            text-align: left;
         }
 
         .article-content li {
@@ -357,6 +353,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
             font-size: 1.05rem;
             color: var(--text-main);
             line-height: 1.75;
+            text-align: left;
         }
 
         .article-content li::before {
@@ -458,6 +455,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
         .legacy-prompt {
             font-size: 0.95rem;
             color: var(--text-main);
+            text-align: left;
         }
 
         .legacy-prompt p {
@@ -469,6 +467,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
             list-style: none;
             margin-bottom: 28px;
             padding-left: 2px;
+            text-align: left;
         }
 
         .legacy-prompt li {
@@ -477,6 +476,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
             margin-bottom: 12px;
             font-size: 0.9rem;
             line-height: 1.6;
+            text-align: left;
         }
 
         .legacy-prompt li::before {
@@ -503,6 +503,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
             display: flex;
             flex-direction: column;
             gap: 20px;
+            text-align: left;
         }
 
         .interactive-form p {
@@ -514,17 +515,20 @@ This refactored version implements all UX and UI fixes requested: the color cont
             margin-bottom: 12px;
             font-size: 0.85rem;
             color: var(--text-muted);
+            text-align: left;
         }
 
         .interactive-form ol li {
             margin-bottom: 6px;
             line-height: 1.5;
+            text-align: left;
         }
 
         .form-group {
             display: flex;
             flex-direction: column;
             gap: 8px;
+            text-align: left;
         }
 
         .form-group label {
@@ -532,6 +536,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
             font-weight: 700;
             color: var(--dark-subtle);
             letter-spacing: -0.01em;
+            text-align: left;
         }
 
         .form-input, .form-textarea, .form-select {
@@ -661,6 +666,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
             color: #e2e8f0;
             margin-bottom: 24px;
             line-height: 1.6;
+            text-align: left;
         }
 
         .blueprint-content p {
@@ -674,12 +680,14 @@ This refactored version implements all UX and UI fixes requested: the color cont
             display: flex;
             flex-direction: column;
             gap: 16px;
+            text-align: left;
         }
 
         .feature-item {
             display: flex;
             align-items: flex-start;
             gap: 12px;
+            text-align: left;
         }
 
         .feature-item svg {
@@ -692,6 +700,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
             font-size: 0.95rem;
             color: #e2e8f0;
             line-height: 1.5;
+            text-align: left;
         }
 
         .feature-item strong {
@@ -769,6 +778,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
             gap: 8px;
             font-size: 0.8rem;
             color: #cbd5e1; 
+            text-align: left;
         }
 
         /* BRANDEIGEN, TOEGANKELIJKE & HOOG-CONVERTERENDE OVERLAY (UX-Fix) */
@@ -1134,7 +1144,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
                 font-size: 2.85rem;
             }
 
-            /* UX FIX: Left alignment for lists, bullets, templates & icon blocks on mobile devices */
+            /* UX FIX: Perfect left alignment for lists, bullets, templates & icon blocks on mobile devices */
             .article-content ul, 
             .article-content li, 
             .legacy-prompt ul, 
@@ -1212,7 +1222,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
             
             <span class="error-code">404</span>
             <h1 class="error-title" id="error-title">Oeps! Deze pagina is de weg kwijt.</h1>
-            <p class="error-text">De pagina die je zoekt bestaat niet (meer) of is verhuorst. Geen zorgen, we helpen je graag terug op weg naar onze artikelen of onze exclusieve AI Blueprint.</p>
+            <p class="error-text">De pagina die je zoekt bestaat niet (meer) of is verhuisd. Geen zorgen, we helpen je graag terug op weg naar onze artikelen of onze exclusieve AI Blueprint.</p>
             
             <div class="error-actions">
                 <a href="#" class="btn-primary" onclick="close404(); return false;">
@@ -1323,11 +1333,23 @@ This refactored version implements all UX and UI fixes requested: the color cont
                 <div class="sidebar-widget">
                     <h3>📚 Uit het Archief</h3>
                     <div class="archive-list">
-                        <!-- NIEUWSTE ARTIKEL (People Trend) -->
+                        <!-- NIEUWSTE ARTIKEL (Free Trend) -->
+                        <div class="archive-item">
+                            <span class="category-badge archive-badge" style="background-color: #f0fdf4; color: #15803d; border: 1px solid rgba(21, 128, 61, 0.15);">Trend Analyse</span>
+                            <h4><a href="free-2026-08-08.html">Trend: 'Free' (Gezien in 5 artikelen)</a></h4>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Analyseer hoe gratis open-source AI-modellen, 'free-tier' API's en gedecentraliseerde compute-netwerken de drempels verlagen voor startups om schaalbare, autonome agenten te bouwen zonder kapitaalintensieve investeringen.</p>
+                            <div class="archive-meta">
+                                <span>Door <strong>Redactie TechPulse</strong></span>
+                                <span class="dot" aria-hidden="true">•</span>
+                                <span>2026-08-08</span>
+                            </div>
+                        </div>
+
+                        <!-- Vorige Artikel (People Trend) -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fef2f2; color: #dc2626; border: 1px solid rgba(220, 38, 38, 0.15);">Trend Analyse</span>
                             <h4><a href="people-2026-08-07.html">Trend: 'People' (Gezien in 5 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Ontdek hoe mens-AI co-creatie en 'human-in-the-loop' dynamieken transformeren naarmate autonome systemen menselijke behoeften, gedragspatronen en talentontwikkeling direct ondersteunen.</p>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe mens-AI co-creatie en 'human-in-the-loop' dynamieken transformeren naarmate autonome systemen menselijke behoeften, gedragspatronen en talentontwikkeling direct ondersteunen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
                                 <span class="dot" aria-hidden="true">•</span>
@@ -1339,7 +1361,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f5f3ff; color: #6366f1; border: 1px solid rgba(99, 102, 241, 0.15);">Trend Analyse</span>
                             <h4><a href="agents-2026-08-06.html">Trend: 'Agents' (Gezien in 5 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Ontdek hoe autonome agentic workflows en multi-agent netwerken zelfstandig doelen bereiken, code schrijven en complexe bedrijfsprocessen herdefiniëren zonder menselijke tussenkomst.</p>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe autonome agentic workflows en multi-agent netwerken zelfstandig doelen bereiken, code schrijven en complexe bedrijfsprocessen herdefiniëren zonder menselijke tussenkomst.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
                                 <span class="dot" aria-hidden="true">•</span>
@@ -1351,7 +1373,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #eef2f6; color: #334155; border: 1px solid rgba(51, 65, 85, 0.15);">Trend Analyse</span>
                             <h4><a href="company-2026-08-05.html">Trend: 'Company' (Gezien in 5 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Ontdek hoe moderne autonome organisaties ('Autonomous Companies') volledig operationeel draaien zonder menselijke tussenkomst door slimme agent-gebaseerde orchestration.</p>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe moderne autonome organisaties ('Autonomous Companies') volledig operationeel draaien zonder menselijke tussenkomst door slimme agent-gebaseerde orchestration.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
                                 <span class="dot" aria-hidden="true">•</span>
@@ -1363,7 +1385,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #ecfeff; color: #0891b2; border: 1px solid rgba(8, 145, 178, 0.15);">Trend Analyse</span>
                             <h4><a href="data-2026-08-04.html">Trend: 'Data' (Gezien in 5 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Ontdek hoe data-syndicatie en autonome vector-pipelines de cruciale basis vormen voor real-time besluitvorming in AI-gestuurde architecturen.</p>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe data-syndicatie en autonome vector-pipelines de cruciale basis vormen voor real-time besluitvorming in AI-gestuurde architecturen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
                                 <span class="dot" aria-hidden="true">•</span>
@@ -1375,7 +1397,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fae8ff; color: #86198f; border: 1px solid rgba(134, 25, 143, 0.15);">Trend Analyse</span>
                             <h4><a href="their-2026-08-03.html">Trend: 'Their' (Gezien in 5 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Ontdek hoe autonome agenten hun eigen resources, assets en strategische beslissingen beheren in de verschuiving naar 'Their' (hun eigen) digitale ecosystemen.</p>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe autonome agenten hun eigen resources, assets en strategische beslissingen beheren in de verschuiving naar 'Their' (hun eigen) digitale ecosystemen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
                                 <span class="dot" aria-hidden="true">•</span>
@@ -1387,7 +1409,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f0fdf4; color: #166534; border: 1px solid rgba(22, 101, 52, 0.15);">Trend Analyse</span>
                             <h4><a href="can-2026-08-02.html">Trend: 'Can' (Gezien in 5 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Een diepgaand inzicht in hoe generatieve AI-systemen steeds betere functionele capaciteiten ('can-do' mentaliteit) ontwikkelen om zelfstandig complexe codeertaken uit te voeren.</p>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Een diepgaand inzicht in hoe generatieve AI-systemen steeds betere functionele capaciteiten ('can-do' mentaliteit) ontwikkelen om zelfstandig complexe codeertaken uit te voeren.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
                                 <span class="dot" aria-hidden="true">•</span>
@@ -1399,7 +1421,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #e0f2fe; color: #0369a1; border: 1px solid rgba(3, 105, 161, 0.15);">Trend Analyse</span>
                             <h4><a href="about-2026-08-01.html">Trend: 'About' (Gezien in 5 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Ontdek hoe de evolutie van merkidentiteit en transparantie in het AI-tijdperk verschuift naar hypergepersonaliseerde en dynamische interacties met de eindgebruiker.</p>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe de evolutie van merkidentiteit en transparantie in het AI-tijdperk verschuift naar hypergepersonaliseerde en dynamische interacties met de eindgebruiker.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
                                 <span class="dot" aria-hidden="true">•</span>
@@ -1411,7 +1433,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f1f5f9; color: #0f172a; border: 1px solid rgba(15, 23, 42, 0.15);">Trend Analyse</span>
                             <h4><a href="#404">Trend: 'Out' (Gezien in 5 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Een diepgaande analyse over hoe 'out-of-the-box' AI-modellen en autonome workflows de traditionele development-processen herdefiniëren.</p>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Een diepgaande analyse over hoe 'out-of-the-box' AI-modellen en autonome workflows de traditionele development-processen herdefiniëren.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
                                 <span class="dot" aria-hidden="true">•</span>
@@ -1423,7 +1445,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fef2f2; color: #991b1b; border: 1px solid rgba(153, 27, 27, 0.15);">Trend Analyse</span>
                             <h4><a href="#404">Trend: 'Low' (Gezien in 4 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Een kritische blik op de opkomst van 'low-code' AI, energiezuinige 'low-power' neurale architecturen en hoe zij de drempel voor innovatie verlagen.</p>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Een kritische blik op de opkomst van 'low-code' AI, energiezuinige 'low-power' neurale architecturen en hoe zij de drempel voor innovatie verlagen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
                                 <span class="dot" aria-hidden="true">•</span>
@@ -1435,7 +1457,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: var(--secondary-light); color: var(--secondary); border: 1px solid rgba(14, 165, 233, 0.15);">Trend Analyse</span>
                             <h4><a href="#404">Trend: 'Hugging Face' (Gezien in 4 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Een diepgaande blik op hoe Hugging Face is uitgegroeid tot de centrale hub voor open-source AI-modellen en samenwerkingen.</p>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Een diepgaande blik op hoe Hugging Face is uitgegroeid tot de centrale hub voor open-source AI-modellen en samenwerkingen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
                                 <span class="dot" aria-hidden="true">•</span>
@@ -1447,7 +1469,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: var(--primary-light); color: var(--primary); border: 1px solid rgba(79, 70, 229, 0.15);">Kunstmatige Intelligentie</span>
                             <h4><a href="#404">De Opkomst van Agentic AI: Waarom Autonome AI-assistenten Onze Werkomgeving Gaan Transformeren</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0;">Hoe we verschuiven van reactieve chatbots naar proactieve, zelfstandige AI-agents die complete bedrijfsprocessen overnemen.</p>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Hoe we verschuiven van reactieve chatbots naar proactieve, zelfstandige AI-agents die complete bedrijfsprocessen overnemen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Steven de Waal</strong></span>
                                 <span class="dot" aria-hidden="true">•</span>
@@ -1521,7 +1543,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
                 <!-- Over TechPulse Widget -->
                 <div class="sidebar-widget" style="background: linear-gradient(145deg, var(--card-bg) 0%, #f8fafc 100%);">
                     <h3>Over TechPulse</h3>
-                    <p style="font-size: 0.925rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 0;">TechPulse is jouw gids in de snel veranderende wereld van technologie en innovatie. Wij vertalen complexe AI-trends naar begrijpelijke, waardevolle inzichten voor professionals.</p>
+                    <p style="font-size: 0.925rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 0; text-align: left;">TechPulse is jouw gids in de snel veranderende wereld van technologie en innovatie. Wij vertalen complexe AI-trends naar begrijpelijke, waardevolle inzichten voor professionals.</p>
                 </div>
             </aside>
 
@@ -1540,7 +1562,7 @@ This refactored version implements all UX and UI fixes requested: the color cont
                         
                         <div class="blueprint-hook">
                             <strong>Wist je dat de website waar je nu op kijkt 100% autonoom door AI wordt gerund?</strong> 
-                            Van trend-aggregatie en AI-contentgeneratie tot de conversiegerichte UI/UX code-updates en de marketing-funnel: er komt geen menselijke handeling aan te pas. Dit is de ultieme live demo van de toekomst van e-commerce.
+                            Van trend-aggregatie en AI-contentgeneratie to de conversiegerichte UI/UX code-updates en de marketing-funnel: er komt geen menselijke handeling aan te pas. Dit is de ultieme live demo van de toekomst van e-commerce.
                         </div>
                         
                         <p>

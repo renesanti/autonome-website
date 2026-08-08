@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Analyse: 'Free' & Tech Sentiment - 8 Augustus 2026</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .nav-back:hover {
+            color: var(--text-primary);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2.5rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2.5rem;
+        }
+
+        @media (max-width: 968px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hero-banner {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+        }
+
+        .meta-tag {
+            background-color: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            padding: 0.35rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-banner p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 800px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.75rem 0;
+            color: #3b82f6;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #cbd5e1;
+            font-size: 1.05rem;
+        }
+
+        ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: #cbd5e1;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .trend-widget {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .trend-widget h3 {
+            font-size: 1.15rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .trend-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .trend-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .trend-item:hover {
+            border-color: var(--accent-color);
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+
+        .trend-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .trend-rank {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .trend-item.active {
+            border-color: var(--accent-color);
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+
+        .trend-item.active .trend-rank {
+            background-color: var(--accent-color);
+        }
+
+        .trend-name {
+            font-weight: 600;
+        }
+
+        .trend-count {
+            background-color: #334155;
+            color: #f1f5f9;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Callout Box */
+        .callout {
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-left: 4px solid var(--accent-color);
+            padding: 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .callout p {
+            margin-bottom: 0;
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <div class="logo-icon">T</div>
+                <span class="logo-text">TrendPulse 2026</span>
+            </div>
+            <a href="index.html" class="nav-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Terug naar Archief
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Hero Section -->
+        <div class="hero-banner">
+            <span class="meta-tag">Trend Rapportage — 8 Augustus 2026</span>
+            <h1>De Paradox van 'Free': Content-overvloed en het gevecht om echte waarde</h1>
+            <p>Vandaag domineert de trend 'Free' het online nieuwsspectrum. In een tijdperk dat wordt overspoeld door AI-gestuurde contentproductie, herdefiniëren platforms, uitgevers en ontwikkelaars wat kosteloosheid werkelijk betekent.</p>
+        </div>
+
+        <!-- Main Narrative Column -->
+        <main class="main-content">
+            <article class="card">
+                <h2>Analyse: Waarom 'Free' de Tech-agenda beheerst</h2>
+                
+                <p>Op 8 augustus 2026 zien we een opvallende trendlijn in de tech- en media-industrie. De term <strong>'Free'</strong> is in minstens 5 prominente artikelen gekwalificeerd als een van de meest invloedrijke sentimentdragers. Dit is niet zomaar een toevallige marketingterm; het weerspiegelt een diepere structurele verschuiving.</p>
+
+                <div class="callout">
+                    <p>"In een internetlandschap gedomineerd door 'Flock'-algoritmes en geautomatiseerde distributie, is 'vrijblijvende toegang' niet langer een businessmodel, maar een geopolitiek en technologisch slagveld geworden."</p>
+                </div>
+
+                <h3>De herrijzenis van Freemium in het AI-tijdperk</h3>
+                <p>Consumenten zijn moe van de abonnementsmoeheid die begin jaren '20 inzette. De trend 'Free' signaleert dat bedrijven gedwongen zijn krachtige basisfuncties gratis aan te bieden om überhaupt gebruikers aan te trekken. Dit sluit nauw aan bij andere trends van vandaag, zoals <strong>'Use'</strong> (6 artikelen) en <strong>'Using'</strong> (5 artikelen). De focus is verschoven van 'bezit' of 'licenties' naar daadwerkelijk, direct gebruik.</p>
+
+                <h3>Synthese met overige trends van de dag</h3>
+                <p>Als we kijken naar de bredere context van vandaag, zien we een interessant patroon ontstaan:</p>
+                <ul>
+                    <li><strong>'Flock' (6 artikelen):</strong> Dit duidt op de toenemende populariteit van gedecentraliseerde groepen, AI-swarms of gecoördineerde gebruikerscollectieven die gratis alternatieven ('Free') gebruiken om Big Tech te omzeilen.</li>
+                    <li><strong>'Should' (7 artikelen) & 'Will' (6 artikelen):</strong> Deze ethische en prospectieve termen laten zien dat de discussie vooral gaat over normatieve vragen. *Moeten* we deze gratis tools wel gebruiken? Wat *zal* de langetermijnimpact zijn op privacy?</li>
+                    <li><strong>'Its' (9 artikelen):</strong> De absolute koploper van vandaag wijst op een sterk analytische focus op de interne werking van systemen, applicaties en hun specifieke functionaliteiten.</li>
+                </ul>
+
+                <h3>Conclusie</h3>
+                <p>De trend 'Free' in augustus 2026 is geen synoniem voor 'waardeloos'. Integendeel, het staat voor de democratisering van geavanceerde tools, waarbij de echte valuta is verschoven van geld naar gebruikersdata, feedback-loops voor AI-modellen en netwerkeffecten. Bedrijven die niet begrijpen hoe ze 'Free' strategisch moeten inzetten, zullen de aansluiting met de markt verliezen.</p>
+            </article>
+        </main>
+
+        <!-- Sidebar / Trend Overzicht -->
+        <aside class="sidebar">
+            <div class="trend-widget">
+                <h3>Trends van Vandaag</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">Geregistreerd op 2026-08-08</p>
+                
+                <div class="trend-list">
+                    <!-- Its -->
+                    <div class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-rank">1</span>
+                            <span class="trend-name">Its</span>
+                        </div>
+                        <span class="trend-count">9 artikelen</span>
+                    </div>
+
+                    <!-- Should -->
+                    <div class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-rank">2</span>
+                            <span class="trend-name">Should</span>
+                        </div>
+                        <span class="trend-count">7 artikelen</span>
+                    </div>
+
+                    <!-- About -->
+                    <div class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-rank">3</span>
+                            <span class="trend-name">About</span>
+                        </div>
+                        <span class="trend-count">7 artikelen</span>
+                    </div>
+
+                    <!-- Flock -->
+                    <div class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-rank">4</span>
+                            <span class="trend-name">Flock</span>
+                        </div>
+                        <span class="trend-count">6 artikelen</span>
+                    </div>
+
+                    <!-- Use -->
+                    <div class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-rank">5</span>
+                            <span class="trend-name">Use</span>
+                        </div>
+                        <span class="trend-count">6 artikelen</span>
+                    </div>
+
+                    <!-- Will -->
+                    <div class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-rank">6</span>
+                            <span class="trend-name">Will</span>
+                        </div>
+                        <span class="trend-count">6 artikelen</span>
+                    </div>
+
+                    <!-- Says -->
+                    <div class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-rank">7</span>
+                            <span class="trend-name">Says</span>
+                        </div>
+                        <span class="trend-count">6 artikelen</span>
+                    </div>
+
+                    <!-- Free (Active Topic) -->
+                    <div class="trend-item active">
+                        <div class="trend-info">
+                            <span class="trend-rank">★</span>
+                            <span class="trend-name">Free</span>
+                        </div>
+                        <span class="trend-count" style="background-color: var(--accent-color);">5 artikelen</span>
+                    </div>
+
+                    <!-- Using -->
+                    <div class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-rank">9</span>
+                            <span class="trend-name">Using</span>
+                        </div>
+                        <span class="trend-count">5 artikelen</span>
+                    </div>
+
+                    <!-- What -->
+                    <div class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-rank">10</span>
+                            <span class="trend-name">What</span>
+                        </div>
+                        <span class="trend-count">5 artikelen</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="padding: 1.5rem;">
+                <h3 style="margin-top: 0; font-size: 1.1rem; color: var(--text-primary);">Methodologie</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">Onze autonome TrendPulse-engine scant dagelijks duizenden tech-gerelateerde artikelen en categoriseert de meest voorkomende betekenisvolle concepten en termen om verschuivingen in het publieke tech-debat direct in kaart te brengen.</p>
+            </div>
+        </aside>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 TrendPulse Dashboard. Gegenereerd door autonome webontwikkelaar op 8 augustus 2026.</p>
+    </footer>
+
+</body>
+</html>
