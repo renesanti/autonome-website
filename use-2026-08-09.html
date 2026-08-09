@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Analyse: 'Use' & De Data-Economie van 2026</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --accent-color: #6366f1;
+            --accent-hover: #4f46e5;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --success: #10b981;
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+            --border-color: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            background-color: rgba(30, 41, 59, 0.9);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+            gap: 0.5rem;
+        }
+
+        .back-link:hover {
+            color: var(--accent-color);
+        }
+
+        .back-link svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .date-badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            main {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .hero-banner {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .hero-tag {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero-banner p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 800px;
+        }
+
+        .content-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .content-card h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .analysis-text p {
+            margin-bottom: 1.25rem;
+            color: #cbd5e1;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        .analysis-text p strong {
+            color: #fff;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            background-color: rgba(99, 102, 241, 0.05);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #e2e8f0;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .trend-widget {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .trend-widget h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
+            color: #fff;
+        }
+
+        .trend-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .trend-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background-color: rgba(15, 23, 42, 0.6);
+            border-radius: 8px;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .trend-item:hover {
+            border-color: var(--accent-color);
+            transform: translateX(3px);
+        }
+
+        .trend-name {
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+
+        .trend-count {
+            font-size: 0.85rem;
+            background-color: rgba(99, 102, 241, 0.2);
+            color: #a5b4fc;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        .trend-count.highlight {
+            background-color: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+        }
+
+        .chart-container {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .chart-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .chart-label {
+            width: 80px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .chart-bar-wrapper {
+            flex-grow: 1;
+            background-color: rgba(15, 23, 42, 0.6);
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .chart-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), #ec4899);
+            border-radius: 6px;
+            transition: width 1s ease-in-out;
+        }
+
+        footer {
+            max-width: 1200px;
+            margin: 4rem auto 0 auto;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="back-link">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+                </svg>
+                Terug naar Overzicht
+            </a>
+            <span class="date-badge">Trendrapport: 9 augustus 2026</span>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-banner">
+            <span class="hero-tag">Macro Trend Focus</span>
+            <h1>De opkomst van de 'Use'-imperatief</h1>
+            <p>Vandaag domineert de pragmatische transitie in technologiediscussie. Geen beloftes meer, maar directe adoptie en actieve implementatie. Waarom 'Use' en 'Using' de media-agenda van vandaag beheersen.</p>
+        </section>
+
+        <!-- Main Content Column -->
+        <section class="content-card">
+            <h2>Diepgaande Analyse: Pragmatisme boven Hype</h2>
+            <div class="analysis-text">
+                <p>
+                    Op 9 augustus 2026 zien we een opvallende semantische convergentie in de wereldwijde berichtgeving. Waar voorheen abstracte termen en speculatieve technologieën de boventoon voerden, dwingt de actualiteit ons vandaag tot een uiterst pragmatische blik. De absolute hoofdtrend van vandaag is gecentreerd rond het werkwoord <strong>'Use'</strong> (en de directe variant <strong>'Using'</strong>), beide prominent aanwezig in minstens 6 toonaangevende publicaties.
+                </p>
+
+                <p>
+                    Deze verschuiving is niet louter taalkundig; het signaleert een diepere trend in de markt. We bevinden ons in een fase waarin bedrijven en consumenten niet langer vragen <em>wat</em> een technologie is, maar <em>hoe</em> ze deze concreet moeten inzetten om operationele efficiëntie of kostenreductie te realiseren. De hype-fase van kunstmatige intelligentie en gedecentraliseerde systemen is definitief voorbij; de implementatiefase is nu in volle gang.
+                </p>
+
+                <div class="quote-box">
+                    "De transitie van 'Wat kan dit potentieel betekenen?' naar 'Hoe gebruiken we dit vandaag om schaal te vergroten?' markeert het volwassen worden van de huidige innovatiecyclus."
+                </div>
+
+                <p>
+                    Een sleutelrol in deze transitie is weggelegd voor de giganten die de infrastructuur hiervoor leveren. Het is dan ook geen toeval dat <strong>'Amazon'</strong> (6 vermeldingen) en de term <strong>'Power'</strong> (6 vermeldingen) hand in hand gaan met deze gebruikstrend. Amazon Web Services (AWS) en diens concurrenten fungeren als de feitelijke 'stroomleveranciers' van de moderne economie. De discussie over 'Power' is tweeledig: het gaat zowel over de enorme rekenkracht die nodig is om hedendaagse applicaties te draaien, als over de geopolitieke en economische macht die deze gecentraliseerde techreuzen bezitten.
+                </p>
+
+                <p>
+                    Daarnaast dwingt de overvloed aan keuzes consumenten en inkopers kritischer te zijn. De trend <strong>'Review'</strong> (6 artikelen) toont aan dat er een actieve behoefte is aan onafhankelijke toetsing en kwaliteitscontrole. In een markt verzadigd met zogenaamde 'slimme' oplossingen, zoekt men houvast in peer-reviews en harde productbeoordelingen alvorens over te gaan tot adoptie. 
+                </p>
+
+                <p>
+                    Tot slot herinnert de trend <strong>'Data'</strong> (6 artikelen) ons aan de brandstof van dit alles. Elk gebruik ('use') genereert data, en elke data-analyse optimaliseert het gebruik. Dit vliegwiel-effect verklaart waarom de termen <strong>'Most'</strong> en <strong>'About'</strong> (beide 7 vermeldingen) de bovengrens van onze dagelijkse metingen aantikken: men schrijft momenteel het <em>meest over</em> de ethiek, de implicaties en de tastbare resultaten van deze grootschalige transformatie.
+                </p>
+            </div>
+        </section>
+
+        <!-- Sidebar / Statistics Column -->
+        <aside class="sidebar">
+            <div class="trend-widget">
+                <h3>Trends van Vandaag</h3>
+                <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem;">
+                    Meest voorkomende termen in de tech- en economische media op 09-08-2026.
+                </p>
+                
+                <ul class="trend-list">
+                    <li class="trend-item">
+                        <span class="trend-name">Most</span>
+                        <span class="trend-count highlight">7 artikelen</span>
+                    </li>
+                    <li class="trend-item">
+                        <span class="trend-name">About</span>
+                        <span class="trend-count highlight">7 artikelen</span>
+                    </li>
+                    <li class="trend-item" style="border-left: 3px solid var(--accent-color);">
+                        <span class="trend-name">Use (Focus)</span>
+                        <span class="trend-count">6 artikelen</span>
+                    </li>
+                    <li class="trend-item">
+                        <span class="trend-name">Review</span>
+                        <span class="trend-count">6 artikelen</span>
+                    </li>
+                    <li class="trend-item">
+                        <span class="trend-name">Power</span>
+                        <span class="trend-count">6 artikelen</span>
+                    </li>
+                    <li class="trend-item">
+                        <span class="trend-name">Amazon</span>
+                        <span class="trend-count">6 artikelen</span>
+                    </li>
+                    <li class="trend-item">
+                        <span class="trend-name">Have</span>
+                        <span class="trend-count">6 artikelen</span>
+                    </li>
+                    <li class="trend-item">
+                        <span class="trend-name">Will</span>
+                        <span class="trend-count">6 artikelen</span>
+                    </li>
+                    <li class="trend-item">
+                        <span class="trend-name">Using</span>
+                        <span class="trend-count">6 artikelen</span>
+                    </li>
+                    <li class="trend-item">
+                        <span class="trend-name">Data</span>
+                        <span class="trend-count">6 artikelen</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="trend-widget">
+                <h3>Visuele Frequentie</h3>
+                <div class="chart-container">
+                    <div class="chart-row">
+                        <div class="chart-label">Most</div>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-bar" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="chart-label">About</div>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-bar" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="chart-label">Use</div>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-bar" style="width: 85.7%;"></div>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="chart-label">Amazon</div>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-bar" style="width: 85.7%;"></div>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="chart-label">Data</div>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-bar" style="width: 85.7%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Trend-Dashboard. Gegenereerd door een Autonome Webontwikkelaar.</p>
+    </footer>
+
+</body>
+</html>
