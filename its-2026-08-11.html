@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Analyse: 'Its' en de Verschuiving in Big Tech | TrendPulse</title>
+    <style>
+        :root {
+            --bg-deep: #0b0f19;
+            --bg-card: #151f32;
+            --bg-card-hover: #1e2d4a;
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --accent: #10b981;
+            --accent-glow: rgba(16, 185, 129, 0.15);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #223047;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation Header */
+        header {
+            border-bottom: 1px solid var(--border);
+            background-color: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.025em;
+        }
+
+        .brand span {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-back {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-back:hover {
+            background-color: var(--bg-card-hover);
+            border-color: var(--primary-light);
+            transform: translateX(-2px);
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 1280px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Hero Header Inside Content */
+        .hero-banner {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .meta-date {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            z-index: 1;
+            position: relative;
+        }
+
+        .hero-banner h1 span {
+            color: var(--primary-light);
+        }
+
+        .hero-banner p {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Main Article Area */
+        article {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .meta-author {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .article-content h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+
+        .article-content blockquote {
+            border-left: 4px solid var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+            padding: 1.25rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--text-main);
+        }
+
+        .trend-badge-inline {
+            background-color: rgba(99, 102, 241, 0.15);
+            color: var(--primary-light);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.95rem;
+        }
+
+        /* Sidebar & Dashboard Widgets */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .widget {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .widget-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .widget-title span {
+            background-color: var(--accent);
+            color: var(--bg-deep);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.5rem;
+            border-radius: 20px;
+        }
+
+        /* Interactive Trend List/Chart */
+        .trend-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .trend-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .trend-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .trend-name {
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .trend-name.highlight {
+            color: var(--accent);
+        }
+
+        .trend-count {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .progress-bar-bg {
+            background-color: rgba(255, 255, 255, 0.05);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-bar-fill.highlight-bar {
+            background: linear-gradient(90deg, var(--accent), #34d399);
+        }
+
+        /* Context Information Widget */
+        .context-widget {
+            background: linear-gradient(180deg, var(--bg-card) 0%, rgba(34, 48, 71, 0.2) 100%);
+        }
+
+        .context-widget p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            transition: all 0.2s;
+        }
+
+        .tag:hover {
+            border-color: var(--primary);
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Highlight animation styling */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+        }
+
+        .pulse-accent {
+            animation: pulse-glow 2s infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="brand">
+                <div class="brand-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-3 3"></path></svg>
+                </div>
+                <span>TrendPulse</span>
+            </a>
+            <a href="index.html" class="btn-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Terug naar Overzicht
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Hero Banner Grid Spanning -->
+        <div class="hero-banner">
+            <span class="meta-date">Trend Rapport • 11 augustus 2026</span>
+            <h1>De opkomst van <span>'Its'</span> en de strijd om de controle over Big Tech</h1>
+            <p>Vandaag zien we een opvallende convergentie in de tech-journalistiek. Een taalkundige verschuiving in titels wijst op een kritische blik op eigendom, algoritmes en de giganten Google en Meta.</p>
+        </div>
+
+        <!-- Left Side: In-depth Article -->
+        <article>
+            <div class="article-meta">
+                <span>Geschreven door: <strong>TrendPulse Redactie</strong></span>
+                <span>•</span>
+                <span>Leestijd: 4 min</span>
+                <span>•</span>
+                <span class="trend-badge-inline" style="background-color: rgba(16, 185, 129, 0.15); color: var(--accent);">Focus Trend: 'Its'</span>
+            </div>
+
+            <div class="article-content">
+                <p>Op de redactiebureaus van de tech-wereld tekent zich vandaag, 11 augustus 2026, een fascinerend narratief af. Terwijl traditionele analyses zich puur focussen op productaankondigingen, laat onze trend-engine zien dat de discussie verschuift naar diepere systemische kwesties. Met de trend <span class="trend-badge-inline">Its</span> prominent in 5 toonaangevende artikelen, zien we een linguïstische rode draad die verwijst naar bezit en de onvermijdelijke consequenties van platform-monopolies (zoals in "Google and its legacy" of "Meta and its algorithm").</p>
+
+                <h2>De botsing der titanen: Google en Mark Zuckerberg</h2>
+                <p>Geen enkele trendanalyse van vandaag kan voorbijgaan aan de gigantische invloed van <span class="trend-badge-inline">Google</span> (7 vermeldingen) en <span class="trend-badge-inline">Mark Zuckerberg</span> (5 vermeldingen, met individuele uitschieters voor 'Mark' en 'Zuckerberg' op 6 vermeldingen). Er is een duidelijke verschuiving gaande in hoe de maatschappij naar deze leiders kijkt. De focus ligt niet langer op de belofte van innovatie, maar op de directe maatschappelijke impact van hun platforms.</p>
+
+                <blockquote>
+                    "De vraag is niet langer wát deze platforms bouwen, maar wie de uiteindelijke controle behoudt over de informatiestromen die onze democratie vormgeven."
+                </blockquote>
+
+                <h2>De 'Review' cultuur en de roep om 'Stop'</h2>
+                <p>De absolute koplopers in het nieuwsvolume van vandaag zijn <span class="trend-badge-inline">What</span> en <span class="trend-badge-inline">Review</span>, beide gezien in maar liefst 8 verschillende artikelen. Dit is geen toeval. Consumenten en toezichthouders zitten in een constante cyclus van evaluatie. Er is een diepgaande 'review' gaande van privacyvoorwaarden, AI-integraties en advertentiemodellen. </p>
+                <p>In samenhang hiermee zien we de trend <span class="trend-badge-inline">Stop</span> (5 artikelen). Dit duidt op een groeiende beweging om de ongebreidelde data-honger van grote tech-bedrijven een halt toe te roepen. Gebruikers eisen actie en vragen zich af: tot hier en niet verder?</p>
+
+                <h2>Is het concept van 'Free' definitief over?</h2>
+                <p>Ten slotte dwingen de trends <span class="trend-badge-inline">Free</span> (6 artikelen) en <span class="trend-badge-inline">Over</span> (5 artikelen) ons tot een kritische blik op het economische model van het internet. Jarenlang was het internet synoniem met 'gratis' diensten, gefinancierd door advertenties. Nu de advertentiemarkt fragmenteert en AI-modellen gigantische rekenkracht vereisen, lijkt die koek op. De trend suggereert een naderend einde: de transitie naar abonnementen en betaalde muren is in volle gang. Is het tijdperk van het gratis internet definitief voorbij?</p>
+            </div>
+        </article>
+
+        <!-- Right Side: Sidebar Dashboard -->
+        <aside>
+            <div class="widget">
+                <div class="widget-title">
+                    Trend Volume
+                    <span>Totaal overzicht</span>
+                </div>
+                <div class="trend-chart">
+                    <!-- Trend: What -->
+                    <div class="trend-row">
+                        <div class="trend-info">
+                            <span class="trend-name">What</span>
+                            <span class="trend-count">8 artikelen</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <!-- Trend: Review -->
+                    <div class="trend-row">
+                        <div class="trend-info">
+                            <span class="trend-name">Review</span>
+                            <span class="trend-count">8 artikelen</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <!-- Trend: Google -->
+                    <div class="trend-row">
+                        <div class="trend-info">
+                            <span class="trend-name">Google</span>
+                            <span class="trend-count">7 artikelen</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 87%;"></div>
+                        </div>
+                    </div>
+                    <!-- Trend: Free -->
+                    <div class="trend-row">
+                        <div class="trend-info">
+                            <span class="trend-name">Free</span>
+                            <span class="trend-count">6 artikelen</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <!-- Trend: Mark / Zuckerberg -->
+                    <div class="trend-row">
+                        <div class="trend-info">
+                            <span class="trend-name">Mark / Zuckerberg</span>
+                            <span class="trend-count">6 artikelen</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <!-- Trend: Its -->
+                    <div class="trend-row">
+                        <div class="trend-info">
+                            <span class="trend-name highlight">Its</span>
+                            <span class="trend-count" style="color: var(--accent);">5 artikelen</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill highlight-bar pulse-accent" style="width: 62%;"></div>
+                        </div>
+                    </div>
+                    <!-- Trend: Over -->
+                    <div class="trend-row">
+                        <div class="trend-info">
+                            <span class="trend-name">Over</span>
+                            <span class="trend-count">5 artikelen</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 62%;"></div>
+                        </div>
+                    </div>
+                    <!-- Trend: Stop -->
+                    <div class="trend-row">
+                        <div class="trend-info">
+                            <span class="trend-name">Stop</span>
+                            <span class="trend-count">5 artikelen</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 62%;"></div>
+                        </div>
+                    </div>
+                    <!-- Trend: Mark Zuckerberg -->
+                    <div class="trend-row">
+                        <div class="trend-info">
+                            <span class="trend-name">Mark Zuckerberg</span>
+                            <span class="trend-count">5 artikelen</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 62%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Context Info -->
+            <div class="widget context-widget">
+                <div class="widget-title">Metagegevens</div>
+                <p>Deze analyse is automatisch gegenereerd op basis van NLP-analyse van 10 vooraanstaande technologienieuws-bronnen op <strong>11 augustus 2026</strong>.</p>
+                <p>De focus ligt op semantische clustering en het ontdekken van onderliggende patronen in dagelijkse berichtgeving.</p>
+                <div class="tech-tags">
+                    <span class="tag">NLP</span>
+                    <span class="tag">Semantic Web</span>
+                    <span class="tag">Big Tech</span>
+                    <span class="tag">Trend Analysis</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 TrendPulse Dashboard. Alle rechten voorbehouden.</p>
+        <p style="font-size: 0.75rem; color: rgba(255,255,255,0.2)">Gegenereerd door autonome webontwikkelaar-module v4.2</p>
+    </footer>
+
+</body>
+</html>

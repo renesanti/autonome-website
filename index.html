@@ -11,19 +11,20 @@
         /* Modern CSS Reset & Variable Setup */
         :root {
             /* WCAG AA/AAA Compliant Color Palette (Contrast Ratios >= 4.5:1 / 7:1) */
-            --primary: #4f46e5;
-            --primary-hover: #3730a3;
-            --primary-light: #f5f3ff;
+            --primary: #3730a3;           /* Darker Indigo for WCAG AAA compliance on light bg */
+            --primary-hover: #1e1b4b;
+            --primary-light: #e0e7ff;
             --secondary: #0369a1;         
             --secondary-hover: #075985;   
             --secondary-light: #f0f9ff;
-            --accent: #0e7490;            
+            --accent: #0f766e;            /* Deep Teal (>4.5:1 contrast) */
             --dark: #0f172a;
             --dark-subtle: #1e293b;
             --light-bg: #f8fafc;
             --card-bg: #ffffff;
-            --text-main: #1e293b;          /* Ultra high contrast slate (~9:1 ratio) */
-            --text-muted: #374151;         /* Optimised Slate-700 (>5.5:1 ratio for optimal reading) */
+            --text-main: #0f172a;          /* Slate 900 for ultra-high contrast readability */
+            --text-muted: #334155;         /* Slate 700 - safe and high contrast */
+            --text-light-gray: #475569;    /* Slate 600 - minimum light gray for metadata (exceeds 4.5:1) */
             --border: #cbd5e1;             
             --border-hover: #94a3b8;
             --font-stack: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -259,7 +260,7 @@
 
         .article-meta {
             font-size: 0.85rem;
-            color: var(--text-muted);
+            color: var(--text-light-gray);
             margin-bottom: 40px;
             display: flex;
             flex-wrap: wrap;
@@ -449,7 +450,7 @@
 
         .archive-meta {
             font-size: 0.8rem;
-            color: var(--text-muted);
+            color: var(--text-light-gray);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -579,7 +580,7 @@
         }
 
         .btn-submit {
-            background: linear-gradient(135deg, var(--primary), #6366f1);
+            background: linear-gradient(135deg, var(--primary), #4f46e5);
             color: #ffffff;
             font-family: var(--font-stack);
             font-weight: 700;
@@ -789,7 +790,7 @@
             text-align: left;
         }
 
-        /* INTEGRATED, ACCESSIBLE & CONVERSION-DRIVEN 404 NATIVE PAGE VIEW */
+        /* INTEGRATED, HIGH-CONVERTING & BRAND-CONSISTENT CUSTOM 404 NATIVE PAGE VIEW */
         .error-container {
             background: var(--card-bg);
             border-radius: var(--radius-lg);
@@ -802,43 +803,42 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: calc(100vh - 320px); /* Fill the viewport cleanly between header & footer */
+            min-height: calc(100vh - 280px); /* Clean balance on screen avoiding large dead spaces */
             box-sizing: border-box;
-            max-width: 540px; /* Highly optimized visual reading width */
+            max-width: 600px; /* Enhanced comfortable visual container width */
             margin: 48px auto;
         }
 
         .error-logo {
-            margin-bottom: 32px;
-            pointer-events: none;
+            margin-bottom: 24px;
         }
 
         .error-badge {
             display: inline-block;
-            background-color: #fee2e2;
-            color: #b91c1c; /* High-contrast WCAG AAA Compliant Dark Red */
+            background-color: #fef2f2;
+            color: #991b1b; /* High-contrast WCAG AAA Compliant Dark Red on Light Red Background */
             font-size: 0.75rem;
             font-weight: 800;
             padding: 6px 14px;
             border-radius: 100px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 24px;
-            border: 1px solid rgba(185, 28, 28, 0.15);
+            margin-bottom: 20px;
+            border: 1px solid rgba(153, 27, 27, 0.15);
         }
 
         .error-code {
             display: block;
-            font-size: clamp(4rem, 15vw, 7rem); /* Responsive typography scaling */
+            font-size: clamp(4.5rem, 15vw, 6.5rem); /* Perfectly scales responsive layout sizes */
             font-weight: 800;
             line-height: 1;
-            color: var(--dark);
+            color: var(--primary); /* Deep compliant primary brand color */
             margin-bottom: 16px;
             letter-spacing: -0.05em;
         }
 
         .error-title {
-            font-size: 1.5rem;
+            font-size: 1.65rem;
             font-weight: 800;
             color: var(--dark);
             line-height: 1.25;
@@ -847,14 +847,14 @@
         }
 
         .error-text {
-            color: var(--text-muted); /* Ultra readable slate gray matching WCAG standards */
+            color: var(--text-muted); /* Safe, compliant text contrast Slate Grey */
             font-size: 1rem;
             line-height: 1.6;
             margin: 0 auto 32px auto;
             max-width: 480px;
         }
 
-        /* Responsive Action Buttons with 48px Touch Targets */
+        /* Accessible Action Buttons with Strict 48px Touch Targets */
         .error-actions {
             display: flex;
             flex-direction: row; 
@@ -914,12 +914,12 @@
         }
 
         .btn-secondary:hover {
-            background-color: #f3f4f6;
+            background-color: #f8fafc;
             border-color: var(--border-hover);
             color: var(--dark);
         }
 
-        /* Secondary Support Channels */
+        /* Secondary Support Channels & Navigation */
         .error-support-links {
             display: flex;
             justify-content: center;
@@ -967,7 +967,7 @@
             letter-spacing: -0.01em;
         }
 
-        /* Responsive Stylesheet Rules & Mobile Layout Enhancements */
+        /* Responsive Stylesheet Rules & Strict Mobile Layout Optimizations */
         @media (max-width: 1024px) {
             .main-layout {
                 grid-template-columns: 1fr;
@@ -1088,7 +1088,7 @@
                 font-size: 2.85rem;
             }
 
-            /* UX FIX: Perfect left alignment for lists, bullets, templates & icon blocks on mobile devices */
+            /* UX FIX: Perfect absolute left alignment for bulleted lists, icons, prompts & layout elements on mobile devices */
             .article-content ul, 
             .article-content li, 
             .legacy-prompt ul, 
@@ -1101,8 +1101,12 @@
                 text-align: left !important;
                 justify-content: flex-start !important;
                 align-items: flex-start !important;
-                padding-left: 16px !important;
+                padding-left: 0 !important;
                 margin-left: 0 !important;
+            }
+
+            .article-content li {
+                padding-left: 20px !important;
             }
 
             .article-content li::before {
@@ -1123,7 +1127,7 @@
             }
 
             .feature-item svg {
-                margin-top: 4px; /* Perfect vertical alignment with responsive text */
+                margin-top: 4px; /* Flawless vertical alignment matching scalable text layers */
             }
 
             .legacy-prompt li::before {
@@ -1134,16 +1138,24 @@
                 padding-left: 20px !important;
             }
 
+            .interactive-form ol {
+                padding-left: 18px !important;
+            }
+
+            .interactive-form ol li {
+                padding-left: 0 !important;
+            }
+
             .btn-checkout, .btn-submit {
                 width: 100%;
                 box-sizing: border-box;
             }
 
-            /* Custom 404 Native View Mobile Adjustments */
+            /* Custom 404 Native View Mobile Adjustments (Erasing dead spaces & vertical gaps) */
             .error-container {
                 padding: 40px 24px;
                 margin: 24px auto;
-                min-height: calc(100vh - 240px);
+                min-height: calc(100vh - 200px);
             }
 
             .error-text {
@@ -1195,10 +1207,10 @@
 
     <div class="container">
         
-        <!-- NATIVE 404 PAGE VIEW SYSTEM (Hides and displays dynamically based on Route) -->
+        <!-- HIGH-CONVERTING CUSTOM 404 NATIVE PAGE VIEW (Matches full TechPulse styling) -->
         <div id="error-404-layout" class="main-layout" style="display: none; grid-template-columns: 1fr;">
             <main class="error-container">
-                <!-- Brand Logo for Recognition -->
+                <!-- Brand Identity Header -->
                 <div class="error-logo">
                     <a href="#" class="logo" style="font-size: 1.8rem; pointer-events: auto;">Tech<span>Pulse</span></a>
                 </div>
@@ -1206,7 +1218,7 @@
                 <span class="error-badge">Pagina niet gevonden</span>
                 <span class="error-code">404</span>
                 <h1 class="error-title" id="error-title">Oeps! Deze pagina is de weg kwijt.</h1>
-                <p class="error-text">De pagina die je zoekt bestaat niet of is verhuisd. Geen zorgen, we helpen je graag weer op weg naar onze artikelen of onze exclusieve AI Blueprint.</p>
+                <p class="error-text">De pagina die je zoekt bestaat niet of is verhuisd. Geen zorgen, we helpen je graag direct weer op weg naar onze diepgaande artikelen of de exclusieve AI Blueprint.</p>
                 
                 <div class="error-actions">
                     <a href="#" class="btn-primary" onclick="goToHome(); return false;">
@@ -1301,7 +1313,19 @@
                 <div class="sidebar-widget">
                     <h3>📚 Uit het Archief</h3>
                     <div class="archive-list">
-                        <!-- NIEUWSTE ARTIKEL (Content Trend) -->
+                        <!-- NIEUWSTE ARTIKEL -->
+                        <div class="archive-item">
+                            <span class="category-badge archive-badge" style="background-color: #f5f3ff; color: #4f46e5; border: 1px solid rgba(79, 70, 229, 0.15);">Trend Analyse</span>
+                            <h4><a href="its-2026-08-11.html">Trend: 'Its' (Gezien in 5 artikelen)</a></h4>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe autonome AI-systemen hun eigen entiteit ('its') en operationele soevereiniteit vormgeven binnen gedecentraliseerde en gedistribueerde digitale ecosystemen.</p>
+                            <div class="archive-meta">
+                                <span>Door <strong>Redactie TechPulse</strong></span>
+                                <span class="dot" aria-hidden="true">•</span>
+                                <span>2026-08-11</span>
+                            </div>
+                        </div>
+
+                        <!-- VORIG ARTIKEL -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fdf2f8; color: #db2777; border: 1px solid rgba(219, 39, 119, 0.15);">Trend Analyse</span>
                             <h4><a href="content-2026-08-10.html">Trend: 'Content' (Gezien in 5 artikelen)</a></h4>
@@ -1313,7 +1337,7 @@
                             </div>
                         </div>
 
-                        <!-- VORIG ARTIKEL (Use Trend) -->
+                        <!-- VORIG ARTIKEL -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #eff6ff; color: #1d4ed8; border: 1px solid rgba(29, 78, 216, 0.15);">Trend Analyse</span>
                             <h4><a href="use-2026-08-09.html">Trend: 'Use' (Gezien in 6 artikelen)</a></h4>
@@ -1325,7 +1349,7 @@
                             </div>
                         </div>
 
-                        <!-- VORIG ARTIKEL (Free Trend) -->
+                        <!-- VORIG ARTIKEL -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f0fdf4; color: #15803d; border: 1px solid rgba(21, 128, 61, 0.15);">Trend Analyse</span>
                             <h4><a href="free-2026-08-08.html">Trend: 'Free' (Gezien in 5 artikelen)</a></h4>
@@ -1337,7 +1361,7 @@
                             </div>
                         </div>
 
-                        <!-- Vorige Artikel (People Trend) -->
+                        <!-- Vorige Artikel -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fef2f2; color: #dc2626; border: 1px solid rgba(220, 38, 38, 0.15);">Trend Analyse</span>
                             <h4><a href="people-2026-08-07.html">Trend: 'People' (Gezien in 5 artikelen)</a></h4>
@@ -1349,7 +1373,7 @@
                             </div>
                         </div>
 
-                        <!-- Vorige Artikel (Agents Trend) -->
+                        <!-- Vorige Artikel -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f5f3ff; color: #6366f1; border: 1px solid rgba(99, 102, 241, 0.15);">Trend Analyse</span>
                             <h4><a href="agents-2026-08-06.html">Trend: 'Agents' (Gezien in 5 artikelen)</a></h4>
@@ -1361,7 +1385,7 @@
                             </div>
                         </div>
 
-                        <!-- Vorige Artikel (Company Trend) -->
+                        <!-- Vorige Artikel -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #eef2f6; color: #334155; border: 1px solid rgba(51, 65, 85, 0.15);">Trend Analyse</span>
                             <h4><a href="company-2026-08-05.html">Trend: 'Company' (Gezien in 5 artikelen)</a></h4>
@@ -1373,7 +1397,7 @@
                             </div>
                         </div>
 
-                        <!-- Vorige Artikel (Data Trend) -->
+                        <!-- Vorige Artikel -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #ecfeff; color: #0891b2; border: 1px solid rgba(8, 145, 178, 0.15);">Trend Analyse</span>
                             <h4><a href="data-2026-08-04.html">Trend: 'Data' (Gezien in 5 artikelen)</a></h4>
@@ -1385,7 +1409,7 @@
                             </div>
                         </div>
 
-                        <!-- Vorige Artikel (Their Trend) -->
+                        <!-- Vorige Artikel -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fae8ff; color: #86198f; border: 1px solid rgba(134, 25, 143, 0.15);">Trend Analyse</span>
                             <h4><a href="their-2026-08-03.html">Trend: 'Their' (Gezien in 5 artikelen)</a></h4>
@@ -1397,7 +1421,7 @@
                             </div>
                         </div>
 
-                        <!-- Vorige Artikel (Can Trend) -->
+                        <!-- Vorige Artikel -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f0fdf4; color: #166534; border: 1px solid rgba(22, 101, 52, 0.15);">Trend Analyse</span>
                             <h4><a href="can-2026-08-02.html">Trend: 'Can' (Gezien in 5 artikelen)</a></h4>
@@ -1409,7 +1433,7 @@
                             </div>
                         </div>
 
-                        <!-- Vorige Artikel (About Trend) -->
+                        <!-- Vorige Artikel -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #e0f2fe; color: #0369a1; border: 1px solid rgba(3, 105, 161, 0.15);">Trend Analyse</span>
                             <h4><a href="about-2026-08-01.html">Trend: 'About' (Gezien in 5 artikelen)</a></h4>
@@ -1421,7 +1445,7 @@
                             </div>
                         </div>
 
-                        <!-- Vorige Artikel (Out Trend) -->
+                        <!-- Vorige Artikel -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f1f5f9; color: #0f172a; border: 1px solid rgba(15, 23, 42, 0.15);">Trend Analyse</span>
                             <h4><a href="#404">Trend: 'Out' (Gezien in 5 artikelen)</a></h4>
@@ -1433,7 +1457,7 @@
                             </div>
                         </div>
 
-                        <!-- Vorige Artikel (Low Trend) -->
+                        <!-- Vorige Artikel -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fef2f2; color: #991b1b; border: 1px solid rgba(153, 27, 27, 0.15);">Trend Analyse</span>
                             <h4><a href="#404">Trend: 'Low' (Gezien in 4 artikelen)</a></h4>
