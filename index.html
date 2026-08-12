@@ -8,28 +8,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Modern CSS Reset & Variable Setup */
+        /* Modern CSS Reset & Variabele Instellingen */
         :root {
-            /* WCAG AA/AAA Compliant Color Palette (Contrast Ratios >= 4.5:1 / 7:1) */
-            --primary: #3730a3;           /* Darker Indigo for WCAG AAA compliance on light bg */
+            /* WCAG AA/AAA Compliant Kleurenpalet (Contrastratio's >= 4.5:1 / 7:1) */
+            --primary: #3730a3;           /* Donker indigo voor WCAG AAA compliance op lichte achtergrond */
             --primary-hover: #1e1b4b;
             --primary-light: #e0e7ff;
             --secondary: #0369a1;         
             --secondary-hover: #075985;   
             --secondary-light: #f0f9ff;
-            --accent: #0f766e;            /* Deep Teal (>4.5:1 contrast) */
+            --accent: #0f766e;            /* Diep teal (>4.5:1 contrast) */
             --dark: #0f172a;
             --dark-subtle: #1e293b;
             --light-bg: #f8fafc;
             --card-bg: #ffffff;
-            --text-main: #0f172a;          /* Slate 900 for ultra-high contrast readability */
-            --text-muted: #334155;         /* Slate 700 - safe and high contrast */
-            --text-light-gray: #475569;    /* Slate 600 - minimum light gray for metadata (exceeds 4.5:1) */
+            --text-main: #0f172a;          /* Slate 900 voor ultra-hoge contrast leesbaarheid */
+            --text-muted: #334155;         /* Slate 700 - veilig en hoog contrast */
+            --text-light-gray: #475569;    /* Slate 600 - minimale contrastgrens voor metadata */
             --border: #cbd5e1;             
             --border-hover: #94a3b8;
             --font-stack: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             
-            /* Premium, layered shadows */
+            /* Premium, gelaagde schaduwen */
             --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
             --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.03), 0 2px 4px -2px rgba(15, 23, 42, 0.03);
             --shadow-lg: 0 10px 25px -3px rgba(15, 23, 42, 0.03), 0 4px 12px -4px rgba(15, 23, 42, 0.03);
@@ -65,7 +65,7 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Keyboard Accessibility - Focus States */
+        /* Toegankelijkheid - Focus States voor toetsenbordgebruikers */
         a:focus-visible, 
         button:focus-visible, 
         select:focus-visible, 
@@ -75,14 +75,14 @@
             outline-offset: 2px;
         }
 
-        /* Container layout */
+        /* Container lay-out */
         .container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 32px;
         }
 
-        /* Header Navigation */
+        /* Header Navigatie */
         header {
             background-color: rgba(255, 255, 255, 0.90);
             backdrop-filter: blur(16px);
@@ -175,7 +175,7 @@
             width: calc(100% - 24px);
         }
 
-        /* Nav CTA Button */
+        /* Navigatie CTA Button */
         nav a.nav-cta {
             background: linear-gradient(135deg, var(--accent), var(--secondary));
             color: #ffffff;
@@ -200,7 +200,7 @@
             display: none;
         }
 
-        /* Main Grid Layout */
+        /* Hoofd Grid Lay-out */
         .main-layout {
             display: grid;
             grid-template-columns: 1.95fr 1.05fr;
@@ -209,7 +209,7 @@
             margin-bottom: 64px;
         }
 
-        /* Article Styles */
+        /* Artikel Stijlen */
         .featured-article {
             background: var(--card-bg);
             border-radius: var(--radius-lg);
@@ -343,23 +343,29 @@
             line-height: 1.75;
         }
 
-        .article-content ul {
-            margin-bottom: 32px;
-            padding-left: 4px;
+        /* Universele Lijststijlen met Strikte Linkeruitlijning */
+        .article-content ul, 
+        .legacy-prompt ul,
+        .interactive-form ol {
+            margin: 0 0 32px 0;
+            padding: 0;
             list-style: none;
-            text-align: left;
+            text-align: left !important;
         }
 
-        .article-content li {
+        .article-content li, 
+        .legacy-prompt li,
+        .interactive-form ol li {
             position: relative;
-            padding-left: 28px;
+            padding-left: 28px !important;
             margin-bottom: 16px;
             font-size: 1.05rem;
             color: var(--text-main);
             line-height: 1.75;
-            text-align: left;
+            text-align: left !important;
         }
 
+        /* Bullet indicatoren */
         .article-content li::before {
             content: "";
             position: absolute;
@@ -410,7 +416,7 @@
             text-align: left;
         }
 
-        /* Archive Styles */
+        /* Archiefsectie */
         .archive-list {
             display: flex;
             flex-direction: column;
@@ -457,7 +463,7 @@
             margin-top: 14px;
         }
 
-        /* Interactive Archive / Co-creation Styles */
+        /* Interactieve Archief / Co-creatie Stijlen */
         .legacy-prompt {
             font-size: 0.95rem;
             color: var(--text-main);
@@ -469,28 +475,12 @@
             line-height: 1.75;
         }
 
-        .legacy-prompt ul {
-            list-style: none;
-            margin-bottom: 28px;
-            padding-left: 2px;
-            text-align: left;
-        }
-
-        .legacy-prompt li {
-            position: relative;
-            padding-left: 24px;
-            margin-bottom: 12px;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            text-align: left;
-        }
-
         .legacy-prompt li::before {
             content: "✦";
             color: var(--primary);
             font-weight: bold;
             position: absolute;
-            left: 2px;
+            left: 6px;
             top: 0;
             font-size: 0.825rem;
         }
@@ -499,7 +489,7 @@
             color: var(--dark);
         }
 
-        /* Form styling */
+        /* Formulier Stijlen */
         .interactive-form {
             background-color: var(--light-bg);
             padding: 28px;
@@ -516,18 +506,16 @@
             margin-bottom: 4px;
         }
 
-        .interactive-form ol {
-            margin-left: 18px;
-            margin-bottom: 12px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-align: left;
+        .interactive-form ol li {
+            counter-increment: list-counter;
         }
 
-        .interactive-form ol li {
-            margin-bottom: 6px;
-            line-height: 1.5;
-            text-align: left;
+        .interactive-form ol li::before {
+            content: counter(list-counter) ".";
+            position: absolute;
+            left: 6px;
+            color: var(--primary);
+            font-weight: 700;
         }
 
         .form-group {
@@ -596,7 +584,7 @@
             justify-content: center;
             gap: 8px;
             box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
-            min-height: 48px; 
+            min-height: 48px; /* Touch Target Compliance */
         }
 
         .btn-submit:hover {
@@ -608,7 +596,7 @@
             transform: translateY(0);
         }
 
-        /* Showcase Section */
+        /* Showcase Sectie */
         .blueprint-section {
             margin-bottom: 96px;
         }
@@ -689,27 +677,29 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-            text-align: left;
+            text-align: left !important;
+            padding: 0;
+            margin: 0 0 24px 0;
         }
 
         .feature-item {
             display: flex;
             align-items: flex-start;
             gap: 12px;
-            text-align: left;
+            text-align: left !important;
         }
 
         .feature-item svg {
             color: #22d3ee; 
             flex-shrink: 0;
-            margin-top: 3px;
+            margin-top: 4px;
         }
 
         .feature-item span {
             font-size: 0.95rem;
             color: #e2e8f0;
             line-height: 1.5;
-            text-align: left;
+            text-align: left !important;
         }
 
         .feature-item strong {
@@ -771,7 +761,7 @@
             text-decoration: none;
             box-shadow: 0 4px 20px rgba(14, 116, 144, 0.4);
             transition: all 0.25s ease;
-            min-height: 48px; 
+            min-height: 48px; /* Touch Target Compliance */
         }
 
         .btn-checkout:hover {
@@ -787,10 +777,10 @@
             gap: 8px;
             font-size: 0.8rem;
             color: #cbd5e1; 
-            text-align: left;
+            text-align: left !important;
         }
 
-        /* INTEGRATED, HIGH-CONVERTING & BRAND-CONSISTENT CUSTOM 404 NATIVE PAGE VIEW */
+        /* PREMIUM & BRANDED CUSTOM 404 NATIVE PAGE VIEW */
         .error-container {
             background: var(--card-bg);
             border-radius: var(--radius-lg);
@@ -803,9 +793,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: calc(100vh - 280px); /* Clean balance on screen avoiding large dead spaces */
+            min-height: calc(100vh - 280px); 
             box-sizing: border-box;
-            max-width: 600px; /* Enhanced comfortable visual container width */
+            max-width: 600px; 
             margin: 48px auto;
         }
 
@@ -816,7 +806,7 @@
         .error-badge {
             display: inline-block;
             background-color: #fef2f2;
-            color: #991b1b; /* High-contrast WCAG AAA Compliant Dark Red on Light Red Background */
+            color: #991b1b; /* WCAG AAA Compliant Donkerrood */
             font-size: 0.75rem;
             font-weight: 800;
             padding: 6px 14px;
@@ -829,10 +819,10 @@
 
         .error-code {
             display: block;
-            font-size: clamp(4.5rem, 15vw, 6.5rem); /* Perfectly scales responsive layout sizes */
+            font-size: clamp(4.5rem, 15vw, 6.5rem); 
             font-weight: 800;
             line-height: 1;
-            color: var(--primary); /* Deep compliant primary brand color */
+            color: var(--primary); 
             margin-bottom: 16px;
             letter-spacing: -0.05em;
         }
@@ -847,14 +837,14 @@
         }
 
         .error-text {
-            color: var(--text-muted); /* Safe, compliant text contrast Slate Grey */
+            color: var(--text-muted); /* WCAG AA Compliant contrast */
             font-size: 1rem;
             line-height: 1.6;
             margin: 0 auto 32px auto;
             max-width: 480px;
         }
 
-        /* Accessible Action Buttons with Strict 48px Touch Targets */
+        /* Toegankelijke Actieknoppen met 48px Touch Targets */
         .error-actions {
             display: flex;
             flex-direction: row; 
@@ -905,7 +895,7 @@
             text-decoration: none;
             padding: 14px 24px;
             border-radius: 8px;
-            border: 1px solid var(--border);
+            border: 2px solid var(--primary); /* Verhoogd contrast voor betere zichtbaarheid */
             min-height: 48px;
             transition: all 0.2s ease-in-out;
             cursor: pointer;
@@ -915,11 +905,11 @@
 
         .btn-secondary:hover {
             background-color: #f8fafc;
-            border-color: var(--border-hover);
+            border-color: var(--primary-hover);
             color: var(--dark);
         }
 
-        /* Secondary Support Channels & Navigation */
+        /* Secundaire Ondersteuningslinks */
         .error-support-links {
             display: flex;
             justify-content: center;
@@ -967,7 +957,7 @@
             letter-spacing: -0.01em;
         }
 
-        /* Responsive Stylesheet Rules & Strict Mobile Layout Optimizations */
+        /* Responsive Stylesheet & Mobiele Lay-out Optimalisaties */
         @media (max-width: 1024px) {
             .main-layout {
                 grid-template-columns: 1fr;
@@ -1088,7 +1078,7 @@
                 font-size: 2.85rem;
             }
 
-            /* UX FIX: Perfect absolute left alignment for bulleted lists, icons, prompts & layout elements on mobile devices */
+            /* UX FIX: Perfecte linkeruitlijning voor opsommingstekens en pictogram-lijstjes op mobiele apparaten */
             .article-content ul, 
             .article-content li, 
             .legacy-prompt ul, 
@@ -1127,13 +1117,14 @@
             }
 
             .feature-item svg {
-                margin-top: 4px; /* Flawless vertical alignment matching scalable text layers */
+                margin-top: 4px; 
             }
 
             .legacy-prompt li::before {
                 left: 0;
                 top: 0;
             }
+            
             .legacy-prompt li {
                 padding-left: 20px !important;
             }
@@ -1151,7 +1142,7 @@
                 box-sizing: border-box;
             }
 
-            /* Custom 404 Native View Mobile Adjustments (Erasing dead spaces & vertical gaps) */
+            /* 404 Mobiele Aanpassingen */
             .error-container {
                 padding: 40px 24px;
                 margin: 24px auto;
@@ -1207,7 +1198,7 @@
 
     <div class="container">
         
-        <!-- HIGH-CONVERTING CUSTOM 404 NATIVE PAGE VIEW (Matches full TechPulse styling) -->
+        <!-- HIGH-CONVERTING CUSTOM 404 NATIVE PAGE VIEW (Perfect in lijn met TechPulse branding) -->
         <div id="error-404-layout" class="main-layout" style="display: none; grid-template-columns: 1fr;">
             <main class="error-container">
                 <!-- Brand Identity Header -->
@@ -1313,7 +1304,19 @@
                 <div class="sidebar-widget">
                     <h3>📚 Uit het Archief</h3>
                     <div class="archive-list">
-                        <!-- NIEUWSTE ARTIKEL -->
+                        <!-- NIEUWSTE ARTIKEL (2026-08-12) -->
+                        <div class="archive-item">
+                            <span class="category-badge archive-badge" style="background-color: #ecfeff; color: #0891b2; border: 1px solid rgba(8, 145, 178, 0.15);">Trend Analyse</span>
+                            <h4><a href="data-2026-08-12.html">Trend: 'Data' (Gezien in 6 artikelen)</a></h4>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe data-syndicatie en autonome vector-pipelines de cruciale basis vormen voor real-time besluitvorming in AI-gestuurde architecturen.</p>
+                            <div class="archive-meta">
+                                <span>Door <strong>Redactie TechPulse</strong></span>
+                                <span class="dot" aria-hidden="true">•</span>
+                                <span>2026-08-12</span>
+                            </div>
+                        </div>
+
+                        <!-- VORIG ARTIKEL -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f5f3ff; color: #4f46e5; border: 1px solid rgba(79, 70, 229, 0.15);">Trend Analyse</span>
                             <h4><a href="its-2026-08-11.html">Trend: 'Its' (Gezien in 5 artikelen)</a></h4>
@@ -1361,135 +1364,15 @@
                             </div>
                         </div>
 
-                        <!-- Vorige Artikel -->
+                        <!-- VORIG ARTIKEL -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fef2f2; color: #dc2626; border: 1px solid rgba(220, 38, 38, 0.15);">Trend Analyse</span>
                             <h4><a href="people-2026-08-07.html">Trend: 'People' (Gezien in 5 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe mens-AI co-creatie en 'human-in-the-loop' dynamieken transformeren naarmate autonome systemen menselijke behoeften, gedragspartanen en talentontwikkeling direct ondersteunen.</p>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe mens-AI co-creatie en 'human-in-the-loop' dynamieken transformeren naarmate autonome systemen menselijke behoeften, gedragspatronen en talentontwikkeling direct ondersteunen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
                                 <span class="dot" aria-hidden="true">•</span>
                                 <span>2026-08-07</span>
-                            </div>
-                        </div>
-
-                        <!-- Vorige Artikel -->
-                        <div class="archive-item">
-                            <span class="category-badge archive-badge" style="background-color: #f5f3ff; color: #6366f1; border: 1px solid rgba(99, 102, 241, 0.15);">Trend Analyse</span>
-                            <h4><a href="agents-2026-08-06.html">Trend: 'Agents' (Gezien in 5 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe autonome agentic workflows en multi-agent netwerken zelfstandig doelen bereiken, code schrijven en complexe bedrijfsprocessen herdefiniëren zonder menselijke tussenkomst.</p>
-                            <div class="archive-meta">
-                                <span>Door <strong>Redactie TechPulse</strong></span>
-                                <span class="dot" aria-hidden="true">•</span>
-                                <span>2026-08-06</span>
-                            </div>
-                        </div>
-
-                        <!-- Vorige Artikel -->
-                        <div class="archive-item">
-                            <span class="category-badge archive-badge" style="background-color: #eef2f6; color: #334155; border: 1px solid rgba(51, 65, 85, 0.15);">Trend Analyse</span>
-                            <h4><a href="company-2026-08-05.html">Trend: 'Company' (Gezien in 5 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe moderne autonome organisaties ('Autonomous Companies') volledig operationeel draaien zonder menselijke tussenkomst door slimme agent-gebaseerde orchestration.</p>
-                            <div class="archive-meta">
-                                <span>Door <strong>Redactie TechPulse</strong></span>
-                                <span class="dot" aria-hidden="true">•</span>
-                                <span>2026-08-05</span>
-                            </div>
-                        </div>
-
-                        <!-- Vorige Artikel -->
-                        <div class="archive-item">
-                            <span class="category-badge archive-badge" style="background-color: #ecfeff; color: #0891b2; border: 1px solid rgba(8, 145, 178, 0.15);">Trend Analyse</span>
-                            <h4><a href="data-2026-08-04.html">Trend: 'Data' (Gezien in 5 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe data-syndicatie en autonome vector-pipelines de cruciale basis vormen voor real-time besluitvorming in AI-gestuurde architecturen.</p>
-                            <div class="archive-meta">
-                                <span>Door <strong>Redactie TechPulse</strong></span>
-                                <span class="dot" aria-hidden="true">•</span>
-                                <span>2026-08-04</span>
-                            </div>
-                        </div>
-
-                        <!-- Vorige Artikel -->
-                        <div class="archive-item">
-                            <span class="category-badge archive-badge" style="background-color: #fae8ff; color: #86198f; border: 1px solid rgba(134, 25, 143, 0.15);">Trend Analyse</span>
-                            <h4><a href="their-2026-08-03.html">Trend: 'Their' (Gezien in 5 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe autonome agenten hun eigen resources, assets en strategische beslissingen beheren in de verschuiving naar 'Their' (hun eigen) digitale ecosystemen.</p>
-                            <div class="archive-meta">
-                                <span>Door <strong>Redactie TechPulse</strong></span>
-                                <span class="dot" aria-hidden="true">•</span>
-                                <span>2026-08-03</span>
-                            </div>
-                        </div>
-
-                        <!-- Vorige Artikel -->
-                        <div class="archive-item">
-                            <span class="category-badge archive-badge" style="background-color: #f0fdf4; color: #166534; border: 1px solid rgba(22, 101, 52, 0.15);">Trend Analyse</span>
-                            <h4><a href="can-2026-08-02.html">Trend: 'Can' (Gezien in 5 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Een diepgaand inzicht in hoe generatieve AI-systemen steeds betere functionele capaciteiten ('can-do' mentaliteit) ontwikkelen om zelfstandig complexe codeertaken uit te voeren.</p>
-                            <div class="archive-meta">
-                                <span>Door <strong>Redactie TechPulse</strong></span>
-                                <span class="dot" aria-hidden="true">•</span>
-                                <span>2026-08-02</span>
-                            </div>
-                        </div>
-
-                        <!-- Vorige Artikel -->
-                        <div class="archive-item">
-                            <span class="category-badge archive-badge" style="background-color: #e0f2fe; color: #0369a1; border: 1px solid rgba(3, 105, 161, 0.15);">Trend Analyse</span>
-                            <h4><a href="about-2026-08-01.html">Trend: 'About' (Gezien in 5 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe de evolutie van merkidentiteit en transparantie in het AI-tijdperk verschuift naar hypergepersonaliseerde en dynamische interacties met de eindgebruiker.</p>
-                            <div class="archive-meta">
-                                <span>Door <strong>Redactie TechPulse</strong></span>
-                                <span class="dot" aria-hidden="true">•</span>
-                                <span>2026-08-01</span>
-                            </div>
-                        </div>
-
-                        <!-- Vorige Artikel -->
-                        <div class="archive-item">
-                            <span class="category-badge archive-badge" style="background-color: #f1f5f9; color: #0f172a; border: 1px solid rgba(15, 23, 42, 0.15);">Trend Analyse</span>
-                            <h4><a href="#404">Trend: 'Out' (Gezien in 5 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Een diepgaande analyse over hoe 'out-of-the-box' AI-modellen en autonome workflows de traditionele development-processen herdefiniëren.</p>
-                            <div class="archive-meta">
-                                <span>Door <strong>Redactie TechPulse</strong></span>
-                                <span class="dot" aria-hidden="true">•</span>
-                                <span>2026-07-31</span>
-                            </div>
-                        </div>
-
-                        <!-- Vorige Artikel -->
-                        <div class="archive-item">
-                            <span class="category-badge archive-badge" style="background-color: #fef2f2; color: #991b1b; border: 1px solid rgba(153, 27, 27, 0.15);">Trend Analyse</span>
-                            <h4><a href="#404">Trend: 'Low' (Gezien in 4 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Een kritische blik op de opkomst van 'low-code' AI, energiezuinige 'low-power' neurale architecturen en hoe zij de drempel voor innovatie verlagen.</p>
-                            <div class="archive-meta">
-                                <span>Door <strong>Redactie TechPulse</strong></span>
-                                <span class="dot" aria-hidden="true">•</span>
-                                <span>2026-07-30</span>
-                            </div>
-                        </div>
-
-                        <!-- Hugging Face Trend -->
-                        <div class="archive-item">
-                            <span class="category-badge archive-badge" style="background-color: var(--secondary-light); color: var(--secondary); border: 1px solid rgba(14, 165, 233, 0.15);">Trend Analyse</span>
-                            <h4><a href="#404">Trend: 'Hugging Face' (Gezien in 4 artikelen)</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Een diepgaande blik op hoe Hugging Face is uitgegroeid tot de centrale hub voor open-source AI-modellen en samenwerkingen.</p>
-                            <div class="archive-meta">
-                                <span>Door <strong>Redactie TechPulse</strong></span>
-                                <span class="dot" aria-hidden="true">•</span>
-                                <span>2026-07-29</span>
-                            </div>
-                        </div>
-
-                        <!-- Bestaand gearchiveerd artikel -->
-                        <div class="archive-item">
-                            <span class="category-badge archive-badge" style="background-color: var(--primary-light); color: var(--primary); border: 1px solid rgba(79, 70, 229, 0.15);">Kunstmatige Intelligentie</span>
-                            <h4><a href="#404">De Opkomst van Agentic AI: Waarom Autonome AI-assistenten Onze Werkomgeving Gaan Transformeren</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Hoe we verschuiven van reactieve chatbots naar proactieve, zelfstandige AI-agents die complete bedrijfsprocessen overnemen.</p>
-                            <div class="archive-meta">
-                                <span>Door <strong>Steven de Waal</strong></span>
-                                <span class="dot" aria-hidden="true">•</span>
-                                <span>6 min leestijd</span>
                             </div>
                         </div>
                     </div>
@@ -1633,7 +1516,7 @@
     </footer>
 
     <script>
-        /* Modern client-side rendering engine for route management */
+        /* Routing engine voor paginabeheer en 404 simulatie */
         function checkRoute() {
             const normalLayout = document.getElementById('normal-page-layout');
             const errorLayout = document.getElementById('error-404-layout');
@@ -1641,14 +1524,13 @@
             const navHome = document.getElementById('nav-home');
 
             if (window.location.hash === '#404') {
-                // Dynamically swap structures while maintaining global site navigation and accessibility
                 normalLayout.style.display = 'none';
                 blueprintSection.style.display = 'none';
                 errorLayout.style.display = 'grid';
                 
                 if (navHome) navHome.classList.remove('active');
                 
-                // WCAG keyboard focus shifting
+                // Toegankelijkheid focus-shift
                 const errorTitle = document.getElementById('error-title');
                 if (errorTitle) {
                     errorTitle.setAttribute('tabindex', '-1');
