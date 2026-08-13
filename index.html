@@ -196,6 +196,10 @@
             color: #ffffff;
         }
 
+        nav a.nav-cta:active {
+            transform: translateY(1px);
+        }
+
         nav a.nav-cta::after {
             display: none;
         }
@@ -593,7 +597,8 @@
         }
 
         .btn-submit:active {
-            transform: translateY(0);
+            transform: translateY(1px);
+            background: #4f46e5;
         }
 
         /* Showcase Sectie */
@@ -770,6 +775,11 @@
             background: linear-gradient(135deg, var(--secondary), var(--accent));
         }
 
+        .btn-checkout:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 10px rgba(14, 116, 144, 0.3);
+        }
+
         .trust-indicators {
             margin-top: 20px;
             display: flex;
@@ -880,8 +890,9 @@
             transform: translateY(-1px);
         }
 
-        .btn-primary:active, .btn-secondary:active {
+        .btn-primary:active {
             transform: scale(0.98); 
+            background-color: #1e1b4b; /* Donkerder voor actieve feedback op mobiel */
         }
 
         .btn-secondary {
@@ -889,7 +900,7 @@
             justify-content: center;
             align-items: center;
             background-color: #ffffff;
-            color: var(--text-muted);
+            color: var(--primary);
             font-weight: 600;
             font-size: 0.95rem;
             text-decoration: none;
@@ -907,6 +918,11 @@
             background-color: #f8fafc;
             border-color: var(--primary-hover);
             color: var(--dark);
+        }
+
+        .btn-secondary:active {
+            transform: scale(0.98); 
+            background-color: rgba(79, 70, 229, 0.05); /* Feedback bij aanraken op mobiel */
         }
 
         /* Secundaire Ondersteuningslinks */
@@ -1304,7 +1320,19 @@
                 <div class="sidebar-widget">
                     <h3>📚 Uit het Archief</h3>
                     <div class="archive-list">
-                        <!-- NIEUWSTE ARTIKEL (2026-08-12) -->
+                        <!-- NIEUWSTE ARTIKEL (2026-08-13) -->
+                        <div class="archive-item">
+                            <span class="category-badge archive-badge" style="background-color: #f0fdfa; color: #0d9488; border: 1px solid rgba(13, 148, 136, 0.15);">Trend Analyse</span>
+                            <h4><a href="tools-2026-08-13.html">Trend: 'Tools' (Gezien in 5 artikelen)</a></h4>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe adaptieve AI-tools en autonome platforms naadloos integreren in bestaande tech-stacks om de menselijke productiviteit exponentieel te verhogen.</p>
+                            <div class="archive-meta">
+                                <span>Door <strong>Redactie TechPulse</strong></span>
+                                <span class="dot" aria-hidden="true">•</span>
+                                <span>2026-08-13</span>
+                            </div>
+                        </div>
+
+                        <!-- VORIG ARTIKEL (2026-08-12) -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #ecfeff; color: #0891b2; border: 1px solid rgba(8, 145, 178, 0.15);">Trend Analyse</span>
                             <h4><a href="data-2026-08-12.html">Trend: 'Data' (Gezien in 6 artikelen)</a></h4>
@@ -1461,7 +1489,7 @@
                         
                         <div class="blueprint-hook">
                             <strong>Wist je dat de website waar je nu op kijkt 100% autonoom door AI wordt gerund?</strong> 
-                            Van trend-aggregatie en AI-contentgeneratie tot de conversiegerichte UI/UX code-updates en de marketing-funnel: er komt geen menselijke handeling aan te pas. Dit is de ultieme live demo van de toekomst van e-commerce.
+                            Van trend-aggregatie en AI-contentgeneratie to de conversiegerichte UI/UX code-updates en de marketing-funnel: er komt geen menselijke handeling aan te pas. Dit is de ultieme live demo van de toekomst van e-commerce.
                         </div>
                         
                         <p>

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Dashboard: Focus op 'Tools' - 13 Augustus 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #0b0f19;
+            --bg-card: #151b2c;
+            --bg-card-hover: #1e263f;
+            --border-color: #242f4d;
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary: #06b6d4;
+            --accent: #f43f5e;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-dark: #6b7280;
+            --font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.025em;
+            background: linear-gradient(to right, #fff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            border-radius: 8px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background-color: var(--bg-card-hover);
+            border-color: var(--primary-light);
+            transform: translateX(-2px);
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Hero banner for the main trend */
+        .hero-trend-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.15) 0%, rgba(6, 182, 212, 0.05) 100%);
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-trend-card::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .tag-pill {
+            display: inline-flex;
+            align-items: center;
+            align-self: flex-start;
+            padding: 0.375rem 1rem;
+            background-color: rgba(79, 70, 229, 0.2);
+            border: 1px solid rgba(129, 140, 248, 0.3);
+            border-radius: 9999px;
+            color: var(--primary-light);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+            z-index: 1;
+        }
+
+        .hero-trend-card h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ffffff, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            z-index: 1;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 2rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            z-index: 1;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .hero-meta span strong {
+            color: var(--text-main);
+        }
+
+        /* Content Area */
+        .analysis-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.02em;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 24px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .analysis-text p {
+            margin-bottom: 1.25rem;
+            color: #d1d5db;
+            font-size: 1.05rem;
+        }
+
+        .analysis-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .analysis-text h3 {
+            font-size: 1.25rem;
+            color: var(--text-main);
+            margin: 2rem 0 1rem 0;
+            font-weight: 600;
+        }
+
+        /* Sidebar / Trends List */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .trend-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.875rem;
+        }
+
+        .trend-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .trend-item:hover {
+            transform: translateY(-2px);
+            background-color: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .trend-name-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .trend-rank {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            width: 24px;
+        }
+
+        .trend-name {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .trend-count {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            background-color: rgba(79, 70, 229, 0.15);
+            color: var(--primary-light);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+        }
+
+        /* Specific Highlight for Top Trend in sidebar */
+        .trend-item.highlighted {
+            background: linear-gradient(90deg, rgba(79, 70, 229, 0.1) 0%, rgba(21, 27, 44, 0.5) 100%);
+            border-color: rgba(79, 70, 229, 0.4);
+        }
+
+        .trend-item.highlighted .trend-rank {
+            color: var(--primary-light);
+        }
+
+        .trend-item.google-highlight {
+            background: linear-gradient(90deg, rgba(6, 182, 212, 0.1) 0%, rgba(21, 27, 44, 0.5) 100%);
+            border-color: rgba(6, 182, 212, 0.4);
+        }
+
+        .trend-item.google-highlight .trend-rank {
+            color: var(--secondary);
+        }
+
+        /* Data Visualisation mockup */
+        .chart-mockup {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .chart-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .chart-label {
+            width: 80px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .chart-bar-container {
+            flex-grow: 1;
+            height: 10px;
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .chart-bar {
+            height: 100%;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 5rem;
+            border-top: 1px solid var(--border-color);
+            background-color: #080b13;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--text-dark);
+            font-size: 0.875rem;
+        }
+
+        footer p {
+            max-width: 600px;
+            margin: 0.5rem auto 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <div class="logo-icon">T</div>
+                <div class="logo-text">TrendPulse Dashboard</div>
+            </div>
+            <a href="index.html" class="back-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Terug naar Overzicht
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero section highlighting the main trend -->
+        <section class="hero-trend-card">
+            <div class="tag-pill">Focus Trend</div>
+            <h1>Trend Analyse: 'Tools'</h1>
+            <p style="font-size: 1.25rem; color: #93c5fd; font-weight: 500; margin-bottom: 1.5rem; max-width: 800px;">
+                Hoe de proliferatie van gespecialiseerde systemen en utility-software de tech-conversatie van vandaag dicteert.
+            </p>
+            <div class="hero-meta">
+                <span>Status: <strong>Actief stijgend</strong></span>
+                <span>Volume: <strong>5 Gerelateerde Artikelen</strong></span>
+                <span>Meting: <strong>13 augustus 2026</strong></span>
+            </div>
+        </section>
+
+        <!-- Main analysis column -->
+        <section class="analysis-section">
+            <article class="card">
+                <h2 class="card-title">Inhoudelijke Analyse</h2>
+                <div class="analysis-text">
+                    <p>
+                        Op <strong>13 augustus 2026</strong> zien we een opvallende samenballing van keywords binnen de tech-journalistiek. De trend <strong>'Tools'</strong> (vandaag waargenomen in 5 toonaangevende artikelen) fungeert hierin als een cruciale spil. Waar we de afgelopen jaren vooral praatten over abstracte AI-modellen, verschuift de markt nu definitief naar de praktische en tastbare integratie hiervan: de daadwerkelijke <em>tools</em> waarmee ontwikkelaars, ontwerpers en consumenten interacteren.
+                    </p>
+                    
+                    <h3>De Link met Google en Pixel</h3>
+                    <p>
+                        Het kan geen toeval zijn dat op dezelfde dag <strong>'Google'</strong> (11 artikelen) en <strong>'Pixel'</strong> (8 artikelen) de lijst aanvoeren. De lancering van nieuwe Google-hardware en de bijbehorende software-updates lijkt de directe aanjager te zijn van deze trendgolf. Google profileert haar nieuwe Pixel-ecosysteem niet langer puur als hardware, maar als een verzameling hyper-gepersonaliseerde AI-<em>tools</em> die direct in het besturingssysteem zijn ingebakken. 
+                    </p>
+                    <p>
+                        Dit verklaart eveneens waarom termen als <strong>'Content'</strong> (6 artikelen) en <strong>'Now'</strong> (5 artikelen) hoog scoren. Consumenten eisen directe bruikbaarheid (<em>'Now'</em>) en creators zoeken naar slimmere manieren om media te genereren en te beheren (<em>'Content'</em>).
+                    </p>
+
+                    <h3>Wat betekent dit voor de markt?</h3>
+                    <p>
+                        De dominantie van 'Tools' toont aan dat de hypefase van generatieve technologie voorbij is. De markt bevindt zich in de implementatiefase. Bedrijven die enkel een 'model' aanbieden verliezen terrein aan partijen die geïntegreerde oplossingen (<em>tools</em>) leveren die naadloos aansluiten op bestaande workflows. Of het nu gaat om fotobewerking op de nieuwe Pixel of automatische code-assistenten; de focus ligt op functionaliteit en directe bruikbaarheid.
+                    </p>
+                </div>
+            </article>
+
+            <article class="card">
+                <h2 class="card-title">Synthese van de trends</h2>
+                <div class="analysis-text">
+                    <p>
+                        Als we de overige trends van vandaag analyseren, zien we een interessant patroon ontstaan:
+                    </p>
+                    <ul>
+                        <li style="margin-bottom: 0.75rem; margin-left: 1.5rem;"><strong>'After' & 'Watch':</strong> Duiden op een sterke focus op post-event analyses. Media reflecteren op de grote aankondigingen en adviseren consumenten waar ze op moeten letten (<em>'Watch'</em>).</li>
+                        <li style="margin-bottom: 0.75rem; margin-left: 1.5rem;"><strong>'Big' & 'Can':</strong> Wijzen op de discussie rondom de capaciteiten (<em>'What AI tools CAN do'</em>) en de impact van de <em>'Big Tech'</em> spelers op onze dagelijkse productiviteit.</li>
+                        <li style="margin-bottom: 0.75rem; margin-left: 1.5rem;"><strong>'Out':</strong> Heeft betrekking op de directe beschikbaarheid en releases die vandaag live zijn gegaan.</li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+
+        <!-- Sidebar with stats and overall trend list -->
+        <aside class="sidebar">
+            <div class="card">
+                <h2 class="card-title" style="font-size: 1.25rem;">Volume per Trend</h2>
+                <div class="chart-mockup">
+                    <div class="chart-row">
+                        <div class="chart-label">Google</div>
+                        <div class="chart-bar-container">
+                            <div class="chart-bar" style="width: 100%; background: linear-gradient(90deg, #a855f7, #ec4899);"></div>
+                        </div>
+                        <span style="font-size: 0.8125rem; font-weight: 700;">11</span>
+                    </div>
+                    <div class="chart-row">
+                        <div class="chart-label">Pixel</div>
+                        <div class="chart-bar-container">
+                            <div class="chart-bar" style="width: 72%;"></div>
+                        </div>
+                        <span style="font-size: 0.8125rem; font-weight: 700;">8</span>
+                    </div>
+                    <div class="chart-row">
+                        <div class="chart-label">Content</div>
+                        <div class="chart-bar-container">
+                            <div class="chart-bar" style="width: 54%;"></div>
+                        </div>
+                        <span style="font-size: 0.8125rem; font-weight: 700;">6</span>
+                    </div>
+                    <div class="chart-row">
+                        <div class="chart-label">Tools</div>
+                        <div class="chart-bar-container">
+                            <div class="chart-bar" style="width: 45%; background: var(--secondary);"></div>
+                        </div>
+                        <span style="font-size: 0.8125rem; font-weight: 700; color: var(--secondary);">5</span>
+                    </div>
+                    <div class="chart-row">
+                        <div class="chart-label">Overige (5x)</div>
+                        <div class="chart-bar-container">
+                            <div class="chart-bar" style="width: 45%; background: var(--text-dark);"></div>
+                        </div>
+                        <span style="font-size: 0.8125rem; font-weight: 700;">5</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title" style="font-size: 1.25rem;">Alle Trends van Vandaag</h2>
+                <div class="trend-list">
+                    <div class="trend-item google-highlight">
+                        <div class="trend-name-wrap">
+                            <span class="trend-rank">#1</span>
+                            <span class="trend-name">Google</span>
+                        </div>
+                        <span class="trend-count">11 artikelen</span>
+                    </div>
+                    <div class="trend-item google-highlight">
+                        <div class="trend-name-wrap">
+                            <span class="trend-rank">#2</span>
+                            <span class="trend-name">Pixel</span>
+                        </div>
+                        <span class="trend-count">8 artikelen</span>
+                    </div>
+                    <div class="trend-item">
+                        <div class="trend-name-wrap">
+                            <span class="trend-rank">#3</span>
+                            <span class="trend-name">Content</span>
+                        </div>
+                        <span class="trend-count">6 artikelen</span>
+                    </div>
+                    <div class="trend-item highlighted">
+                        <div class="trend-name-wrap">
+                            <span class="trend-rank">#4</span>
+                            <span class="trend-name">Tools</span>
+                        </div>
+                        <span class="trend-count" style="background-color: rgba(6, 182, 212, 0.2); color: var(--secondary); border-color: rgba(6, 182, 212, 0.4);">5 artikelen</span>
+                    </div>
+                    <div class="trend-item">
+                        <div class="trend-name-wrap">
+                            <span class="trend-rank">#5</span>
+                            <span class="trend-name">Now</span>
+                        </div>
+                        <span class="trend-count">5 artikelen</span>
+                    </div>
+                    <div class="trend-item">
+                        <div class="trend-name-wrap">
+                            <span class="trend-rank">#6</span>
+                            <span class="trend-name">Out</span>
+                        </div>
+                        <span class="trend-count">5 artikelen</span>
+                    </div>
+                    <div class="trend-item">
+                        <div class="trend-name-wrap">
+                            <span class="trend-rank">#7</span>
+                            <span class="trend-name">Can</span>
+                        </div>
+                        <span class="trend-count">5 artikelen</span>
+                    </div>
+                    <div class="trend-item">
+                        <div class="trend-name-wrap">
+                            <span class="trend-rank">#8</span>
+                            <span class="trend-name">Big</span>
+                        </div>
+                        <span class="trend-count">5 artikelen</span>
+                    </div>
+                    <div class="trend-item">
+                        <div class="trend-name-wrap">
+                            <span class="trend-rank">#9</span>
+                            <span class="trend-name">After</span>
+                        </div>
+                        <span class="trend-count">5 artikelen</span>
+                    </div>
+                    <div class="trend-item">
+                        <div class="trend-name-wrap">
+                            <span class="trend-rank">#10</span>
+                            <span class="trend-name">Watch</span>
+                        </div>
+                        <span class="trend-count">5 artikelen</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        <div style="font-weight: 700; color: var(--text-muted); margin-bottom: 0.5rem;">TrendPulse &copy; 2026</div>
+        <p>Gegenereerd door een autonome webontwikkelaar op basis van real-time trendanalyse data d.d. 13 augustus 2026.</p>
+    </footer>
+
+</body>
+</html>
