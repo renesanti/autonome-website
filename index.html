@@ -349,24 +349,22 @@
 
         /* Universele Lijststijlen met Strikte Linkeruitlijning */
         .article-content ul, 
-        .legacy-prompt ul,
-        .interactive-form ol {
+        .legacy-prompt ul {
             margin: 0 0 32px 0;
             padding: 0;
             list-style: none;
-            text-align: left !important;
+            text-align: left;
         }
 
         .article-content li, 
-        .legacy-prompt li,
-        .interactive-form ol li {
+        .legacy-prompt li {
             position: relative;
-            padding-left: 28px !important;
+            padding-left: 28px;
             margin-bottom: 16px;
             font-size: 1.05rem;
             color: var(--text-main);
             line-height: 1.75;
-            text-align: left !important;
+            text-align: left;
         }
 
         /* Bullet indicatoren */
@@ -510,14 +508,29 @@
             margin-bottom: 4px;
         }
 
+        .interactive-form ol {
+            margin: 0 0 20px 0;
+            padding: 0;
+            list-style: none;
+            counter-reset: form-counter;
+        }
+
         .interactive-form ol li {
-            counter-increment: list-counter;
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+            color: var(--text-main);
+            line-height: 1.75;
+            text-align: left;
         }
 
         .interactive-form ol li::before {
-            content: counter(list-counter) ".";
+            content: counter(form-counter) ".";
+            counter-increment: form-counter;
             position: absolute;
             left: 6px;
+            top: 0;
             color: var(--primary);
             font-weight: 700;
         }
@@ -682,16 +695,17 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-            text-align: left !important;
+            text-align: left;
             padding: 0;
             margin: 0 0 24px 0;
+            list-style: none;
         }
 
         .feature-item {
             display: flex;
             align-items: flex-start;
             gap: 12px;
-            text-align: left !important;
+            text-align: left;
         }
 
         .feature-item svg {
@@ -704,7 +718,7 @@
             font-size: 0.95rem;
             color: #e2e8f0;
             line-height: 1.5;
-            text-align: left !important;
+            text-align: left;
         }
 
         .feature-item strong {
@@ -732,9 +746,10 @@
 
         .old-price {
             font-size: 1.1rem;
-            color: #94a3b8; 
+            color: #cbd5e1; /* Verhoogd contrast voor betere WCAG compliance */
             text-decoration: line-through;
             font-weight: 600;
+            opacity: 0.85;
         }
 
         .current-price {
@@ -787,7 +802,7 @@
             gap: 8px;
             font-size: 0.8rem;
             color: #cbd5e1; 
-            text-align: left !important;
+            text-align: left;
         }
 
         /* PREMIUM & BRANDED CUSTOM 404 NATIVE PAGE VIEW */
@@ -805,12 +820,8 @@
             justify-content: center;
             min-height: calc(100vh - 280px); 
             box-sizing: border-box;
-            max-width: 600px; 
+            max-width: 720px; 
             margin: 48px auto;
-        }
-
-        .error-logo {
-            margin-bottom: 24px;
         }
 
         .error-badge {
@@ -838,27 +849,27 @@
         }
 
         .error-title {
-            font-size: 1.65rem;
+            font-size: 1.85rem;
             font-weight: 800;
             color: var(--dark);
             line-height: 1.25;
-            margin: 0 0 12px 0;
+            margin: 0 0 16px 0;
             letter-spacing: -0.03em;
         }
 
         .error-text {
             color: var(--text-muted); /* WCAG AA Compliant contrast */
-            font-size: 1rem;
+            font-size: 1.05rem;
             line-height: 1.6;
             margin: 0 auto 32px auto;
-            max-width: 480px;
+            max-width: 520px;
         }
 
         /* Toegankelijke Actieknoppen met 48px Touch Targets */
         .error-actions {
             display: flex;
             flex-direction: row; 
-            gap: 12px;
+            gap: 16px;
             width: 100%;
             justify-content: center;
             max-width: 480px;
@@ -1096,61 +1107,58 @@
 
             /* UX FIX: Perfecte linkeruitlijning voor opsommingstekens en pictogram-lijstjes op mobiele apparaten */
             .article-content ul, 
-            .article-content li, 
-            .legacy-prompt ul, 
-            .legacy-prompt li,
-            .interactive-form ol,
-            .interactive-form ol li,
-            .blueprint-features,
-            .feature-item,
-            .trust-indicators {
-                text-align: left !important;
-                justify-content: flex-start !important;
-                align-items: flex-start !important;
+            .legacy-prompt ul {
                 padding-left: 0 !important;
                 margin-left: 0 !important;
             }
 
-            .article-content li {
-                padding-left: 20px !important;
+            .article-content li, 
+            .legacy-prompt li {
+                text-align: left !important;
+                padding-left: 24px !important;
             }
 
             .article-content li::before {
-                left: 0;
-                top: 11px;
+                left: 4px !important;
+                top: 10px !important;
+            }
+            
+            .legacy-prompt li::before {
+                left: 4px !important;
+                top: 0 !important;
+            }
+
+            .interactive-form ol {
+                padding-left: 0 !important;
+            }
+
+            .interactive-form ol li {
+                padding-left: 24px !important;
+            }
+
+            .interactive-form ol li::before {
+                left: 2px !important;
             }
 
             .blueprint-features {
-                padding-left: 0 !important;
+                padding: 0 !important;
+                margin: 20px 0 !important;
             }
 
             .feature-item {
                 display: flex !important;
-                flex-direction: row !important;
                 align-items: flex-start !important;
-                padding-left: 0 !important;
-                gap: 12px !important;
+                text-align: left !important;
+                gap: 10px !important;
             }
 
             .feature-item svg {
-                margin-top: 4px; 
+                margin-top: 4px !important;
             }
 
-            .legacy-prompt li::before {
-                left: 0;
-                top: 0;
-            }
-            
-            .legacy-prompt li {
-                padding-left: 20px !important;
-            }
-
-            .interactive-form ol {
-                padding-left: 18px !important;
-            }
-
-            .interactive-form ol li {
-                padding-left: 0 !important;
+            .trust-indicators {
+                text-align: left !important;
+                align-items: flex-start !important;
             }
 
             .btn-checkout, .btn-submit {
@@ -1199,12 +1207,12 @@
 
     <header>
         <div class="container">
-            <a href="#" class="logo">Tech<span>Pulse</span></a>
+            <a href="#" class="logo" onclick="goToHome(); return false;">Tech<span>Pulse</span></a>
             <nav>
-                <a href="#" class="active" id="nav-home">Home</a>
-                <a href="#404">Artikelen</a>
-                <a href="#404">AI Monitor</a>
-                <a href="#blueprint" class="nav-cta">
+                <a href="#" class="active" id="nav-home" onclick="goToHome(); return false;">Home</a>
+                <a href="#404" id="nav-articles">Artikelen</a>
+                <a href="#404" id="nav-monitor">AI Monitor</a>
+                <a href="#blueprint" class="nav-cta" id="nav-blueprint">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                     Get The Blueprint (€9,99)
                 </a>
@@ -1217,11 +1225,6 @@
         <!-- HIGH-CONVERTING CUSTOM 404 NATIVE PAGE VIEW (Perfect in lijn met TechPulse branding) -->
         <div id="error-404-layout" class="main-layout" style="display: none; grid-template-columns: 1fr;">
             <main class="error-container">
-                <!-- Brand Identity Header -->
-                <div class="error-logo">
-                    <a href="#" class="logo" style="font-size: 1.8rem; pointer-events: auto;">Tech<span>Pulse</span></a>
-                </div>
-                
                 <span class="error-badge">Pagina niet gevonden</span>
                 <span class="error-code">404</span>
                 <h1 class="error-title" id="error-title">Oeps! Deze pagina is de weg kwijt.</h1>
@@ -1320,10 +1323,22 @@
                 <div class="sidebar-widget">
                     <h3>📚 Uit het Archief</h3>
                     <div class="archive-list">
-                        <!-- NIEUWSTE ARTIKEL (2026-08-13) -->
+                        <!-- NIEUWSTE ARTIKEL (2026-08-14) -->
+                        <div class="archive-item">
+                            <span class="category-badge archive-badge" style="background-color: #fef2f2; color: #991b1b; border: 1px solid rgba(153, 27, 27, 0.15);">Trend Analyse</span>
+                            <h4><a href="#404">Trend: 'Over' (Gezien in 5 artikelen)</a></h4>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe de strategische transitie naar volledig autonome, zelfsturende systemen de macht verschuift van traditionele menselijke operators naar dynamisch optimaliserende software-architecturen.</p>
+                            <div class="archive-meta">
+                                <span>Door <strong>Redactie TechPulse</strong></span>
+                                <span class="dot" aria-hidden="true">•</span>
+                                <span>2026-08-14</span>
+                            </div>
+                        </div>
+
+                        <!-- VORIG ARTIKEL (2026-08-13) -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f0fdfa; color: #0d9488; border: 1px solid rgba(13, 148, 136, 0.15);">Trend Analyse</span>
-                            <h4><a href="tools-2026-08-13.html">Trend: 'Tools' (Gezien in 5 artikelen)</a></h4>
+                            <h4><a href="#404">Trend: 'Tools' (Gezien in 5 artikelen)</a></h4>
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe adaptieve AI-tools en autonome platforms naadloos integreren in bestaande tech-stacks om de menselijke productiviteit exponentieel te verhogen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
@@ -1335,7 +1350,7 @@
                         <!-- VORIG ARTIKEL (2026-08-12) -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #ecfeff; color: #0891b2; border: 1px solid rgba(8, 145, 178, 0.15);">Trend Analyse</span>
-                            <h4><a href="data-2026-08-12.html">Trend: 'Data' (Gezien in 6 artikelen)</a></h4>
+                            <h4><a href="#404">Trend: 'Data' (Gezien in 6 artikelen)</a></h4>
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe data-syndicatie en autonome vector-pipelines de cruciale basis vormen voor real-time besluitvorming in AI-gestuurde architecturen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
@@ -1347,7 +1362,7 @@
                         <!-- VORIG ARTIKEL -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f5f3ff; color: #4f46e5; border: 1px solid rgba(79, 70, 229, 0.15);">Trend Analyse</span>
-                            <h4><a href="its-2026-08-11.html">Trend: 'Its' (Gezien in 5 artikelen)</a></h4>
+                            <h4><a href="#404">Trend: 'Its' (Gezien in 5 artikelen)</a></h4>
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe autonome AI-systemen hun eigen entiteit ('its') en operationele soevereiniteit vormgeven binnen gedecentraliseerde en gedistribueerde digitale ecosystemen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
@@ -1359,7 +1374,7 @@
                         <!-- VORIG ARTIKEL -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fdf2f8; color: #db2777; border: 1px solid rgba(219, 39, 119, 0.15);">Trend Analyse</span>
-                            <h4><a href="content-2026-08-10.html">Trend: 'Content' (Gezien in 5 artikelen)</a></h4>
+                            <h4><a href="#404">Trend: 'Content' (Gezien in 5 artikelen)</a></h4>
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe generatieve AI-systemen autonoom hoogwaardige, SEO-geoptimaliseerde en hyper-gepersonaliseerde content produceren en distribueren zonder enige menselijke tussenkomst.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
@@ -1371,7 +1386,7 @@
                         <!-- VORIG ARTIKEL -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #eff6ff; color: #1d4ed8; border: 1px solid rgba(29, 78, 216, 0.15);">Trend Analyse</span>
-                            <h4><a href="use-2026-08-09.html">Trend: 'Use' (Gezien in 6 artikelen)</a></h4>
+                            <h4><a href="#404">Trend: 'Use' (Gezien in 6 artikelen)</a></h4>
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe adaptieve AI-systemen overstappen van passieve observatie naar actieve consumptie en gebruik ('use') van digitale tools om complexe problemen autonoom op te lossen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
@@ -1383,7 +1398,7 @@
                         <!-- VORIG ARTIKEL -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f0fdf4; color: #15803d; border: 1px solid rgba(21, 128, 61, 0.15);">Trend Analyse</span>
-                            <h4><a href="free-2026-08-08.html">Trend: 'Free' (Gezien in 5 artikelen)</a></h4>
+                            <h4><a href="#404">Trend: 'Free' (Gezien in 5 artikelen)</a></h4>
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Analyseer hoe gratis open-source AI-modellen, 'free-tier' API's en gedecentraliseerde compute-netwerken de drempels verlagen voor startups om schaalbare, autonome agenten te bouwen zonder kapitaalintensieve investeringen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
@@ -1395,7 +1410,7 @@
                         <!-- VORIG ARTIKEL -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fef2f2; color: #dc2626; border: 1px solid rgba(220, 38, 38, 0.15);">Trend Analyse</span>
-                            <h4><a href="people-2026-08-07.html">Trend: 'People' (Gezien in 5 artikelen)</a></h4>
+                            <h4><a href="#404">Trend: 'People' (Gezien in 5 artikelen)</a></h4>
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe mens-AI co-creatie en 'human-in-the-loop' dynamieken transformeren naarmate autonome systemen menselijke behoeften, gedragspatronen en talentontwikkeling direct ondersteunen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
@@ -1496,24 +1511,24 @@
                             In dit diepgaande en praktische Playbook leggen we exact uit hoe je deze geavanceerde, winstgevende AI-infrastructuur zelf van A tot Z bouwt, automatiseert en schaalt naar een passieve inkomstenbron.
                         </p>
                         
-                        <div class="blueprint-features">
-                            <div class="feature-item">
+                        <ul class="blueprint-features">
+                            <li class="feature-item">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                                 <span><strong>IT-Infrastructuur:</strong> De perfecte tech-stack voor standalone, 24/7 draaiende AI-agents.</span>
-                            </div>
-                            <div class="feature-item">
+                            </li>
+                            <li class="feature-item">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                                 <span><strong>Trend-Aggregatie:</strong> Hoe je AI systemen automatisch real-time virale trends laat opsporen en selecteren.</span>
-                            </div>
-                            <div class="feature-item">
+                            </li>
+                            <li class="feature-item">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                                 <span><strong>AI-UX & Dynamische Code:</strong> Laat GPT/Claude autonoom interfaces schrijven en optimaliseren voor maximale conversie.</span>
-                            </div>
-                            <div class="feature-item">
+                            </li>
+                            <li class="feature-item">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                                 <span><strong>Automatische Sales:</strong> Directe implementatie van Stripe-betaalflows gekoppeld aan geautomatiseerde productlevering.</span>
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
                     
                     <div class="blueprint-cta-box">
@@ -1550,13 +1565,21 @@
             const errorLayout = document.getElementById('error-404-layout');
             const blueprintSection = document.getElementById('blueprint');
             const navHome = document.getElementById('nav-home');
+            const navArticles = document.getElementById('nav-articles');
+            const navMonitor = document.getElementById('nav-monitor');
+            const navBlueprint = document.getElementById('nav-blueprint');
+
+            // Reset actieve klassen op alle links
+            [navHome, navArticles, navMonitor, navBlueprint].forEach(link => {
+                if(link) link.classList.remove('active');
+            });
 
             if (window.location.hash === '#404') {
                 normalLayout.style.display = 'none';
                 blueprintSection.style.display = 'none';
                 errorLayout.style.display = 'grid';
                 
-                if (navHome) navHome.classList.remove('active');
+                if (navArticles) navArticles.classList.add('active');
                 
                 // Toegankelijkheid focus-shift
                 const errorTitle = document.getElementById('error-title');
@@ -1570,7 +1593,7 @@
                 blueprintSection.style.display = 'block';
                 errorLayout.style.display = 'none';
                 
-                if (navHome) navHome.classList.remove('active');
+                if (navBlueprint) navBlueprint.classList.add('active');
 
                 const target = document.getElementById('blueprint');
                 if (target) {
