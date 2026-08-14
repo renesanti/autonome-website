@@ -91,9 +91,20 @@ def generate_article_and_update_home():
     update_index_page(filename, primary_topic, date_str)
 
 
+import glob
+
+
+def get_existing_articles():
+    """Zoekt alle gegenereerde HTML bestanden in de root (behalve index.html)"""
+    files = glob.glob("*.html")
+    articles = [f for f in files if f != "index.html"]
+    # Sorteer op meest recente datum/naam
+    articles.sort(reverse=True)
+    return articles
+
+
 def update_index_page(new_filename, title, date_str):
     index_file = "index.html"
-
     client = genai.Client()
 
     current_index_content = ""
@@ -101,36 +112,38 @@ def update_index_page(new_filename, title, date_str):
         with open(index_file, "r", encoding="utf-8") as f:
             current_index_content = f.read()
 
-    # Eén schone, gecombineerde prompt voor Gemini
+    # Haal de echte bestandslijst op
+    available_articles = get_existing_articles()
+    if new_filename not in available_articles:
+        available_articles.insert(0, new_filename)
+
+    articles_list_str = "\n".join([f"- ./{art}" for art in available_articles])
+
     prompt_index = f"""
-    Je bent een conversie-gerichte UX/UI designer en webontwikkelaar.
+    Je bent een UX/UI designer en webontwikkelaar.
     Hier is de huidige 'index.html':
     ```html
     {current_index_content}
     ```
 
-    OPDRACHT EN EISEN:
-    1. NIEUW ARTIKEL / ARCHIEF LINK:
-       - Voeg een nieuwe kaart/link toe bovenaan het artikelenoverzicht/archief op de homepage naar het nieuwste artikel:
-         * Link: {new_filename}
-         * Titel: {title}
-         * Datum: {date_str}
-       - Zorg dat oude artikelen/links in de lijst BEWAARD blijven.
+    WERKELIJK BESTAANDE ARTIKELEN IN DE REPO:
+    {articles_list_str}
 
-    2. NAVIGATIE (E-COMMERCE):
-       - Zorg voor een opvallende Call-to-Action knop in de navigatiebalk: "Get The Blueprint (€9,99)".
-       - Deze knop moet opvallen (bijv. moderne accentkleur/gradient) en linken/scrollen naar #blueprint.
+    BELANGRIJKE LINK- EN ARCHIEF-INSTRUCTIES:
+    1. RELATIEVE LINKS (CRUCIAAL VOOR GITHUB PAGES):
+       - Alle links naar artikelen MOETEN relatief zijn (bijv. href="./{new_filename}" of href="{new_filename}").
+       - Gebruik NOOIT een absolute slash aan het begin (dus GEEN href="/artikel.html"), want dat veroorzaakt 404-fouten op GitHub Pages!
+       
+    2. ARCHIEF EN ARTIKELEN OVERZICHT:
+       - Gebruik in het archief / artikelenlijst UITSLUITEND de bestanden uit de bovenstaande lijst van werkelijk bestaande artikelen.
+       - Verzin GEEN niet-bestaande artikelen of dummy-links.
+       - Zorg dat de nieuwste ({new_filename}) bovenaan staat.
 
-    3. SHOWCASE SECTION (#blueprint):
-       - Als deze nog niet bestaat, voeg op de homepage een dedicated, conversie-gerichte sectie toe over het product: "The Autonomous AI Company Playbook".
-       - HOOK: Leg uit dat déze exacte website voor 100% autonoom draait door AI (de live demo), en dat deze PDF van A tot Z uitlegt hoe de lezer exact hetzelfde kan bouwen (IT-infrastructuur, trend-aggregatie, AI-UX, marketing en geautomatiseerde sales).
-       - PRIJS: €9,99.
-       - KOOPKNOP / CTA: Een duidelijke, aantrekkelijke koopknop: "Buy Blueprint PDF – €9,99".
+    3. E-COMMERCE & LAY-OUT:
+       - Behoud de "Get The Blueprint (€9,99)" navigatieknop en showcase sectie.
+       - Zorg dat bullet points en iconen links uitgelijnd zijn.
 
-    4. LAY-OUT:
-       - Houd de lay-out strak, modern, responsive en mobielvriendelijk.
-
-    Geef alleen de volledige, bijgewerkte geldige HTML terug.
+    Geef alleen de volledige, bijgewerkte en geldige HTML terug.
     """
 
     response = client.models.generate_content(
@@ -145,8 +158,6 @@ def update_index_page(new_filename, title, date_str):
     with open(index_file, "w", encoding="utf-8") as f:
         f.write(updated_index)
 
-    print("index.html succesvol bijgewerkt met het verkoopdeel en nieuwe artikel link!")
-
-
+    print("index.html bijgewerkt met geldige relatieve links!")
 if __name__ == "__main__":
     generate_article_and_update_home()
