@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Analyse: 'Test' & Tech Landschap - 16 Augustus 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0b0f19;
+            --bg-secondary: #151b2c;
+            --bg-tertiary: #1e2640;
+            --accent-primary: #6366f1;
+            --accent-secondary: #a855f7;
+            --accent-emerald: #10b981;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --glow: rgba(99, 102, 241, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .brand-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        header {
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .brand-logo {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.05em;
+        }
+
+        .brand-badge {
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #818cf8;
+            padding: 0.2rem 0.6rem;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn-back:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--accent-primary);
+            transform: translateX(-2px);
+        }
+
+        /* Hero / Dashboard Grid */
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .dashboard-container {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(21, 27, 44, 0.8), rgba(30, 38, 64, 0.5));
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .date-badge {
+            color: var(--accent-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ffffff, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .meta-icon {
+            color: var(--accent-primary);
+        }
+
+        /* Article / Analysis Section */
+        .main-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+        }
+
+        .article-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .article-section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.25rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .article-section h2::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 24px;
+            background: var(--accent-primary);
+            border-radius: 2px;
+        }
+
+        .article-section p {
+            color: #cbd5e1;
+            font-size: 1.05rem;
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+        }
+
+        .quote-box {
+            background: rgba(99, 102, 241, 0.05);
+            border-left: 4px solid var(--accent-primary);
+            padding: 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+
+        /* Sidebar / Trends Panel */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .panel {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.75rem;
+        }
+
+        .panel-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Trend List & Chart */
+        .trend-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .trend-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .trend-item:hover {
+            background: var(--bg-tertiary);
+            border-color: rgba(99, 102, 241, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .trend-item.active {
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.15), transparent);
+            border-color: var(--accent-primary);
+        }
+
+        .trend-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .trend-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #ffffff;
+        }
+
+        .trend-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .trend-stats {
+            text-align: right;
+        }
+
+        .trend-count {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.35rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-secondary);
+        }
+
+        .trend-item.active .trend-count {
+            background: var(--accent-primary);
+            color: #ffffff;
+        }
+
+        /* Custom Mini Visualisation */
+        .chart-container {
+            margin-top: 1.5rem;
+            background: rgba(0,0,0,0.2);
+            padding: 1.25rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .chart-bar-wrapper {
+            margin-bottom: 1rem;
+        }
+
+        .chart-bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+            color: var(--text-muted);
+        }
+
+        .chart-bar-outer {
+            background: var(--bg-primary);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .chart-bar-inner {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            margin-top: 5rem;
+            padding: 3rem 0;
+            background: #080b12;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        /* Accent classes */
+        .text-accent { color: var(--accent-primary); }
+        .highlight { color: #ffffff; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="brand">
+                <span class="brand-logo">TRENDPULSE AI</span>
+                <span class="brand-badge">PRO</span>
+            </a>
+            <a href="index.html" class="btn-back">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Terug naar archief
+            </a>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Hero Banner spanning across -->
+        <div class="hero-banner">
+            <div>
+                <span class="date-badge">Trend Rapportage • 16 augustus 2026</span>
+                <h1 class="hero-title">Trend Analyse: De Kritische Doorbraak van 'Test' in het AI-Ecosysteem</h1>
+            </div>
+            <div class="hero-meta">
+                <div class="meta-item">
+                    <svg class="meta-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/></svg>
+                    <span>Analysetijdstip: Real-time update</span>
+                </div>
+                <div class="meta-item">
+                    <svg class="meta-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/></svg>
+                    <span>Brondocumenten: 48 artikelen geanalyseerd</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area: Article & Deep Dive -->
+        <main class="main-content">
+            <section class="article-section">
+                <h2>Samenvatting & Context</h2>
+                <p>
+                    Op de tech-radars van vandaag, <span class="highlight">16 augustus 2026</span>, zien we een opvallende trend-samenhang die wijst op een kritische evaluatiefase binnen de consumenten- en enterprise-softwaresector. Hoewel de term <span class="text-accent highlight">'Test'</span> vandaag direct gelinkt is aan 4 grote onderzoeken en releases, vormt het de spil in een groter web van trends zoals <span class="highlight">'Openai'</span>, <span class="highlight">'Review'</span>, <span class="highlight">'Tools'</span> en <span class="highlight">'Data'</span>.
+                </p>
+                <p>
+                    We bevinden ons momenteel in een cyclus waarin de belofte van 'gratis' en 'snelle' AI-oplossingen (gereflecteerd in de trends <span class="highlight">'Free'</span>, <span class="highlight">'Get'</span> en <span class="highlight">'Tools'</span>) botst met de harde realiteit van kwaliteitscontrole en benchmarking. Ontwikkelaars en data-architecten zijn massaal overgegaan tot rigoureuze testtrajecten om te verifiëren of de nieuwste OpenAI-modellen daadwerkelijk presteren conform de marketingbeloftes.
+                </p>
+            </section>
+
+            <section class="article-section">
+                <h2>Diepgaande Analyse: Waarom 'Test' Nu Cruciaal Is</h2>
+                <p>
+                    De hernieuwde focus op het trefwoord <strong>'Test'</strong> is geen toevalstreffer. Uit de analyse van de vier kernartikelen blijkt dat enterprise-organisaties een drempel hebben bereikt. Waar men vorig jaar nog experimenteerde met prototypes, eist de markt nu robuuste, deterministische output van AI-systemen.
+                </p>
+                <div class="quote-box">
+                    "Zonder gedegen 'Testing' frameworks zijn AI-integraties een tikkende tijdbom voor databeveiliging en merkreputatie. De verschuiving van 'spelen met prompts' naar 'systematisch unit-testen' is nu definitief ingezet."
+                </div>
+                <p>
+                    Het testen concentreert zich momenteel rond drie pijlers:
+                </p>
+                <p style="margin-left: 1rem; border-left: 2px solid var(--accent-secondary); padding-left: 1rem;">
+                    1. <strong>LLM Benchmarking:</strong> Het direct vergelijken ('Than', 'Better') van OpenAI's nieuwste API-endpoints met opensource alternatieven.<br>
+                    2. <strong>Data Integriteit:</strong> Testen hoe goed ('Data', 'Tools') pipelines standhouden wanneer ze worden gevoed met ongestructureerde real-time datastromen.<br>
+                    3. <strong>Kosten-Baten Analyse:</strong> Valideren of de overstap naar betaalde enterprise-modellen betere resultaten oplevert dan de momenteel beschikbare 'Free' tools.
+                </p>
+            </section>
+
+            <section class="article-section">
+                <h2>De bredere dynamiek: 'Review' (7) spant de kroon</h2>
+                <p>
+                    Wanneer we breder kijken naar de data van vandaag, zien we dat de absolute uitschieter de trend <span class="text-accent highlight">'Review'</span> is met 7 vermeldingen. Dit sluit naadloos aan bij de 'Test'-trend. De industrie is in een reflectieve modus gegaan. Men gelooft de beloftes van leveranciers niet langer op blauwe ogen. 
+                </p>
+                <p>
+                    De noodzaak om tooling kritisch te 'reviewen' stuwt de vraag naar gestructureerde testdata. Het is een gezonde evolutie: de markt volwassen wordt en eist transparantie, reproduceerbaarheid en meetbare ROI.
+                </p>
+            </section>
+        </main>
+
+        <!-- Sidebar Area: Statistics and Trend Overview -->
+        <aside class="sidebar">
+            <!-- Trend Widget -->
+            <div class="panel">
+                <div class="panel-title">
+                    <span>Trends van Vandaag</span>
+                    <span style="font-size: 0.8rem; color: var(--accent-emerald); font-weight: 600;">● Live data</span>
+                </div>
+                <div class="trend-list">
+                    <!-- Target Trend -->
+                    <a href="#" class="trend-item active">
+                        <div class="trend-info">
+                            <span class="trend-name">Test</span>
+                            <span class="trend-meta">Focus trend van dit artikel</span>
+                        </div>
+                        <div class="trend-stats">
+                            <span class="trend-count">4 artikelen</span>
+                        </div>
+                    </a>
+
+                    <!-- Other Trends -->
+                    <a href="#" class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-name">Review</span>
+                            <span class="trend-meta">Hoogste volume vandaag</span>
+                        </div>
+                        <div class="trend-stats">
+                            <span class="trend-count">7 artikelen</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-name">Openai</span>
+                            <span class="trend-meta">LLM & API Updates</span>
+                        </div>
+                        <div class="trend-stats">
+                            <span class="trend-count">5 artikelen</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-name">Tools</span>
+                            <span class="trend-meta">Software & Plugins</span>
+                        </div>
+                        <div class="trend-stats">
+                            <span class="trend-count">5 artikelen</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-name">Free</span>
+                            <span class="trend-meta">Open-source & Freemium</span>
+                        </div>
+                        <div class="trend-stats">
+                            <span class="trend-count">5 artikelen</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-name">Data</span>
+                            <span class="trend-meta">Pipelines & Architectuur</span>
+                        </div>
+                        <div class="trend-stats">
+                            <span class="trend-count">5 artikelen</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-name">What</span>
+                            <span class="trend-meta">Informatieve analyses</span>
+                        </div>
+                        <div class="trend-stats">
+                            <span class="trend-count">4 artikelen</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Visualization Panel -->
+            <div class="panel">
+                <div class="panel-title">Visualisatie van Volume</div>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                    Relatieve verdeling van de top trends op 16 augustus 2026.
+                </p>
+                <div class="chart-container">
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar-label">
+                            <span>Review</span>
+                            <span>7 artikelen</span>
+                        </div>
+                        <div class="chart-bar-outer">
+                            <div class="chart-bar-inner" style="width: 100%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar-label">
+                            <span>Openai / Tools / Free / Data</span>
+                            <span>5 artikelen</span>
+                        </div>
+                        <div class="chart-bar-outer">
+                            <div class="chart-bar-inner" style="width: 71%; background: linear-gradient(90deg, var(--accent-primary), #60a5fa);"></div>
+                        </div>
+                    </div>
+
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar-label">
+                            <span>Test / What (Focus)</span>
+                            <span>4 artikelen</span>
+                        </div>
+                        <div class="chart-bar-outer">
+                            <div class="chart-bar-inner" style="width: 57%; background: linear-gradient(90deg, var(--accent-secondary), #f472b6);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">TRENDPULSE AI © 2026</div>
+        <p>Gegenereerd door de autonome trend-crawler op 16 augustus 2026.<br>Alle rechten voorbehouden.</p>
+    </footer>
+
+</body>
+</html>
