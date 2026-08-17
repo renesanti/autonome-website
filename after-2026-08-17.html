@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Analyse: 'After' & Het Tech Landschap van 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-light: #e0e7ff;
+            --primary-dark: #4f46e5;
+            --secondary: #0ea5e9;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --accent-green: #10b981;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation Bar */
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.025em;
+        }
+
+        .brand span {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            color: var(--primary-dark);
+            border-color: var(--primary-light);
+            background-color: var(--primary-light);
+            transform: translateX(-2px);
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 1280px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        /* Dashboard Metrics Banner */
+        .dashboard-hero {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #1e1b4b, #311042);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .dashboard-hero::after {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(99,102,241,0.4) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .meta-tag {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--primary-light);
+            padding: 0.35rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 800px;
+        }
+
+        /* Article Card (Main) */
+        article.main-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+
+        .article-header {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+
+        .article-title {
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        /* Content Styles */
+        .content {
+            font-size: 1.05rem;
+            color: #334155;
+            line-height: 1.75;
+        }
+
+        .content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .content h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 2rem 0 1rem 0;
+            letter-spacing: -0.01em;
+        }
+
+        .content blockquote {
+            border-left: 4px solid var(--primary);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--text-muted);
+            background-color: var(--bg-main);
+            padding: 1.5rem;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        }
+
+        /* Trend Radar / Sidebar */
+        aside.sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .sidebar-widget {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+
+        .widget-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .widget-title .badge {
+            font-size: 0.75rem;
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 0.25rem 0.5rem;
+            border-radius: 5px;
+        }
+
+        /* Trend List Styling */
+        .trend-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .trend-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid transparent;
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .trend-item:hover {
+            background-color: var(--bg-main);
+            border-color: var(--border-color);
+        }
+
+        .trend-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .trend-rank {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            background-color: var(--bg-main);
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .trend-item:nth-child(-n+3) .trend-rank {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .trend-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .trend-count {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            background-color: rgba(16, 185, 129, 0.1);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+        }
+
+        /* Visualization Chart Bar Mock */
+        .chart-container {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .chart-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .chart-label {
+            width: 70px;
+            font-weight: 600;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .chart-bar-bg {
+            flex-grow: 1;
+            height: 10px;
+            background-color: var(--bg-main);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .chart-bar-fill {
+            height: 100%;
+            border-radius: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 1s ease-in-out;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0f172a;
+            color: #94a3b8;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid #1e293b;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row;
+            }
+        }
+
+        .footer-brand {
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .footer-brand span {
+            color: var(--primary);
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+        }
+
+        /* Helper Classes */
+        .text-accent {
+            color: var(--primary);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="brand">
+                <span>⚡ TrendPulse</span>
+            </a>
+            <a href="index.html" class="back-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Terug naar Overzicht
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Hero Section -->
+        <div class="dashboard-hero">
+            <span class="meta-tag">Trendrapport • 17 Augustus 2026</span>
+            <h1 class="hero-title">Diepgaande Analyse: De Betekenis van 'After' in de Huidige Tech-Stroom</h1>
+            <p class="hero-desc">Vandaag zien we een opvallende trendpatroon ontstaan rond de term 'After'. Wat gebeurt er 'na' de consolidatie van de grote AI-revolutie? Een duiding van de micro-verschuivingen in tech-journalistiek.</p>
+        </div>
+
+        <!-- Main Content Area -->
+        <main>
+            <article class="main-card">
+                <div class="article-header">
+                    <span class="meta-tag" style="background-color: var(--primary-light); color: var(--primary-dark); border-color: transparent;">Trendfocus: 'After'</span>
+                    <h2 class="article-title" style="margin-top: 0.5rem;">De Transitie naar het Post-Adoptietijdperk</h2>
+                    <div class="article-meta">
+                        <span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            17 augustus 2026
+                        </span>
+                        <span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                            Gezien in 5 artikelen
+                        </span>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <p>De tech-industrie beweegt zich in golven. Waar de afgelopen jaren werden gedomineerd door pure innovatie en de lancering van revolutionaire tools, is de toon vandaag, op 17 augustus 2026, opvallend reflectief. Het feit dat de term <span class="text-accent">'After'</span> in maar liefst 5 toonaangevende publicaties als centrale noemer naar voren komt, duidt op een verschuiving van de blikrichting: we kijken niet meer enkel naar wat er nieuw is, maar naar wat er overblijft <em>nadat</em> de stofwolken zijn opgetrokken.</p>
+
+                    <h2>De 'Aftermath' van Generatieve AI</h2>
+                    <p>Binnen de geselecteerde artikelen tekent zich een duidelijke consensus af. Bedrijven en consumenten vragen zich in toenemende mate af hoe workflows eruitzien <em>na</em> de implementatie van geavanceerde systemen (zoals die van marktleiders als <strong>OpenAI</strong>). We zitten niet langer in de testfase; we zitten in de integratiefase. Dit verklaart de directe correlatie met trends als <span class="text-accent">'Tools'</span> en <span class="text-accent">'Content'</span>. De vraag is niet meer <em>of</em> we deze tools gebruiken, maar hoe de kwaliteit van onze content zich verhoudt tot hetgeen we voorheen handmatig produceerden.</p>
+
+                    <blockquote>
+                        "De echte uitdaging ligt niet in het bouwen van de technologie, maar in het herstructureren van de menselijke dynamiek 'after' de initiële uitrol."
+                    </blockquote>
+
+                    <h2>Vergelijkende Analyse: Beter Dan Voorheen?</h2>
+                    <p>Interessant is de sterke aanwezigheid van vergelijkende termen in de trends van vandaag, zoals <span class="text-accent">'Than'</span> en <span class="text-accent">'Better'</span>. Dit toont aan dat de markt in een kritische evaluatiemodus is overgegaan. Er is een sterke drang om de huidige systemen te benchmarken tegen eerdere methodieken. Is de geautomatiseerde workflow daadwerkelijk <em>beter dan</em> de traditionele? Het antwoord hierop is genuanceerd en hangt sterk af van de diepte van de implementatie.</p>
+
+                    <h2>De 'Review' als Dominante Factor</h2>
+                    <p>Met stip op nummer één in de trends van vandaag staat <span class="text-accent">'Review'</span> (gezien in maar liefst 10 artikelen). Dit sluit naadloos aan bij de 'After'-trend. De industrie is collectief bezig met een grote schoonmaak en evaluatieronde. Dit is de fase waarin legacy-systemen die overhaast zijn vervangen door AI, kritisch tegen het licht worden gehouden. We zien een professionaliseringsslag waarbij effectiviteit, privacy en werkelijke ROI strenger dan ooit worden gecontroleerd.</p>
+                </div>
+            </article>
+        </main>
+
+        <!-- Sidebar / Trend dashboard widgets -->
+        <aside class="sidebar">
+            <div class="sidebar-widget">
+                <h3 class="widget-title">
+                    Trend-intensiteit van Vandaag
+                    <span class="badge">Live Data</span>
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+                    Visualisatie van het aantal vermeldingen in toonaangevende tech-artikelen op 2026-08-17.
+                </p>
+                
+                <div class="chart-container">
+                    <div class="chart-row">
+                        <span class="chart-label">Review</span>
+                        <div class="chart-bar-bg">
+                            <div class="chart-bar-fill" style="width: 100%;"></div>
+                        </div>
+                        <span style="font-weight:700; width:20px;">10</span>
+                    </div>
+                    <div class="chart-row">
+                        <span class="chart-label">Openai</span>
+                        <div class="chart-bar-bg">
+                            <div class="chart-bar-fill" style="width: 60%;"></div>
+                        </div>
+                        <span style="font-weight:700; width:20px;">6</span>
+                    </div>
+                    <div class="chart-row">
+                        <span class="chart-label">Into</span>
+                        <div class="chart-bar-bg">
+                            <div class="chart-bar-fill" style="width: 60%;"></div>
+                        </div>
+                        <span style="font-weight:700; width:20px;">6</span>
+                    </div>
+                    <div class="chart-row">
+                        <span class="chart-label">One</span>
+                        <div class="chart-bar-bg">
+                            <div class="chart-bar-fill" style="width: 60%;"></div>
+                        </div>
+                        <span style="font-weight:700; width:20px;">6</span>
+                    </div>
+                    <div class="chart-row" style="opacity: 0.9;">
+                        <span class="chart-label" style="color: var(--primary-dark); font-weight:800;">After</span>
+                        <div class="chart-bar-bg" style="background-color: var(--primary-light);">
+                            <div class="chart-bar-fill" style="width: 50%; background: var(--primary-dark);"></div>
+                        </div>
+                        <span style="font-weight:800; color: var(--primary-dark); width:20px;">5</span>
+                    </div>
+                    <div class="chart-row">
+                        <span class="chart-label">Than</span>
+                        <div class="chart-bar-bg">
+                            <div class="chart-bar-fill" style="width: 50%;"></div>
+                        </div>
+                        <span style="font-weight:700; width:20px;">5</span>
+                    </div>
+                    <div class="chart-row">
+                        <span class="chart-label">Content</span>
+                        <div class="chart-bar-bg">
+                            <div class="chart-bar-fill" style="width: 50%;"></div>
+                        </div>
+                        <span style="font-weight:700; width:20px;">5</span>
+                    </div>
+                    <div class="chart-row">
+                        <span class="chart-label">Tools</span>
+                        <div class="chart-bar-bg">
+                            <div class="chart-bar-fill" style="width: 50%;"></div>
+                        </div>
+                        <span style="font-weight:700; width:20px;">5</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Relevante Trends</h3>
+                <div class="trend-list">
+                    <a href="#" class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-rank">1</span>
+                            <span class="trend-name">Review</span>
+                        </div>
+                        <span class="trend-count">10 artikelen</span>
+                    </a>
+                    <a href="#" class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-rank">2</span>
+                            <span class="trend-name">Openai</span>
+                        </div>
+                        <span class="trend-count">6 artikelen</span>
+                    </a>
+                    <a href="#" class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-rank">3</span>
+                            <span class="trend-name">Into</span>
+                        </div>
+                        <span class="trend-count">6 artikelen</span>
+                    </a>
+                    <a href="#" class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-rank">4</span>
+                            <span class="trend-name">One</span>
+                        </div>
+                        <span class="trend-count">6 artikelen</span>
+                    </a>
+                    <a href="#" class="trend-item" style="background-color: var(--primary-light); border-color: var(--primary-dark);">
+                        <div class="trend-info">
+                            <span class="trend-rank" style="background-color: var(--primary-dark); color: white;">5</span>
+                            <span class="trend-name" style="font-weight: 700; color: var(--primary-dark);">After</span>
+                        </div>
+                        <span class="trend-count" style="background-color: var(--primary-dark); color: white;">5 artikelen</span>
+                    </a>
+                    <a href="#" class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-rank">6</span>
+                            <span class="trend-name">Than</span>
+                        </div>
+                        <span class="trend-count">5 artikelen</span>
+                    </a>
+                    <a href="#" class="trend-item">
+                        <div class="trend-info">
+                            <span class="trend-rank">7</span>
+                            <span class="trend-name">Content</span>
+                        </div>
+                        <span class="trend-count">5 artikelen</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <a href="index.html" class="footer-brand">⚡ Trend<span>Pulse</span></a>
+            <span class="footer-copy">&copy; 2026 TrendPulse Dashboard. Alle rechten voorbehouden. Data gegenereerd op 17 augustus 2026.</span>
+        </div>
+    </footer>
+
+</body>
+</html>

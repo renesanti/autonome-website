@@ -1,8 +1,3 @@
-Hier is de volledige, bijgewerkte en WCAG-compliant HTML-code. 
-
-In deze versie zijn alle visuele, contrast- en hiërarchische fouten opgelost. Daarnaast is het contrast van alle teksten en links verhoogd naar minimaal de WCAG AA (en grotendeels AAA) standaard, zijn touch targets geoptimaliseerd naar minimaal 48px, en is er een ijzersterke linkeruitlijning toegepast op alle mobiele opsommingen.
-
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -812,9 +807,11 @@ In deze versie zijn alle visuele, contrast- en hiërarchische fouten opgelost. D
             display: none;
             justify-content: center;
             align-items: center;
-            min-height: calc(100vh - 160px);
+            min-height: 100dvh; /* dynamic viewport height voor perfecte mobiele viewport centrering */
             width: 100%;
             margin: 0 auto;
+            box-sizing: border-box;
+            padding: 24px;
         }
 
         .error-container {
@@ -1150,9 +1147,11 @@ In deze versie zijn alle visuele, contrast- en hiërarchische fouten opgelost. D
             }
 
             .article-content li, 
-            .legacy-prompt li {
+            .legacy-prompt li,
+            .feature-item {
                 text-align: left !important;
                 padding-left: 24px !important;
+                margin-left: 0 !important;
             }
 
             .article-content li::before {
@@ -1187,6 +1186,7 @@ In deze versie zijn alle visuele, contrast- en hiërarchische fouten opgelost. D
 
             .feature-item svg {
                 margin-top: 4px !important;
+                flex-shrink: 0 !important;
             }
 
             .trust-indicators {
@@ -1250,7 +1250,7 @@ In deze versie zijn alle visuele, contrast- en hiërarchische fouten opgelost. D
             <a href="#" class="logo" onclick="goToHome(); return false;">Tech<span>Pulse</span></a>
             <nav>
                 <a href="#" class="active" id="nav-home" onclick="goToHome(); return false;">Home</a>
-                <a href="./test-2026-08-16.html" id="nav-articles">Artikelen</a>
+                <a href="./after-2026-08-17.html" id="nav-articles">Artikelen</a>
                 <a href="#404" id="nav-monitor">AI Monitor</a>
                 <a href="#blueprint" class="nav-cta" id="nav-blueprint">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
@@ -1332,7 +1332,7 @@ In deze versie zijn alle visuele, contrast- en hiërarchische fouten opgelost. D
                         <p>De term 'liquid' (vloeibaar) verwijst naar het vermogen van het netwerk om zijn parameters dynamisch aan te passen op basis van de tijd en de context of de input. Geïnspireerd door het neurologische systeem van de microscopisch kleine rondworm <em>C. elegans</em>, die met slechts 302 neuronen complexe navigatietaken kan uitvoeren, blinken LNN's uit in compactheid en efficiëntie.</p>
 
                         <blockquote>
-                            <p>"Waar traditionele AI-modellen fungeren als een fotoalbum van het verleden, gedraagt een Liquid Neural Network zich als een filmcamera die live reageert op de regisseur."</p>
+                            <p>"Waar traditionele AI-modellen fungeren as een fotoalbum van het verleden, gedraagt een Liquid Neural Network zich als een filmcamera die live reageert op de regisseur."</p>
                         </blockquote>
 
                         <h2>De Drie Grote Voordelen van 'Vloeibare' AI</h2>
@@ -1341,14 +1341,14 @@ In deze versie zijn alle visuele, contrast- en hiërarchische fouten opgelost. D
                         <ul>
                             <li><strong>Oneindige Aanpasbaarheid (Adaptability):</strong> Omdat de wiskundige vergelijkingen achter LNN's continu van aard zijn, kunnen de netwerken moeiteloos omgaan met onverwachte situaties. Denk aan een zelfrijdende auto die getraind is in de zon, maar plotseling in een zware sneeuwstorm terechtkomt. Waar een traditionele AI kan haperen, past een LNN zich direct aan de nieuwe omstandigheden aan.</li>
                             <li><strong>Extreme Compactheid:</strong> Terwijl GPT-4 honderden miljarden parameters nodig heeft, kan een LNN voor complexe navigatietaken toe met minder dan honderd neuronen. Dit betekent dat de software direct op kleine microchips (edge computing) kan draaien, zonder cloudverbinding.</li>
-                            <li><strong>Verklaarbaarheid (Explainability):</strong> Door de compacte structuur is het voor ontwikkelaars veel eenvoudiger om te herleiden <em>waarom</em> een netwerk een bepaalde bescision heeft genomen. Dit is een gigantische stap voorwaarts voor sectoren waar transparantie cruciaal is, zoals de medische wereld en de luchtvaart.</li>
+                            <li><strong>Verklaarbaarheid (Explainability):</strong> Door de compacte structuur is het voor ontwikkelaars veel eenvoudiger om te herleiden <em>waarom</em> een netwerk een bepaalde besziening heeft genomen. Dit is een gigantische stap voorwaarts voor sectoren waar transparantie cruciaal is, zoals de medische wereld en de luchtvaart.</li>
                         </ul>
 
                         <h2>Praktische Toepassingen in de Realiteit</h2>
                         <p>De toepassingsgebieden voor LNN's liggen met name in de fysieke wereld, waar datastromen continu veranderen en direct moeten worden verwerkt:</p>
 
                         <h3>1. Autonome Voertuigen en Robotica</h3>
-                        <p>In tests van MIT slaagde een drone met een LNN-besturingssysteem erin om feilloos door dichte bossen en onbekend terrain te navigeren, zelfs bij harde zijwind en camera-ruis. Het model paste zijn vlieggedrag in real-time aan zonder vertraging.</p>
+                        <p>In tests van MIT slaagde een drone met een LNN-besturingssysteem erin om feilloos door dichte bossen en onbekend terrein te navigeren, zelfs bij harde zijwind en camera-ruis. Het model paste zijn vlieggedrag in real-time aan zonder vertraging.</p>
 
                         <h3>2. Medische Monitoring</h3>
                         <p>LNN's zijn perfect geschikt voor het analyseren van continue vitale functies, zoals hartslag (ECG) en hersenactiviteit (EEG). Ze kunnen subtiele, tijdgebonden afwijkingen detecteren die traditionele AI-modellen over het hoofd zien omdat ze de temporele context missen.</p>
@@ -1369,8 +1369,20 @@ In deze versie zijn alle visuele, contrast- en hiërarchische fouten opgelost. D
                 <div class="sidebar-widget">
                     <h3>📚 Uit het Archief</h3>
                     <div class="archive-list">
+
+                        <!-- 1. after-2026-08-17.html -->
+                        <div class="archive-item">
+                            <span class="category-badge archive-badge" style="background-color: #fdf2f8; color: #db2777; border: 1px solid rgba(219, 39, 119, 0.15);">Trend Analyse</span>
+                            <h4><a href="./after-2026-08-17.html">Trend: 'After'</a></h4>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Een diepgaande verkenning van de post-transitiestatus en de operationele realiteit na de grootschalige adoptie van autonome AI-architecturen.</p>
+                            <div class="archive-meta">
+                                <span>Door <strong>Redactie TechPulse</strong></span>
+                                <span class="dot" aria-hidden="true">•</span>
+                                <span>2026-08-17</span>
+                            </div>
+                        </div>
                         
-                        <!-- 1. test-2026-08-16.html -->
+                        <!-- 2. test-2026-08-16.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f5f3ff; color: #4f46e5; border: 1px solid rgba(79, 70, 229, 0.15);">Systeem Test</span>
                             <h4><a href="./test-2026-08-16.html">Trend: 'Test'</a></h4>
@@ -1382,7 +1394,7 @@ In deze versie zijn alle visuele, contrast- en hiërarchische fouten opgelost. D
                             </div>
                         </div>
 
-                        <!-- 2. over-2026-08-14.html -->
+                        <!-- 3. over-2026-08-14.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fef2f2; color: #991b1b; border: 1px solid rgba(153, 27, 27, 0.15);">Trend Analyse</span>
                             <h4><a href="./over-2026-08-14.html">Trend: 'Over'</a></h4>
@@ -1394,7 +1406,7 @@ In deze versie zijn alle visuele, contrast- en hiërarchische fouten opgelost. D
                             </div>
                         </div>
 
-                        <!-- 3. use-2026-08-14.html -->
+                        <!-- 4. use-2026-08-14.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #eff6ff; color: #1d4ed8; border: 1px solid rgba(29, 78, 216, 0.15);">Trend Analyse</span>
                             <h4><a href="./use-2026-08-14.html">Trend: 'Use'</a></h4>
@@ -1406,7 +1418,7 @@ In deze versie zijn alle visuele, contrast- en hiërarchische fouten opgelost. D
                             </div>
                         </div>
 
-                        <!-- 4. tools-2026-08-13.html -->
+                        <!-- 5. tools-2026-08-13.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f0fdfa; color: #0d9488; border: 1px solid rgba(13, 148, 136, 0.15);">Trend Analyse</span>
                             <h4><a href="./tools-2026-08-13.html">Trend: 'Tools'</a></h4>
@@ -1418,7 +1430,7 @@ In deze versie zijn alle visuele, contrast- en hiërarchische fouten opgelost. D
                             </div>
                         </div>
 
-                        <!-- 5. data-2026-08-12.html -->
+                        <!-- 6. data-2026-08-12.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #ecfeff; color: #0891b2; border: 1px solid rgba(8, 145, 178, 0.15);">Trend Analyse</span>
                             <h4><a href="./data-2026-08-12.html">Trend: 'Data'</a></h4>
@@ -1430,7 +1442,7 @@ In deze versie zijn alle visuele, contrast- en hiërarchische fouten opgelost. D
                             </div>
                         </div>
 
-                        <!-- 6. its-2026-08-11.html -->
+                        <!-- 7. its-2026-08-11.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f5f3ff; color: #4f46e5; border: 1px solid rgba(79, 70, 229, 0.15);">Trend Analyse</span>
                             <h4><a href="./its-2026-08-11.html">Trend: 'Its'</a></h4>
@@ -1442,7 +1454,7 @@ In deze versie zijn alle visuele, contrast- en hiërarchische fouten opgelost. D
                             </div>
                         </div>
 
-                        <!-- 7. content-2026-08-10.html -->
+                        <!-- 8. content-2026-08-10.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fdf2f8; color: #db2777; border: 1px solid rgba(219, 39, 119, 0.15);">Trend Analyse</span>
                             <h4><a href="./content-2026-08-10.html">Trend: 'Content'</a></h4>
@@ -1454,7 +1466,7 @@ In deze versie zijn alle visuele, contrast- en hiërarchische fouten opgelost. D
                             </div>
                         </div>
 
-                        <!-- 8. use-2026-08-09.html -->
+                        <!-- 9. use-2026-08-09.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #eff6ff; color: #1d4ed8; border: 1px solid rgba(29, 78, 216, 0.15);">Trend Analyse</span>
                             <h4><a href="./use-2026-08-09.html">Trend: 'Use' (Vroegere editie)</a></h4>
@@ -1466,7 +1478,7 @@ In deze versie zijn alle visuele, contrast- en hiërarchische fouten opgelost. D
                             </div>
                         </div>
 
-                        <!-- 9. free-2026-08-08.html -->
+                        <!-- 10. free-2026-08-08.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f0fdf4; color: #15803d; border: 1px solid rgba(21, 128, 61, 0.15);">Trend Analyse</span>
                             <h4><a href="./free-2026-08-08.html">Trend: 'Free'</a></h4>
@@ -1478,24 +1490,17 @@ In deze versie zijn alle visuele, contrast- en hiërarchische fouten opgelost. D
                             </div>
                         </div>
 
-                        <!-- 10. people-2026-08-07.html -->
-                        <div class="archive-item">
-                            <span class="category-badge archive-badge" style="background-color: #fef2f2; color: #dc2626; border: 1px solid rgba(220, 38, 38, 0.15);">Trend Analyse</span>
-                            <h4><a href="./people-2026-08-07.html">Trend: 'People'</a></h4>
-                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe mens-AI co-creatie en 'human-in-the-loop' dynamieken transformeren naarmate autonome systemen menselijk gedrag ondersteunen.</p>
-                            <div class="archive-meta">
-                                <span>Door <strong>Redactie TechPulse</strong></span>
-                                <span class="dot" aria-hidden="true">•</span>
-                                <span>2026-08-07</span>
-                            </div>
-                        </div>
-
                         <!-- Oudere artikelen uit de repository -->
                         <div class="archive-item" style="border-bottom: none; padding-bottom: 0;">
                             <details style="cursor: pointer; font-size: 0.9rem; color: var(--primary); font-weight: 600;">
                                 <summary style="padding: 8px 0; outline: none;">Bekijk oudere artikelen uit de repository</summary>
                                 <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 16px; cursor: default;">
                                     
+                                    <div>
+                                        <h5 style="font-size: 0.95rem; font-weight: 700; color: var(--dark);"><a href="./people-2026-08-07.html" style="color: inherit; text-decoration: none;">Trend: 'People' (2026-08-07)</a></h5>
+                                        <p style="font-size: 0.8rem; color: var(--text-muted);">Mens-AI co-creatie en 'human-in-the-loop' dynamieken in autonome werkomgevingen.</p>
+                                    </div>
+
                                     <div>
                                         <h5 style="font-size: 0.95rem; font-weight: 700; color: var(--dark);"><a href="./agents-2026-08-06.html" style="color: inherit; text-decoration: none;">Trend: 'Agents' (2026-08-06)</a></h5>
                                         <p style="font-size: 0.8rem; color: var(--text-muted);">De opkomst van micro-agents die autonoom met elkaar onderhandelen en complexe taken uitvoeren.</p>
@@ -1631,7 +1636,7 @@ In deze versie zijn alle visuele, contrast- en hiërarchische fouten opgelost. D
                         
                         <div class="blueprint-hook">
                             <strong>Wist je dat de website waar je nu op kijkt 100% autonoom door AI wordt gerund?</strong> 
-                            Van trend-aggregatie en AI-contentgeneratie tot de conversiegerichte UI/UX code-updates en de marketing-funnel: er komt geen menselijke handeling aan te pas. Dit is de ultieme live demo van de toekomst van e-commerce.
+                            Van trend-aggregatie en AI-contentgeneratie to de conversiegerichte UI/UX code-updates en de marketing-funnel: er komt geen menselijke handeling aan te pas. Dit is de ultieme live demo van de toekomst van e-commerce.
                         </div>
                         
                         <p>
