@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Analyse: 'What' & Tech Ontwikkelingen - 18 Augustus 2026</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #6366f1;
+            --accent-hover: #4f46e5;
+            --success: #10b981;
+            --border-color: #475569;
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--accent), #ec4899);
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .nav-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .nav-back:hover {
+            background-color: var(--bg-tertiary);
+            transform: translateX(-3px);
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Main Article Card */
+        .article-card {
+            background-color: var(--bg-secondary);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-tag {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.03em;
+            background: linear-gradient(to right, #ffffff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .meta-info {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .content {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+        }
+
+        .content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .content h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin: 2rem 0 1rem 0;
+            font-weight: 700;
+        }
+
+        .content blockquote {
+            border-left: 4px solid var(--accent);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #e2e8f0;
+            background: rgba(255, 255, 255, 0.02);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Sidebar & Statistics */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .widget {
+            background-color: var(--bg-secondary);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            padding: 1.75rem;
+        }
+
+        .widget-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .widget-title span {
+            font-size: 0.8rem;
+            background-color: var(--bg-tertiary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            color: var(--text-secondary);
+        }
+
+        /* Trend List Styling */
+        .trend-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .trend-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            background-color: var(--bg-primary);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .trend-item:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .trend-name {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .trend-item.active {
+            border-color: var(--accent);
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.1) 0%, rgba(30, 41, 59, 1) 100%);
+        }
+
+        .trend-item.active .trend-name::before {
+            content: "★";
+            color: #f59e0b;
+        }
+
+        .trend-count {
+            background-color: var(--bg-tertiary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .trend-item.active .trend-count {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        /* CSS Bar Chart */
+        .chart-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .chart-row {
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        .chart-label {
+            width: 80px;
+            color: var(--text-secondary);
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .chart-bar-wrapper {
+            flex-grow: 1;
+            background-color: var(--bg-primary);
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 0 10px;
+        }
+
+        .chart-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent) 0%, #a5b4fc 100%);
+            border-radius: 6px;
+        }
+
+        .chart-value {
+            width: 25px;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 5rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo-area">
+                <div class="logo-icon">T</div>
+                <div class="logo-text">
+                    <h1>TrendRadar</h1>
+                    <p>Dagelijkse Tech & Dev Trends</p>
+                </div>
+            </div>
+            <a href="index.html" class="nav-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Terug naar Overzicht
+            </a>
+        </header>
+
+        <!-- Main Dashboard Content -->
+        <div class="dashboard-grid">
+            
+            <!-- Left Column: Core Trend Analysis / Article -->
+            <article class="article-card">
+                <span class="category-tag">Trend in Focus: 'What'</span>
+                <h2 class="article-title">De 'What' achter de Shift: Waarom de Techwereld Vandaag Vraagt naar Definitie en Betekenis</h2>
+                
+                <div class="meta-info">
+                    <div class="meta-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        <span>18 augustus 2026</span>
+                    </div>
+                    <div class="meta-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                        <span>4 Bronartikelen</span>
+                    </div>
+                    <div class="meta-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span>6 min leestijd</span>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <p>In het technologische landschap van medio 2026 zien we een opvallende verschuiving in hoe we over software-architectuur, AI-integraties en platform-engineering praten. Waar de discussies voorheen voornamelijk gedomineerd werden door de <em>'How'</em> (hoe schalen we, hoe implementeren we deze LLM, hoe optimaliseren we de pijplijn), dwingt de huidige markt ons terug naar de basis: <strong>'What'</strong>.</p>
+                    
+                    <p>Gezien in vier prominente artikelen vandaag, fungeert de term 'What' als een filosofische en praktische spil. Ontwikkelaars en productmanagers stellen zichzelf kritische vragen over productdefinitie. Met de explosie van automatische codegeneratie via systemen op <strong>Github</strong> en geavanceerde <strong>Tools</strong>, is het schrijven van de code zelf niet langer het primaire knelpunt. Het echte vraagstuk is: <em>wat</em> bouwen we, en lost het daadwerkelijk een probleem op?</p>
+
+                    <blockquote>
+                        "Nu AI de 'How' nagenoeg heeft opgelost, verschuift de waarde van de software engineer definitief naar het bepalen en bewaken van de 'What'."
+                    </blockquote>
+
+                    <h3>De Connectie met 'Should' en 'Just'</h3>
+                    <p>De trend 'What' staat niet op zichzelf. Vandaag zien we een sterke semantische overlap met de trends <strong>'Should'</strong> (4 artikelen) en <strong>'Just'</strong> (6 artikelen). Deze termen weerspiegelen een sceptische, pragmatische houding in de tech-community. Artikelen met titels in de sfeer van <em>"What you should build, and what you should just avoid"</em> domineren het debat. De transitie van pure features bouwen naar kritische evaluatie is in volle gang.</p>
+
+                    <h3>Data & Review als Kwaliteitsbewakers</h3>
+                    <p>Met de leidende trend van vandaag, <strong>'Review'</strong> (gezien in maar liefst 10 artikelen), zien we dat de industrie hard op de rem trapt wat betreft ongecontroleerde output. Of het nu gaat om code reviews, data-audits of het evalueren van AI-content: review-processen zijn crucialer dan ooit. Dit sluit naadloos aan op de <strong>'Data'</strong> trend (7 artikelen), waarin de nadruk ligt op de zuiverheid en herkomst van de trainingsdata en analytics die onze applicaties voeden.</p>
+
+                    <h3>Conclusie</h3>
+                    <p>De trends van vandaag laten een volwassen wordende tech-industrie zien. We zijn voorbij de initiële hype van automatische codegeneratie en AI-integraties. De focus ligt op consolidatie. Door de vraag te stellen 'What' (wat bouwen we?), ondersteund door gedegen 'Review' mechanismen en kwalitatieve 'Data', herpakken developers de controle over het eindproduct in een wereld vol ruis.</p>
+                </div>
+            </article>
+
+            <!-- Right Column: Sidebar Statistics -->
+            <div class="sidebar">
+                
+                <!-- Trend Widgets -->
+                <div class="widget">
+                    <div class="widget-title">
+                        Trend Volume 
+                        <span>18 Aug 2026</span>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <div class="chart-row">
+                            <span class="chart-label">Review</span>
+                            <div class="chart-bar-wrapper">
+                                <div class="chart-bar" style="width: 100%;"></div>
+                            </div>
+                            <span class="chart-value">10</span>
+                        </div>
+                        <div class="chart-row">
+                            <span class="chart-label">Data</span>
+                            <div class="chart-bar-wrapper">
+                                <div class="chart-bar" style="width: 70%;"></div>
+                            </div>
+                            <span class="chart-value">7</span>
+                        </div>
+                        <div class="chart-row">
+                            <span class="chart-label">Just</span>
+                            <div class="chart-bar-wrapper">
+                                <div class="chart-bar" style="width: 60%;"></div>
+                            </div>
+                            <span class="chart-value">6</span>
+                        </div>
+                        <div class="chart-row">
+                            <span class="chart-label">Its</span>
+                            <div class="chart-bar-wrapper">
+                                <div class="chart-bar" style="width: 60%;"></div>
+                            </div>
+                            <span class="chart-value">6</span>
+                        </div>
+                        <div class="chart-row">
+                            <span class="chart-label">Over</span>
+                            <div class="chart-bar-wrapper">
+                                <div class="chart-bar" style="width: 60%;"></div>
+                            </div>
+                            <span class="chart-value">6</span>
+                        </div>
+                        <div class="chart-row">
+                            <span class="chart-label">Github</span>
+                            <div class="chart-bar-wrapper">
+                                <div class="chart-bar" style="width: 50%;"></div>
+                            </div>
+                            <span class="chart-value">5</span>
+                        </div>
+                        <div class="chart-row">
+                            <span class="chart-label">Tools</span>
+                            <div class="chart-bar-wrapper">
+                                <div class="chart-bar" style="width: 50%;"></div>
+                            </div>
+                            <span class="chart-value">5</span>
+                        </div>
+                        <div class="chart-row">
+                            <span class="chart-label">Content</span>
+                            <div class="chart-bar-wrapper">
+                                <div class="chart-bar" style="width: 50%;"></div>
+                            </div>
+                            <span class="chart-value">5</span>
+                        </div>
+                        <div class="chart-row">
+                            <span class="chart-label" style="font-weight: bold; color: var(--text-primary);">What</span>
+                            <div class="chart-bar-wrapper">
+                                <div class="chart-bar" style="width: 40%; background: linear-gradient(90deg, #ec4899 0%, var(--accent) 100%);"></div>
+                            </div>
+                            <span class="chart-value" style="color: #ec4899;">4</span>
+                        </div>
+                        <div class="chart-row">
+                            <span class="chart-label">Should</span>
+                            <div class="chart-bar-wrapper">
+                                <div class="chart-bar" style="width: 40%;"></div>
+                            </div>
+                            <span class="chart-value">4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trend Context Card -->
+                <div class="widget">
+                    <div class="widget-title">Gerelateerde Trends</div>
+                    <div class="trend-list">
+                        <div class="trend-item active">
+                            <span class="trend-name">What</span>
+                            <span class="trend-count">4 art.</span>
+                        </div>
+                        <div class="trend-item">
+                            <span class="trend-name">Review</span>
+                            <span class="trend-count">10 art.</span>
+                        </div>
+                        <div class="trend-item">
+                            <span class="trend-name">Data</span>
+                            <span class="trend-count">7 art.</span>
+                        </div>
+                        <div class="trend-item">
+                            <span class="trend-name">Github</span>
+                            <span class="trend-count">5 art.</span>
+                        </div>
+                        <div class="trend-item">
+                            <span class="trend-name">Should</span>
+                            <span class="trend-count">4 art.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insights Box -->
+                <div class="widget" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%); border-color: rgba(99, 102, 241, 0.3);">
+                    <h4 style="font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h0a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                        Quick Takeaway
+                    </h4>
+                    <p style="font-size: 0.9rem; color: #cbd5e1;">
+                        De dominantie van <strong>Review (10)</strong> en <strong>Data (7)</strong> wijst op een sterke behoefte aan kwaliteitscontrole en verificatie. Ontwikkelaars bouwen niet simpelweg meer code, ze verifiëren en heroverwegen de fundamentele waarde ervan ('What').
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 TrendRadar Dashboard. Alle data is gegenereerd op basis van actuele crawling op 18 augustus 2026.</p>
+            <p style="margin-top: 0.5rem;"><a href="index.html">Terug naar de Homepage</a></p>
+        </footer>
+    </div>
+
+</body>
+</html>
