@@ -807,7 +807,7 @@
             display: none;
             justify-content: center;
             align-items: center;
-            min-height: 100dvh; /* dynamic viewport height voor perfecte mobiele viewport centrering */
+            min-height: calc(100vh - 150px);
             width: 100%;
             margin: 0 auto;
             box-sizing: border-box;
@@ -831,11 +831,48 @@
             margin: 40px auto;
         }
 
-        /* Merkidentiteit Header in 404 */
+        /* Brand Logo Styling */
         .brand-header {
-            margin-bottom: 2rem;
+            margin-bottom: 32px;
             display: flex;
             justify-content: center;
+        }
+
+        .brand-logo-text {
+            font-size: 1.85rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            min-height: 48px;
+        }
+
+        .brand-logo-text span {
+            color: var(--primary);
+            position: relative;
+        }
+
+        .brand-logo-text span::after {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            margin-left: 2px;
+            bottom: 3px;
+            position: relative;
+        }
+
+        /* Error Content Styling */
+        .error-content {
+            max-width: 480px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
             align-items: center;
         }
 
@@ -853,9 +890,9 @@
             border: 1px solid rgba(153, 27, 27, 0.15);
         }
 
-        .error-code {
+        .error-title {
             display: block;
-            font-size: clamp(5.5rem, 15vw, 8rem); 
+            font-size: clamp(5.5rem, 15vw, 7rem); 
             font-weight: 800;
             line-height: 1;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -865,8 +902,8 @@
             letter-spacing: -0.05em;
         }
 
-        .error-title {
-            font-size: 2rem;
+        .error-subtitle {
+            font-size: 1.65rem;
             font-weight: 800;
             color: var(--dark);
             line-height: 1.25;
@@ -880,6 +917,7 @@
             line-height: 1.6;
             margin: 0 auto 36px auto;
             max-width: 540px;
+            text-align: center !important;
         }
 
         /* Toegankelijke Actieknoppen met 48px Touch Targets */
@@ -891,6 +929,7 @@
             justify-content: center;
             max-width: 480px;
             margin-bottom: 16px;
+            box-sizing: border-box;
         }
 
         .btn-primary {
@@ -905,7 +944,7 @@
             padding: 14px 24px;
             border-radius: 8px;
             min-height: 48px; 
-            transition: all 0.2s ease-in-out;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease;
             box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
             border: none;
             cursor: pointer;
@@ -915,7 +954,7 @@
         }
 
         .btn-primary:hover {
-            background-color: var(--primary-hover);
+            background: var(--primary-hover);
             transform: translateY(-1px);
             box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
         }
@@ -994,22 +1033,6 @@
             user-select: none;
         }
 
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            padding: 8px;
-        }
-
-        .footer-logo-text {
-            font-size: 1.2rem;
-            opacity: 0.85;
-            transition: opacity 0.2s ease;
-        }
-
-        .footer-logo-text:hover {
-            opacity: 1;
-        }
-
         /* Footer */
         footer {
             background-color: var(--dark);
@@ -1043,6 +1066,18 @@
 
             .blueprint-card {
                 padding: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .error-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                flex: none;
             }
         }
 
@@ -1258,7 +1293,7 @@
             <a href="#" class="logo" onclick="goToHome(); return false;">Tech<span>Pulse</span></a>
             <nav>
                 <a href="#" class="active" id="nav-home" onclick="goToHome(); return false;">Home</a>
-                <a href="./what-2026-08-18.html" id="nav-articles">Artikelen</a>
+                <a href="./out-2026-08-19.html" id="nav-articles">Artikelen</a>
                 <a href="#404" id="nav-monitor">AI Monitor</a>
                 <a href="#blueprint" class="nav-cta" id="nav-blueprint">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
@@ -1275,24 +1310,29 @@
             <main class="error-container">
                 <!-- Premium Branded Header inside 404 container -->
                 <header class="brand-header">
-                    <a href="#" class="logo" onclick="goToHome(); return false;">Tech<span>Pulse</span></a>
+                    <a href="#" class="brand-logo-text" onclick="goToHome(); return false;">Tech<span>Pulse</span></a>
                 </header>
 
-                <span class="error-badge">Pagina niet gevonden</span>
-                <span class="error-code">404</span>
-                <h1 class="error-title" id="error-title">Oeps! Deze pagina is onvindbaar.</h1>
-                <p class="error-text">Het lijkt erop dat de link is verlopen of dat de pagina is verhuisd. Geen zorgen, we helpen je graag direct weer op weg naar onze diepgaande artikelen of de exclusieve AI Blueprint.</p>
-                
-                <!-- Conversie herstel-pad (Mobile Friendly Touch Targets) -->
-                <div class="error-actions">
-                    <a href="#" class="btn-primary" onclick="goToHome(); return false;">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 8px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                        Naar de homepage
-                    </a>
-                    <a href="#blueprint" class="btn-secondary" onclick="goToBlueprint();">
-                        Bekijk AI Blueprint
-                    </a>
-                </div>
+                <!-- Error Content Wrapper -->
+                <section class="error-content">
+                    <span class="error-badge">Pagina niet gevonden</span>
+                    <h1 class="error-title">404</h1>
+                    <h2 class="error-subtitle" id="error-title">Oeps! Deze pagina is onvindbaar.</h2>
+                    <p class="error-text">
+                        De pagina die je zoekt bestaat niet (meer) of is verhuisd. Geen zorgen, we helpen je graag weer direct op weg naar onze diepgaande artikelen of de exclusieve AI Blueprint.
+                    </p>
+                    
+                    <!-- Conversie herstel-pad (Mobile Friendly Touch Targets) -->
+                    <div class="error-actions">
+                        <a href="#" class="btn-primary" onclick="goToHome(); return false;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 8px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                            Terug naar de homepage
+                        </a>
+                        <a href="#blueprint" class="btn-secondary" onclick="goToBlueprint();">
+                            Bekijk AI Blueprint
+                        </a>
+                    </div>
+                </section>
 
                 <footer class="error-footer">
                     <div class="footer-links">
@@ -1367,7 +1407,7 @@
                         <p>Hoewel LNN's momenteel nog niet geschikt zijn voor het genereren van creatieve teksten of het voeren van diepgaande filosofische gesprekken zoals LLM's dat doen, vullen ze de perfecte niche op voor real-time besluitvorming. De toekomst van AI is hoogstwaarschijnlijk een hybride vorm: een gigantisch 'denkend' brein in de cloud, ondersteund door vloeibare, vlijmscherpe zintuigelijke agents op de apparaten zelf.</p>
 
                         <h3>Conclusie</h3>
-                        <p>Liquid Neural Networks bewijzen dat 'groter' niet altijd beter is. Door te leren van de elegantie en het minimalisme van de natuur, openen wetenschappers de deur naar een AI-toekomst die niet alleen groen en efficiënt is, maar ook écht intelligent reageert op een onvoorspelbare wereld.</p>
+                        <p>Liquid Neural Networks bewijzen dat 'groter' niet altijd beter is. Door te leren van de elegantie en het minimalisme van de natuur, openen wetenschappers de door naar een AI-toekomst die niet alleen groen en efficiënt is, maar ook écht intelligent reageert op een onvoorspelbare wereld.</p>
                     </div>
                 </article>
             </main>
@@ -1380,7 +1420,19 @@
                     <h3>📚 Uit het Archief</h3>
                     <div class="archive-list">
 
-                        <!-- 1. what-2026-08-18.html -->
+                        <!-- 1. out-2026-08-19.html -->
+                        <div class="archive-item">
+                            <span class="category-badge archive-badge" style="background-color: #fef2f2; color: #991b1b; border: 1px solid rgba(153, 27, 27, 0.15);">Trend Analyse</span>
+                            <h4><a href="./out-2026-08-19.html">Trend: 'Out'</a></h4>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Een diepgaande analyse van out-of-distribution generalisatie en hoe autonome systemen omgaan met onvoorziene scenario's buiten hun trainingsdata.</p>
+                            <div class="archive-meta">
+                                <span>Door <strong>Redactie TechPulse</strong></span>
+                                <span class="dot" aria-hidden="true">•</span>
+                                <span>2026-08-19</span>
+                            </div>
+                        </div>
+
+                        <!-- 2. what-2026-08-18.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f0fdf4; color: #166534; border: 1px solid rgba(22, 101, 52, 0.15);">Trend Analyse</span>
                             <h4><a href="./what-2026-08-18.html">Trend: 'What'</a></h4>
@@ -1392,7 +1444,7 @@
                             </div>
                         </div>
 
-                        <!-- 2. after-2026-08-17.html -->
+                        <!-- 3. after-2026-08-17.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fdf2f8; color: #db2777; border: 1px solid rgba(219, 39, 119, 0.15);">Trend Analyse</span>
                             <h4><a href="./after-2026-08-17.html">Trend: 'After'</a></h4>
@@ -1404,7 +1456,7 @@
                             </div>
                         </div>
                         
-                        <!-- 3. test-2026-08-16.html -->
+                        <!-- 4. test-2026-08-16.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f5f3ff; color: #4f46e5; border: 1px solid rgba(79, 70, 229, 0.15);">Systeem Test</span>
                             <h4><a href="./test-2026-08-16.html">Trend: 'Test'</a></h4>
@@ -1416,7 +1468,7 @@
                             </div>
                         </div>
 
-                        <!-- 4. over-2026-08-14.html -->
+                        <!-- 5. over-2026-08-14.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fef2f2; color: #991b1b; border: 1px solid rgba(153, 27, 27, 0.15);">Trend Analyse</span>
                             <h4><a href="./over-2026-08-14.html">Trend: 'Over'</a></h4>
@@ -1428,7 +1480,7 @@
                             </div>
                         </div>
 
-                        <!-- 5. use-2026-08-14.html -->
+                        <!-- 6. use-2026-08-14.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #eff6ff; color: #1d4ed8; border: 1px solid rgba(29, 78, 216, 0.15);">Trend Analyse</span>
                             <h4><a href="./use-2026-08-14.html">Trend: 'Use'</a></h4>
@@ -1440,9 +1492,9 @@
                             </div>
                         </div>
 
-                        <!-- 6. tools-2026-08-13.html -->
+                        <!-- 7. tools-2026-08-13.html -->
                         <div class="archive-item">
-                            <span class="category-badge archive-badge" style="background-color: #f0fdfa; color: #0d9488; border: 1px solid rgba(13, 148, 136, 0.15);">Trend Analyse</span>
+                            <span class="category-badge archive-badge" style="background-color: #f0fdf4; color: #0d9488; border: 1px solid rgba(13, 148, 136, 0.15);">Trend Analyse</span>
                             <h4><a href="./tools-2026-08-13.html">Trend: 'Tools'</a></h4>
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe adaptieve AI-tools en autonome platforms naadloos integreren in bestaande tech-stacks om de menselijke productiviteit exponentieel te verhogen.</p>
                             <div class="archive-meta">
@@ -1452,7 +1504,7 @@
                             </div>
                         </div>
 
-                        <!-- 7. data-2026-08-12.html -->
+                        <!-- 8. data-2026-08-12.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #ecfeff; color: #0891b2; border: 1px solid rgba(8, 145, 178, 0.15);">Trend Analyse</span>
                             <h4><a href="./data-2026-08-12.html">Trend: 'Data'</a></h4>
@@ -1464,7 +1516,7 @@
                             </div>
                         </div>
 
-                        <!-- 8. its-2026-08-11.html -->
+                        <!-- 9. its-2026-08-11.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f5f3ff; color: #4f46e5; border: 1px solid rgba(79, 70, 229, 0.15);">Trend Analyse</span>
                             <h4><a href="./its-2026-08-11.html">Trend: 'Its'</a></h4>
@@ -1476,7 +1528,7 @@
                             </div>
                         </div>
 
-                        <!-- 9. content-2026-08-10.html -->
+                        <!-- 10. content-2026-08-10.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fdf2f8; color: #db2777; border: 1px solid rgba(219, 39, 119, 0.15);">Trend Analyse</span>
                             <h4><a href="./content-2026-08-10.html">Trend: 'Content'</a></h4>
@@ -1488,7 +1540,7 @@
                             </div>
                         </div>
 
-                        <!-- 10. use-2026-08-09.html -->
+                        <!-- 11. use-2026-08-09.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #eff6ff; color: #1d4ed8; border: 1px solid rgba(29, 78, 216, 0.15);">Trend Analyse</span>
                             <h4><a href="./use-2026-08-09.html">Trend: 'Use' (Vroegere editie)</a></h4>
@@ -1518,7 +1570,7 @@
 
                                     <div>
                                         <h5 style="font-size: 0.95rem; font-weight: 700; color: var(--dark);"><a href="./agents-2026-08-06.html" style="color: inherit; text-decoration: none;">Trend: 'Agents' (2026-08-06)</a></h5>
-                                        <p style="font-size: 0.8rem; color: var(--text-muted);">De opkomst van micro-agents die autonoom met elkaar onderhandelen en complexe taken uitvoeren.</p>
+                                        <p style="font-size: 0.8rem; color: var(--text-muted);">De opkomst van micro-agents die autonoom met elkaar onderhandelen en complexe tasks uitvoeren.</p>
                                     </div>
 
                                     <div>
@@ -1651,7 +1703,7 @@
                         
                         <div class="blueprint-hook">
                             <strong>Wist je dat de website waar je nu op kijkt 100% autonoom door AI wordt gerund?</strong> 
-                            Van trend-aggregatie en AI-contentgeneratie tot de conversiegerichte UI/UX code-updates en de marketing-funnel: er komt geen menselijke handeling aan te pas. Dit is de ultieme live demo van de toekomst van e-commerce.
+                            Van trend-aggregatie en AI-contentgeneratie to de conversiegerichte UI/UX code-updates en de marketing-funnel: er komt geen menselijke handeling aan te pas. Dit is de ultieme live demo van de toekomst van e-commerce.
                         </div>
                         
                         <p>
