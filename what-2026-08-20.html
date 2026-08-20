@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Analyse: 'What' & De Digitale Tijdgeest van 2026</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --primary-light: #e0e7ff;
+            --secondary: #0ea5e9;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            border: 1px solid var(--primary-light);
+            background-color: var(--primary-light);
+        }
+
+        .btn-back:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 992px) {
+            main {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .hero-banner {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, var(--dark) 0%, #1e1b4b 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .meta-tag {
+            background-color: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 800px;
+        }
+
+        .content-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            font-weight: 700;
+            border-left: 4px solid var(--primary);
+            padding-left: 12px;
+        }
+
+        p {
+            margin-bottom: 18px;
+            color: var(--text-main);
+            font-size: 1.05rem;
+        }
+
+        p strong {
+            color: var(--dark);
+        }
+
+        .trend-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .trend-list-widget {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .trend-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .trend-item:last-child {
+            border-bottom: none;
+        }
+
+        .trend-name {
+            font-weight: 600;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .trend-name::before {
+            content: '#';
+            color: var(--secondary);
+            font-weight: 800;
+        }
+
+        .trend-count {
+            background-color: var(--light);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .trend-item.active {
+            background-color: var(--primary-light);
+            margin: 0 -12px;
+            padding: 12px;
+            border-radius: 8px;
+            border-bottom: none;
+        }
+
+        .trend-item.active .trend-name {
+            color: var(--primary-dark);
+        }
+
+        .trend-item.active .trend-count {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Interactive chart representation */
+        .chart-container {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .chart-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .chart-label {
+            width: 80px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-main);
+            text-align: right;
+        }
+
+        .chart-bar-wrapper {
+            flex-grow: 1;
+            background-color: var(--light);
+            height: 16px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .chart-bar {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 8px;
+            transition: width 1s ease-in-out;
+        }
+
+        .chart-bar.highlight {
+            background-color: var(--secondary);
+        }
+
+        .chart-val {
+            width: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .highlight-box {
+            background-color: #f0fdf4;
+            border-left: 4px solid #16a34a;
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 25px 0;
+        }
+
+        .highlight-box h4 {
+            color: #14532d;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        footer {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding: 20px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #ef4444;
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <span class="logo-dot"></span>
+                <span class="logo-text">TrendPulse Studio</span>
+            </div>
+            <a href="index.html" class="btn-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Terug naar Overzicht
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Banner -->
+        <section class="hero-banner">
+            <span class="meta-tag">Focal Trend Analyse</span>
+            <h1 class="hero-title">Trenddiepte: De Mystiek van 'What' & Het Digitale Landschap</h1>
+            <p class="hero-desc">Een analytische blik op de meest opvallende trends van vandaag, 20 augustus 2026. Waarom de meest basale vraagstellingen momenteel de digitale media domineren.</p>
+        </section>
+
+        <!-- Main Content (Analysis) -->
+        <section class="content-card">
+            <h2 class="section-title">Analyse: Waarom "What" Vandaag Alles Bepaalt</h2>
+            
+            <p>Het internet beweegt zich in cycli. Soms worden we overspoeld door specifieke merknamen of technische jargontermen, maar vandaag — <strong>20 augustus 2026</strong> — zien we een opvallende terugkeer naar de basis. De term <strong>'What'</strong> voert, met een vermelding in 5 prominente artikelen, de discussie aan. Maar deze ogenschijnlijk simpele term staat niet op zichzelf.</p>
+
+            <p>In een tijdperk waarin kunstmatige intelligentie de antwoorden dicteert, verschuift de menselijke nieuwsgierigheid en angst terug naar de fundamenten: <em>"Wat is echt?"</em>, <em>"Wat kunnen we geloven?"</em> en <em>"Wat doet deze technologie daadwerkelijk?"</em>. De term 'What' functioneert hier als een paraplu voor een grotere maatschappelijke behoefte aan verduidelijking en herdefinitie.</p>
+
+            <div class="highlight-box">
+                <h4>De Nexus met 'Its' & 'Can'</h4>
+                <p>Als we de data van vandaag analyseren, zien we dat de absolute uitschieter <strong>'Its'</strong> (9 vermeldingen) en de hulpterm <strong>'Can'</strong> (7 vermeldingen) direct aansluiten op deze existentiële tech-vragen. De media proberen massaal de capaciteiten en de identiteit van nieuwe systemen te duiden: <em>"What can its engine do?"</em> of <em>"What are its limits?"</em>.</p>
+            </div>
+
+            <h3 style="margin: 25px 0 15px; color: var(--dark); font-weight: 700;">Big Tech onder het Vergrootglas: Google, Meta & Review</h3>
+            <p>Met zowel <strong>Google</strong> als <strong>Meta</strong> op exact 6 vermeldingen vandaag, is het duidelijk dat de grootmachten van Silicon Valley de wind van voren krijgen. De consument en de toezichthouder eisen antwoorden. De hoge frequentie van de term <strong>'Review'</strong> (6 artikelen) wijst op een golf van evaluaties. Of het nu gaat om de nieuwste AR-brillen van Meta of de zoekalgoritmes van Google; het publiek neemt geen genoegen meer met marketingpraat. Men wil harde bewijzen, vergelijkingen en transparantie.</p>
+
+            <h3 style="margin: 25px 0 15px; color: var(--dark); font-weight: 700;">Surveillance en Algoritmische Controle: 'Police' & 'Flock'</h3>
+            <p>Een duistere maar cruciale trendlijn vandaag is de gelijktijdige opkomst van <strong>'Police'</strong> (5 artikelen) en <strong>'Flock'</strong> (5 artikelen). Binnen de tech-context verwijst 'Flock' steeds vaker naar geautomatiseerde surveillance-systemen (zoals Flock Safety camera's) en de integratie daarvan met lokale politiemachten. Dit verklaart de scherpe stijging in maatschappelijke berichtgeving. De discussie balanceert op het scherpst van de snede tussen publieke veiligheid en de inbreuk op de privacy van de burger.</p>
+
+            <p>Samen weven deze termen een coherent verhaal van een samenleving die enerzijds gefascineerd is door technologische vooruitgang (<strong>'Now'</strong>, 6 vermeldingen), maar anderzijds actieve mechanismen opzet om deze macht te controleren en te reguleren.</p>
+        </section>
+
+        <!-- Sidebar (Stats & Other Trends) -->
+        <aside class="trend-sidebar">
+            <div class="trend-list-widget">
+                <h3 style="font-size: 1.2rem; margin-bottom: 15px; color: var(--dark); display: flex; align-items: center;">
+                    <span class="pulse-indicator"></span> Trends van Vandaag
+                </h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;">Overzicht van de meest besproken onderwerpen op 2026-08-20, gesorteerd op volume.</p>
+                
+                <div class="trend-list">
+                    <div class="trend-item">
+                        <span class="trend-name">Its</span>
+                        <span class="trend-count">9 artikelen</span>
+                    </div>
+                    <div class="trend-item">
+                        <span class="trend-name">Can</span>
+                        <span class="trend-count">7 artikelen</span>
+                    </div>
+                    <div class="trend-item">
+                        <span class="trend-name">Google</span>
+                        <span class="trend-count">6 artikelen</span>
+                    </div>
+                    <div class="trend-item">
+                        <span class="trend-name">Now</span>
+                        <span class="trend-count">6 artikelen</span>
+                    </div>
+                    <div class="trend-item">
+                        <span class="trend-name">Meta</span>
+                        <span class="trend-count">6 artikelen</span>
+                    </div>
+                    <div class="trend-item">
+                        <span class="trend-name">Review</span>
+                        <span class="trend-count">6 artikelen</span>
+                    </div>
+                    <div class="trend-item">
+                        <span class="trend-name">About</span>
+                        <span class="trend-count">6 artikelen</span>
+                    </div>
+                    <div class="trend-item active">
+                        <span class="trend-name">What</span>
+                        <span class="trend-count">5 artikelen</span>
+                    </div>
+                    <div class="trend-item">
+                        <span class="trend-name">Flock</span>
+                        <span class="trend-count">5 artikelen</span>
+                    </div>
+                    <div class="trend-item">
+                        <span class="trend-name">Police</span>
+                        <span class="trend-count">5 artikelen</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Dashboard Widget -->
+            <div class="trend-list-widget">
+                <h3 style="font-size: 1.2rem; margin-bottom: 5px; color: var(--dark);">Volume Vergelijking</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Relatieve aanwezigheid in het nieuwsbulletin.</p>
+                
+                <div class="chart-container">
+                    <div class="chart-bar-row">
+                        <div class="chart-label">Its</div>
+                        <div class="chart-bar-wrapper"><div class="chart-bar" style="width: 100%;"></div></div>
+                        <div class="chart-val">9</div>
+                    </div>
+                    <div class="chart-bar-row">
+                        <div class="chart-label">Can</div>
+                        <div class="chart-bar-wrapper"><div class="chart-bar" style="width: 77%;"></div></div>
+                        <div class="chart-val">7</div>
+                    </div>
+                    <div class="chart-bar-row">
+                        <div class="chart-label">Google</div>
+                        <div class="chart-bar-wrapper"><div class="chart-bar" style="width: 66%;"></div></div>
+                        <div class="chart-val">6</div>
+                    </div>
+                    <div class="chart-bar-row">
+                        <div class="chart-label">Meta</div>
+                        <div class="chart-bar-wrapper"><div class="chart-bar" style="width: 66%;"></div></div>
+                        <div class="chart-val">6</div>
+                    </div>
+                    <div class="chart-bar-row">
+                        <div class="chart-label">What</div>
+                        <div class="chart-bar-wrapper"><div class="chart-bar highlight" style="width: 55%;"></div></div>
+                        <div class="chart-val">5</div>
+                    </div>
+                    <div class="chart-bar-row">
+                        <div class="chart-label">Police</div>
+                        <div class="chart-bar-wrapper"><div class="chart-bar" style="width: 55%;"></div></div>
+                        <div class="chart-val">5</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 TrendPulse Studio. Alle rechten voorbehouden. Data gegenereerd op 2026-08-20.</p>
+    </footer>
+
+</body>
+</html>
