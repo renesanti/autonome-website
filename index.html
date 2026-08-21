@@ -347,21 +347,20 @@
             line-height: 1.75;
         }
 
-        /* Universele Lijststijlen met Strikte Linkeruitlijning */
+        /* Universele Lijststijlen met Strikte Linkeruitlijning & WCAG Toegankelijkheid */
         .article-content ul, 
         .legacy-prompt ul,
         .blueprint-features {
             margin: 0 0 32px 0;
-            padding: 0;
+            padding: 0 0 0 24px;
             list-style: none;
             text-align: left !important;
         }
 
         .article-content li, 
-        .legacy-prompt li,
-        .feature-item {
+        .legacy-prompt li {
             position: relative;
-            padding-left: 28px;
+            padding-left: 8px;
             margin-bottom: 16px;
             font-size: 1.05rem;
             color: var(--text-main);
@@ -369,11 +368,11 @@
             text-align: left !important;
         }
 
-        /* Bullet indicatoren */
+        /* Bullet indicatoren strak links uitgelijnd */
         .article-content li::before {
             content: "";
             position: absolute;
-            left: 8px;
+            left: -16px;
             top: 11px;
             width: 6px;
             height: 6px;
@@ -484,7 +483,7 @@
             color: var(--primary);
             font-weight: bold;
             position: absolute;
-            left: 6px;
+            left: -16px;
             top: 0;
             font-size: 0.825rem;
         }
@@ -512,14 +511,14 @@
 
         .interactive-form ol {
             margin: 0 0 20px 0;
-            padding: 0;
+            padding: 0 0 0 24px;
             list-style: none;
             counter-reset: form-counter;
         }
 
         .interactive-form ol li {
             position: relative;
-            padding-left: 28px;
+            padding-left: 8px;
             margin-bottom: 16px;
             font-size: 1.05rem;
             color: var(--text-main);
@@ -531,7 +530,7 @@
             content: counter(form-counter) ".";
             counter-increment: form-counter;
             position: absolute;
-            left: 6px;
+            left: -18px;
             top: 0;
             color: var(--primary);
             font-weight: 700;
@@ -693,12 +692,17 @@
             text-align: left;
         }
 
+        .blueprint-features {
+            padding-left: 0 !important;
+        }
+
         .feature-item {
             display: flex !important;
             align-items: flex-start !important;
             gap: 12px !important;
             text-align: left !important;
             padding-left: 0 !important;
+            margin-bottom: 18px;
         }
 
         .feature-item::before {
@@ -895,13 +899,13 @@
         }
 
         .error-code {
-            font-size: clamp(5rem, 15vw, 7.5rem); 
+            font-size: clamp(4rem, 12vw, 6.5rem) !important; 
             font-weight: 800;
             line-height: 1;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin: 0 0 16px 0;
+            margin: 10vh 0 16px 0 !important;
             letter-spacing: -0.05em;
         }
 
@@ -910,15 +914,15 @@
             font-weight: 800;
             color: var(--dark);
             line-height: 1.25;
-            margin: 0 0 16px 0;
+            margin: 0 0 16px 0 !important;
             letter-spacing: -0.03em;
         }
 
         .error-text {
-            color: var(--text-muted); /* WCAG AAA compliant contrast */
-            font-size: 1.05rem;
-            line-height: 1.6;
-            margin: 0 auto 32px auto;
+            color: var(--text-muted) !important; /* WCAG AAA compliant contrast */
+            font-size: 16px !important;
+            line-height: 1.55 !important;
+            margin: 0 auto 32px auto !important;
             max-width: 480px;
             text-align: center !important;
         }
@@ -1003,30 +1007,30 @@
 
         /* Mobielvriendelijke Footer & Touch Targets (Minimaal 44px/48px) */
         .error-footer {
-            margin-top: auto; 
+            margin-top: 48px !important; 
             padding-top: 32px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
             width: 100%;
             border-top: 1px solid var(--border);
         }
 
         .footer-link {
-            color: var(--primary);
+            color: #0969da !important; /* High-contrast interactieve linkkleur */
             text-decoration: underline;
             font-size: 0.95rem;
             font-weight: 700;
-            padding: 12px 16px; /* Touch target >44px */
+            padding: 12px 16px; /* Touch target > 44px */
             display: inline-flex;
             align-items: center;
             transition: color 0.2s ease;
         }
 
         .footer-link:hover {
-            color: var(--primary-hover);
+            color: var(--primary-hover) !important;
             text-decoration: none;
         }
 
@@ -1190,43 +1194,46 @@
                 font-size: 2.85rem;
             }
 
-            /* UX FIX: Perfecte linkeruitlijning voor opsommingstekens en pictogram-lijstjes op mobiele apparaten */
+            /* UX FIX: Perfecte, absolute linkeruitlijning voor opsommingstekens en pictogram-lijstjes op mobiel */
             .article-content ul, 
             .legacy-prompt ul,
             .blueprint-features {
-                padding-left: 0 !important;
+                padding-left: 16px !important;
                 margin-left: 0 !important;
                 text-align: left !important;
             }
 
             .article-content li, 
-            .legacy-prompt li,
-            .feature-item {
+            .legacy-prompt li {
                 text-align: left !important;
-                padding-left: 24px !important;
+                padding-left: 4px !important;
                 margin-left: 0 !important;
             }
 
             .article-content li::before {
-                left: 4px !important;
+                left: -12px !important;
                 top: 10px !important;
             }
             
             .legacy-prompt li::before {
-                left: 4px !important;
-                top: 0 !important;
+                left: -12px !important;
+                top: 4px !important;
             }
 
             .interactive-form ol {
-                padding-left: 0 !important;
+                padding-left: 16px !important;
             }
 
             .interactive-form ol li {
-                padding-left: 24px !important;
+                padding-left: 4px !important;
             }
 
             .interactive-form ol li::before {
-                left: 2px !important;
+                left: -12px !important;
+            }
+
+            .blueprint-features {
+                padding-left: 0 !important;
             }
 
             .feature-item {
@@ -1260,7 +1267,7 @@
             }
 
             .error-text {
-                margin: 0 auto 24px auto;
+                margin: 0 auto 24px auto !important;
             }
 
             .error-actions {
@@ -1274,9 +1281,9 @@
             }
 
             .error-footer {
-                flex-direction: column;
-                gap: 8px;
-                margin-top: 32px;
+                flex-direction: column !important;
+                gap: 12px !important;
+                margin-top: 32px !important;
                 padding-top: 24px;
             }
 
@@ -1305,7 +1312,7 @@
             <a href="#" class="logo" onclick="goToHome(); return false;">Tech<span>Pulse</span></a>
             <nav>
                 <a href="#" class="active" id="nav-home" onclick="goToHome(); return false;">Home</a>
-                <a href="./what-2026-08-20.html" id="nav-articles">Artikelen</a>
+                <a href="./tools-2026-08-21.html" id="nav-articles">Artikelen</a>
                 <a href="#404" id="nav-monitor">AI Monitor</a>
                 <a href="#blueprint" class="nav-cta" id="nav-blueprint">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
@@ -1386,7 +1393,7 @@
                     </div>
 
                     <div class="article-content">
-                        <p>Wie de AI-revolutie volgt, hoort voornamelijk over 'groter, zwaarder en duurder'. Large Language Models (LLM's) vereisen gigantische datacenters, verbruiken gigawatten aan stroom en hun kennis is bevroren op het moment dat de training stopt. Maar in de schaduw van deze mastodonten ontwikkelt zich een radicaal alternatief aan het MIT: <strong>Liquid Neural Networks (LNN's)</strong>. Deze technologie belooft AI niet alleen slimmer te maken, maar ook oneinfig veel flexibeler en energiezuiniger.</p>
+                        <p>Wie de AI-revolutie volgt, hoort voornamelijk over 'groter, zwaarder en duurder'. Large Language Models (LLM's) vereisen gigantische datacenters, verbruiken gigawatten aan stroom en hun kennis is bevroren op het moment dat de training stopt. Maar in de schaduw van deze mastodonten ontwikkelt zich een radicaal alternatief aan het MIT: <strong>Liquid Neural Networks (LNN's)</strong>. Deze technologie belooft AI niet alleen slimmer te maken, maar ook oneindig veel flexibeler en energiezuiniger.</p>
 
                         <h2>Wat is een Liquid Neural Network?</h2>
                         <p>Traditionele neurale netwerken zijn statisch. Tijdens de trainingsfase worden de gewichten van de verbindingen vastgelegd, waarna het model tijdens gebruik (de inferentiefase) niet meer fundamenteel verandert. Een Liquid Neural Network daarentegen is ontworpen om zich continu aan te passen aan nieuwe datastromen, zelfs ná de training.</p>
@@ -1403,23 +1410,23 @@
                         <ul>
                             <li><strong>Oneindige Aanpasbaarheid (Adaptability):</strong> Omdat de wiskundige vergelijkingen achter LNN's continu van aard zijn, kunnen de netwerken moeiteloos omgaan met onverwachte situaties. Denk aan een zelfrijdende auto die getraind is in de zon, maar plotseling in een zware sneeuwstorm terechtkomt. Waar een traditionele AI kan haperen, past een LNN zich direct aan de nieuwe omstandigheden aan.</li>
                             <li><strong>Extreme Compactheid:</strong> Terwijl GPT-4 honderden miljarden parameters nodig heeft, kan een LNN voor complexe navigatietaken toe met minder dan honderd neuronen. Dit betekent dat de software direct op kleine microchips (edge computing) kan draaien, zonder cloudverbinding.</li>
-                            <li><strong>Verklaarbaarheid (Explainability):</strong> Door de compacte structuur is het voor ontwikkelaars veel eenvoudiger om te herleiden <em>waarom</em> een netwerk een bepaalde bescision heeft genomen. Dit is een gigantische stap voorwaarts voor sectoren waar transparantie cruciaal is, zoals de medische wereld en de luchtvaart.</li>
+                            <li><strong>Verklaarbaarheid (Explainability):</strong> Door de compacte structuur is het voor ontwikkelaars veel eenvoudiger om te herleiden <em>waarom</em> een netwerk een bepaalde beslissing heeft genomen. Dit is een gigantische stap voorwaarts voor sectoren waar transparantie cruciaal is, zoals de medische wereld en de luchtvaart.</li>
                         </ul>
 
                         <h2>Praktische Toepassingen in de Realiteit</h2>
                         <p>De toepassingsgebieden voor LNN's liggen met name in de fysieke wereld, waar datastromen continu veranderen en direct moeten worden verwerkt:</p>
 
                         <h3>1. Autonome Voertuigen en Robotica</h3>
-                        <p>In tests van MIT slaagde een drone met een LNN-besturingssysteem erin om feilloos door dichte bossen en onbekend terrain te navigeren, zelfs bij harde zijwind en camera-ruis. Het model paste zijn vlieggedrag in real-time aan zonder vertraging.</p>
+                        <p>In tests van MIT slaagde een drone met een LNN-besturingssysteem erin om feilloos door dichte bossen en onbekend terrein te navigeren, zelfs bij harde zijwind en camera-ruis. Het model paste zijn vlieggedrag in real-time aan zonder vertraging.</p>
 
                         <h3>2. Medische Monitoring</h3>
                         <p>LNN's zijn perfect geschikt voor het analyseren van continue vitale functies, zoals hartslag (ECG) en hersenactiviteit (EEG). Ze kunnen subtiele, tijdgebonden afwijkingen detecteren die traditionele AI-modellen over het hoofd zien omdat ze de temporele context missen.</p>
 
                         <h2>De Weg naar de Toekomst</h2>
-                        <p>Hoewel LNN's momenteam nog niet geschikt zijn voor het genereren van creatieve teksten of het voeren van diepgaande filosofische gesprekken zoals LLM's dat doen, vullen ze de perfecte niche op voor real-time besluitvorming. De toekomst van AI is hoogstwaarschijnlijk een hybride vorm: een gigantisch 'denkend' brein in de cloud, ondersteund door vloeibare, vlijmscherpe zintuigelijke agents op de apparaten zelf.</p>
+                        <p>Hoewel LNN's momenteel nog niet geschikt zijn voor het genereren van creatieve teksten of het voeren van diepgaande filosofische gesprekken zoals LLM's dat doen, vullen ze de perfecte niche op voor real-time besluitvorming. De toekomst van AI is hoogstwaarschijnlijk een hybride vorm: een gigantisch 'denkend' brein in de cloud, ondersteund door vloeibare, vlijmscherpe zintuigelijke agents op de apparaten zelf.</p>
 
                         <h3>Conclusie</h3>
-                        <p>Liquid Neural Networks bewijzen dat 'groter' niet altijd beter is. Door te leren van de elegantie en het minimalisme van de natuur, openen wetenschappers de door naar een AI-toekomst die niet alleen groen en efficiënt is, maar ook écht intelligent reageert op een onvoorspelbare wereld.</p>
+                        <p>Liquid Neural Networks bewijzen dat 'groter' niet altijd beter is. Door te leren van de elegantie en het minimalisme van de natuur, openen wetenschappers de deur naar een AI-toekomst die niet alleen groen en efficiënt is, maar ook écht intelligent reageert op een onvoorspelbare wereld.</p>
                     </div>
                 </article>
             </main>
@@ -1432,7 +1439,19 @@
                     <h3>📚 Uit het Archief</h3>
                     <div class="archive-list">
 
-                        <!-- 1. what-2026-08-20.html -->
+                        <!-- 1. tools-2026-08-21.html -->
+                        <div class="archive-item">
+                            <span class="category-badge archive-badge" style="background-color: #f0fdf4; color: #0d9488; border: 1px solid rgba(13, 148, 136, 0.15);">Trend Analyse</span>
+                            <h4><a href="./tools-2026-08-21.html">Trend: 'Tools' (Nieuwste editie)</a></h4>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek de nieuwste verschuivingen in autonome productiviteitstools en hoe deze systemen zich integreren in enterprise infrastructuren.</p>
+                            <div class="archive-meta">
+                                <span>Door <strong>Redactie TechPulse</strong></span>
+                                <span class="dot" aria-hidden="true">•</span>
+                                <span>2026-08-21</span>
+                            </div>
+                        </div>
+
+                        <!-- 2. what-2026-08-20.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f0fdf4; color: #166534; border: 1px solid rgba(22, 101, 52, 0.15);">Trend Analyse</span>
                             <h4><a href="./what-2026-08-20.html">Trend: 'What'</a></h4>
@@ -1444,7 +1463,7 @@
                             </div>
                         </div>
 
-                        <!-- 2. out-2026-08-19.html -->
+                        <!-- 3. out-2026-08-19.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fef2f2; color: #991b1b; border: 1px solid rgba(153, 27, 27, 0.15);">Trend Analyse</span>
                             <h4><a href="./out-2026-08-19.html">Trend: 'Out'</a></h4>
@@ -1456,7 +1475,7 @@
                             </div>
                         </div>
 
-                        <!-- 3. what-2026-08-18.html -->
+                        <!-- 4. what-2026-08-18.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f0fdf4; color: #166534; border: 1px solid rgba(22, 101, 52, 0.15);">Trend Analyse</span>
                             <h4><a href="./what-2026-08-18.html">Trend: 'What' (Vorige editie)</a></h4>
@@ -1468,7 +1487,7 @@
                             </div>
                         </div>
 
-                        <!-- 4. after-2026-08-17.html -->
+                        <!-- 5. after-2026-08-17.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fdf2f8; color: #db2777; border: 1px solid rgba(219, 39, 119, 0.15);">Trend Analyse</span>
                             <h4><a href="./after-2026-08-17.html">Trend: 'After'</a></h4>
@@ -1480,7 +1499,7 @@
                             </div>
                         </div>
                         
-                        <!-- 5. test-2026-08-16.html -->
+                        <!-- 6. test-2026-08-16.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f5f3ff; color: #4f46e5; border: 1px solid rgba(79, 70, 229, 0.15);">Systeem Test</span>
                             <h4><a href="./test-2026-08-16.html">Trend: 'Test'</a></h4>
@@ -1492,7 +1511,7 @@
                             </div>
                         </div>
 
-                        <!-- 6. over-2026-08-14.html -->
+                        <!-- 7. over-2026-08-14.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fef2f2; color: #991b1b; border: 1px solid rgba(153, 27, 27, 0.15);">Trend Analyse</span>
                             <h4><a href="./over-2026-08-14.html">Trend: 'Over'</a></h4>
@@ -1504,7 +1523,7 @@
                             </div>
                         </div>
 
-                        <!-- 7. use-2026-08-14.html -->
+                        <!-- 8. use-2026-08-14.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #eff6ff; color: #1d4ed8; border: 1px solid rgba(29, 78, 216, 0.15);">Trend Analyse</span>
                             <h4><a href="./use-2026-08-14.html">Trend: 'Use'</a></h4>
@@ -1516,7 +1535,7 @@
                             </div>
                         </div>
 
-                        <!-- 8. tools-2026-08-13.html -->
+                        <!-- 9. tools-2026-08-13.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f0fdf4; color: #0d9488; border: 1px solid rgba(13, 148, 136, 0.15);">Trend Analyse</span>
                             <h4><a href="./tools-2026-08-13.html">Trend: 'Tools'</a></h4>
@@ -1528,7 +1547,7 @@
                             </div>
                         </div>
 
-                        <!-- 9. data-2026-08-12.html -->
+                        <!-- 10. data-2026-08-12.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #ecfeff; color: #0891b2; border: 1px solid rgba(8, 145, 178, 0.15);">Trend Analyse</span>
                             <h4><a href="./data-2026-08-12.html">Trend: 'Data'</a></h4>
@@ -1540,7 +1559,7 @@
                             </div>
                         </div>
 
-                        <!-- 10. its-2026-08-11.html -->
+                        <!-- 11. its-2026-08-11.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f5f3ff; color: #4f46e5; border: 1px solid rgba(79, 70, 229, 0.15);">Trend Analyse</span>
                             <h4><a href="./its-2026-08-11.html">Trend: 'Its'</a></h4>
@@ -1552,7 +1571,7 @@
                             </div>
                         </div>
 
-                        <!-- 11. content-2026-08-10.html -->
+                        <!-- 12. content-2026-08-10.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fdf2f8; color: #db2777; border: 1px solid rgba(219, 39, 119, 0.15);">Trend Analyse</span>
                             <h4><a href="./content-2026-08-10.html">Trend: 'Content'</a></h4>
@@ -1564,7 +1583,7 @@
                             </div>
                         </div>
 
-                        <!-- 12. use-2026-08-09.html -->
+                        <!-- 13. use-2026-08-09.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #eff6ff; color: #1d4ed8; border: 1px solid rgba(29, 78, 216, 0.15);">Trend Analyse</span>
                             <h4><a href="./use-2026-08-09.html">Trend: 'Use' (Vroegere editie)</a></h4>
