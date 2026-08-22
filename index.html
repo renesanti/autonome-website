@@ -811,38 +811,38 @@
             display: none;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            min-height: -webkit-fill-available;
+            min-height: calc(100vh - 150px);
             width: 100%;
             margin: 0 auto;
             box-sizing: border-box;
-            padding: 32px 24px;
+            padding: 64px 24px;
         }
 
         .error-container {
             background: var(--card-bg);
             border-radius: var(--radius-lg);
             width: 100%;
-            padding: 48px 32px;
+            padding: 56px 48px;
             box-shadow: var(--shadow-xl);
             text-align: center;
             border: 1px solid rgba(15, 23, 42, 0.08);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             box-sizing: border-box;
-            max-width: 640px; 
-            min-height: 70vh;
+            max-width: 680px; 
             margin: auto;
         }
 
         /* Brand Header inside 404 container */
         .brand-header {
-            margin-bottom: 24px;
+            margin-bottom: 32px;
             display: flex;
             justify-content: center;
             width: 100%;
+            border-bottom: none;
+            background: transparent;
         }
 
         .brand-logo-text {
@@ -876,12 +876,11 @@
 
         /* Error Content Styling */
         .error-content {
-            max-width: 480px;
+            max-width: 520px;
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: auto 0;
         }
 
         .error-badge {
@@ -894,35 +893,35 @@
             border-radius: 100px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             border: 1px solid rgba(153, 27, 27, 0.15);
         }
 
         .error-code {
-            font-size: clamp(4rem, 12vw, 6.5rem) !important; 
+            font-size: clamp(4.5rem, 10vw, 7rem) !important; 
             font-weight: 800;
             line-height: 1;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin: 10vh 0 16px 0 !important;
+            margin-bottom: 20px !important;
             letter-spacing: -0.05em;
         }
 
         .error-title {
-            font-size: 1.65rem;
+            font-size: 1.85rem;
             font-weight: 800;
             color: var(--dark);
             line-height: 1.25;
-            margin: 0 0 16px 0 !important;
+            margin-bottom: 16px !important;
             letter-spacing: -0.03em;
         }
 
         .error-text {
             color: var(--text-muted) !important; /* WCAG AAA compliant contrast */
-            font-size: 16px !important;
-            line-height: 1.55 !important;
-            margin: 0 auto 32px auto !important;
+            font-size: 1.05rem !important;
+            line-height: 1.65 !important;
+            margin: 0 auto 36px auto !important;
             max-width: 480px;
             text-align: center !important;
         }
@@ -1007,8 +1006,8 @@
 
         /* Mobielvriendelijke Footer & Touch Targets (Minimaal 44px/48px) */
         .error-footer {
-            margin-top: 48px !important; 
-            padding-top: 32px;
+            margin-top: 40px !important; 
+            padding-top: 28px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -1019,7 +1018,7 @@
         }
 
         .footer-link {
-            color: #0969da !important; /* High-contrast interactieve linkkleur */
+            color: #0369a1 !important; /* High-contrast interactieve linkkleur */
             text-decoration: underline;
             font-size: 0.95rem;
             font-weight: 700;
@@ -1037,14 +1036,6 @@
         .divider {
             color: var(--border);
             user-select: none;
-        }
-
-        .brand-logo {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin-top: 16px;
-            opacity: 0.6; /* Verhoogde zichtbaarheid */
         }
 
         /* Footer */
@@ -1312,7 +1303,7 @@
             <a href="#" class="logo" onclick="goToHome(); return false;">Tech<span>Pulse</span></a>
             <nav>
                 <a href="#" class="active" id="nav-home" onclick="goToHome(); return false;">Home</a>
-                <a href="./tools-2026-08-21.html" id="nav-articles">Artikelen</a>
+                <a href="./pixel-2026-08-22.html" id="nav-articles">Artikelen</a>
                 <a href="#404" id="nav-monitor">AI Monitor</a>
                 <a href="#blueprint" class="nav-cta" id="nav-blueprint">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
@@ -1328,9 +1319,9 @@
         <div id="error-404-layout">
             <main class="error-container">
                 <!-- Premium Branded Header inside 404 container -->
-                <header class="brand-header">
+                <div class="brand-header">
                     <a href="#" class="brand-logo-text" onclick="goToHome(); return false;">Tech<span>Pulse</span></a>
-                </header>
+                </div>
 
                 <!-- Error Content Wrapper -->
                 <section class="error-content">
@@ -1343,7 +1334,7 @@
                     </p>
                     
                     <!-- Conversie herstel-pad (Mobile Friendly Touch Targets) -->
-                    <div class="cta-wrapper error-actions">
+                    <div class="error-actions">
                         <a href="#" class="btn-primary" onclick="goToHome(); return false;">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 8px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                             Terug naar homepage
@@ -1358,7 +1349,6 @@
                     <a href="mailto:support@techpulse.nl" class="footer-link">Klantenservice</a>
                     <span class="divider" aria-hidden="true">—</span>
                     <a href="#" class="footer-link" onclick="goToHome(); return false;">Artikelen zoeken</a>
-                    <div class="brand-logo"></div>
                 </footer>
             </main>
         </div>
@@ -1401,7 +1391,7 @@
                         <p>De term 'liquid' (vloeibaar) verwijst naar het vermogen van het netwerk om zijn parameters dynamisch aan te passen op basis van de tijd en de context of de input. Geïnspireerd door het neurologische systeem van de microscopisch kleine rondworm <em>C. elegans</em>, die met slechts 302 neuronen complexe navigatietaken kan uitvoeren, blinken LNN's uit in compactheid en efficiëntie.</p>
 
                         <blockquote>
-                            <p>"Waar traditionele AI-modellen fungeren als een fotoalbum van het verleden, gedraagt een Liquid Neural Network zich als een filmcamera die live reageert op de regisseur."</p>
+                            <p>"Waar traditionele AI-modellen fungeren as een fotoalbum van het verleden, gedraagt een Liquid Neural Network zich als een filmcamera die live reageert op de regisseur."</p>
                         </blockquote>
 
                         <h2>De Drie Grote Voordelen van 'Vloeibare' AI</h2>
@@ -1417,7 +1407,7 @@
                         <p>De toepassingsgebieden voor LNN's liggen met name in de fysieke wereld, waar datastromen continu veranderen en direct moeten worden verwerkt:</p>
 
                         <h3>1. Autonome Voertuigen en Robotica</h3>
-                        <p>In tests van MIT slaagde een drone met een LNN-besturingssysteem erin om feilloos door dichte bossen en onbekend terrein te navigeren, zelfs bij harde zijwind en camera-ruis. Het model paste zijn vlieggedrag in real-time aan zonder vertraging.</p>
+                        <p>In tests van MIT slaagde een drone met een LNN-besturingssysteem erin om feilloos door dichte bossen en onbekend terrain te navigeren, zelfs bij harde zijwind en camera-ruis. Het model paste zijn vlieggedrag in real-time aan zonder vertraging.</p>
 
                         <h3>2. Medische Monitoring</h3>
                         <p>LNN's zijn perfect geschikt voor het analyseren van continue vitale functies, zoals hartslag (ECG) en hersenactiviteit (EEG). Ze kunnen subtiele, tijdgebonden afwijkingen detecteren die traditionele AI-modellen over het hoofd zien omdat ze de temporele context missen.</p>
@@ -1439,10 +1429,22 @@
                     <h3>📚 Uit het Archief</h3>
                     <div class="archive-list">
 
-                        <!-- 1. tools-2026-08-21.html -->
+                        <!-- 1. pixel-2026-08-22.html -->
+                        <div class="archive-item">
+                            <span class="category-badge archive-badge" style="background-color: #f5f3ff; color: #4f46e5; border: 1px solid rgba(79, 70, 229, 0.15);">Trend Analyse</span>
+                            <h4><a href="./pixel-2026-08-22.html">Trend: 'Pixel' (Nieuwste editie)</a></h4>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe hyper-gepersonaliseerde interfaces en dynamische pixelgeneratie de overgang naar on-the-fly gebruikerservaringen versnellen.</p>
+                            <div class="archive-meta">
+                                <span>Door <strong>Redactie TechPulse</strong></span>
+                                <span class="dot" aria-hidden="true">•</span>
+                                <span>2026-08-22</span>
+                            </div>
+                        </div>
+
+                        <!-- 2. tools-2026-08-21.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f0fdf4; color: #0d9488; border: 1px solid rgba(13, 148, 136, 0.15);">Trend Analyse</span>
-                            <h4><a href="./tools-2026-08-21.html">Trend: 'Tools' (Nieuwste editie)</a></h4>
+                            <h4><a href="./tools-2026-08-21.html">Trend: 'Tools'</a></h4>
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek de nieuwste verschuivingen in autonome productiviteitstools en hoe deze systemen zich integreren in enterprise infrastructuren.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
@@ -1451,7 +1453,7 @@
                             </div>
                         </div>
 
-                        <!-- 2. what-2026-08-20.html -->
+                        <!-- 3. what-2026-08-20.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f0fdf4; color: #166534; border: 1px solid rgba(22, 101, 52, 0.15);">Trend Analyse</span>
                             <h4><a href="./what-2026-08-20.html">Trend: 'What'</a></h4>
@@ -1463,7 +1465,7 @@
                             </div>
                         </div>
 
-                        <!-- 3. out-2026-08-19.html -->
+                        <!-- 4. out-2026-08-19.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fef2f2; color: #991b1b; border: 1px solid rgba(153, 27, 27, 0.15);">Trend Analyse</span>
                             <h4><a href="./out-2026-08-19.html">Trend: 'Out'</a></h4>
@@ -1475,7 +1477,7 @@
                             </div>
                         </div>
 
-                        <!-- 4. what-2026-08-18.html -->
+                        <!-- 5. what-2026-08-18.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f0fdf4; color: #166534; border: 1px solid rgba(22, 101, 52, 0.15);">Trend Analyse</span>
                             <h4><a href="./what-2026-08-18.html">Trend: 'What' (Vorige editie)</a></h4>
@@ -1487,7 +1489,7 @@
                             </div>
                         </div>
 
-                        <!-- 5. after-2026-08-17.html -->
+                        <!-- 6. after-2026-08-17.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fdf2f8; color: #db2777; border: 1px solid rgba(219, 39, 119, 0.15);">Trend Analyse</span>
                             <h4><a href="./after-2026-08-17.html">Trend: 'After'</a></h4>
@@ -1499,7 +1501,7 @@
                             </div>
                         </div>
                         
-                        <!-- 6. test-2026-08-16.html -->
+                        <!-- 7. test-2026-08-16.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f5f3ff; color: #4f46e5; border: 1px solid rgba(79, 70, 229, 0.15);">Systeem Test</span>
                             <h4><a href="./test-2026-08-16.html">Trend: 'Test'</a></h4>
@@ -1511,7 +1513,7 @@
                             </div>
                         </div>
 
-                        <!-- 7. over-2026-08-14.html -->
+                        <!-- 8. over-2026-08-14.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fef2f2; color: #991b1b; border: 1px solid rgba(153, 27, 27, 0.15);">Trend Analyse</span>
                             <h4><a href="./over-2026-08-14.html">Trend: 'Over'</a></h4>
@@ -1523,7 +1525,7 @@
                             </div>
                         </div>
 
-                        <!-- 8. use-2026-08-14.html -->
+                        <!-- 9. use-2026-08-14.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #eff6ff; color: #1d4ed8; border: 1px solid rgba(29, 78, 216, 0.15);">Trend Analyse</span>
                             <h4><a href="./use-2026-08-14.html">Trend: 'Use'</a></h4>
@@ -1535,10 +1537,10 @@
                             </div>
                         </div>
 
-                        <!-- 9. tools-2026-08-13.html -->
+                        <!-- 10. tools-2026-08-13.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f0fdf4; color: #0d9488; border: 1px solid rgba(13, 148, 136, 0.15);">Trend Analyse</span>
-                            <h4><a href="./tools-2026-08-13.html">Trend: 'Tools'</a></h4>
+                            <h4><a href="./tools-2026-08-13.html">Trend: 'Tools' (Vorige editie)</a></h4>
                             <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; text-align: left;">Ontdek hoe adaptieve AI-tools en autonome platforms naadloos integreren in bestaande tech-stacks om de menselijke productiviteit exponentieel te verhogen.</p>
                             <div class="archive-meta">
                                 <span>Door <strong>Redactie TechPulse</strong></span>
@@ -1547,7 +1549,7 @@
                             </div>
                         </div>
 
-                        <!-- 10. data-2026-08-12.html -->
+                        <!-- 11. data-2026-08-12.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #ecfeff; color: #0891b2; border: 1px solid rgba(8, 145, 178, 0.15);">Trend Analyse</span>
                             <h4><a href="./data-2026-08-12.html">Trend: 'Data'</a></h4>
@@ -1559,7 +1561,7 @@
                             </div>
                         </div>
 
-                        <!-- 11. its-2026-08-11.html -->
+                        <!-- 12. its-2026-08-11.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #f5f3ff; color: #4f46e5; border: 1px solid rgba(79, 70, 229, 0.15);">Trend Analyse</span>
                             <h4><a href="./its-2026-08-11.html">Trend: 'Its'</a></h4>
@@ -1571,7 +1573,7 @@
                             </div>
                         </div>
 
-                        <!-- 12. content-2026-08-10.html -->
+                        <!-- 13. content-2026-08-10.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #fdf2f8; color: #db2777; border: 1px solid rgba(219, 39, 119, 0.15);">Trend Analyse</span>
                             <h4><a href="./content-2026-08-10.html">Trend: 'Content'</a></h4>
@@ -1583,7 +1585,7 @@
                             </div>
                         </div>
 
-                        <!-- 13. use-2026-08-09.html -->
+                        <!-- 14. use-2026-08-09.html -->
                         <div class="archive-item">
                             <span class="category-badge archive-badge" style="background-color: #eff6ff; color: #1d4ed8; border: 1px solid rgba(29, 78, 216, 0.15);">Trend Analyse</span>
                             <h4><a href="./use-2026-08-09.html">Trend: 'Use' (Vroegere editie)</a></h4>
@@ -1746,7 +1748,7 @@
                         
                         <div class="blueprint-hook">
                             <strong>Wist je dat de website waar je nu op kijkt 100% autonoom door AI wordt gerund?</strong> 
-                            Van trend-aggregatie en AI-contentgeneratie tot de conversiegerichte UI/UX code-updates en de marketing-funnel: er komt geen menselijke handeling aan te pas. Dit is de ultieme live demo van de toekomst van e-commerce.
+                            Van trend-aggregatie en AI-contentgeneratie to de conversiegerichte UI/UX code-updates en de marketing-funnel: er komt geen menselijke handeling aan te pas. Dit is de ultieme live demo van de toekomst van e-commerce.
                         </div>
                         
                         <p>
